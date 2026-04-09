@@ -323,6 +323,7 @@ html,body{height:100%;overflow:hidden;font-family:var(--ui);background:var(--bg0
 .prov-model{font-size:9.5px;color:var(--txt3)}
 .prov-dot{width:6px;height:6px;border-radius:50%;background:var(--bd2);flex-shrink:0}
 .prov-dot.live{background:var(--green)}
+.prov-dot.err{background:var(--red)}
 
 .ai-pred-box{
   padding:7px;border-radius:4px;border:1px solid var(--bd1);background:var(--bg0);
@@ -855,7 +856,7 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
     </div>
     <div class="sp-sec">
       <div class="sp-sec-hdr" id="spAiHdr">AI Config</div>
-      <div class="sp-row" style="flex-direction:column;align-items:flex-start;gap:3px"><span class="sp-lbl" id="spApiLbl">API Key (local)</span><input class="sp-inp" type="password" id="spApiKey" placeholder="sk-ant-..."></div>
+      <div class="sp-row" style="flex-direction:column;align-items:flex-start;gap:3px"><span class="sp-lbl" id="spApiLbl">API Key (local)</span><input class="sp-inp" type="password" id="spApiKey" placeholder="sk-ant-... or gsk_... or AIza..."></div>
       <div class="sp-row"><span class="sp-lbl" id="spThinkLbl">Show AI thinking</span><button class="sp-tog on" id="spThinkTog"></button></div>
     </div>
     <div class="sp-sec">
@@ -869,7 +870,15 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
       <div class="sp-sc-mini" id="spScList"></div>
     </div>
     <div class="sp-sec">
-      <div class="sp-sec-hdr" id="spAboutHdr">About</div>
+      <div class="sp-sec">
+      <div class="sp-sec-hdr" id="spEndpointHdr">Custom Endpoint (optional)</div>
+      <div class="sp-row" style="flex-direction:column;align-items:flex-start;gap:3px">
+        <span class="sp-lbl">Override API endpoint URL</span>
+        <input class="sp-inp" type="text" id="spEndpoint" placeholder="http://localhost:1234/v1/chat/completions">
+      </div>
+      <div style="font-size:9px;color:var(--txt3);padding:2px 0">Leave empty to use provider default. Useful for proxies, LM Studio, Jan, Kobold.</div>
+    </div>
+    <div class="sp-sec-hdr" id="spAboutHdr">About</div>
       <div class="sp-row"><span class="sp-lbl">DevFlow</span><span style="font-size:9.5px;font-family:var(--mono);color:var(--txt3);background:var(--bg3);padding:1px 5px;border-radius:3px">build 2025</span></div>
       <div class="sp-row"><span class="sp-lbl" id="spCrLbl">Creator</span><span style="font-size:11.5px;color:var(--txt1)">@alcacal</span></div>
       <div class="sp-slinks"><a class="sp-slink tt" href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">&#9836; TikTok</a><a class="sp-slink gh" href="#" target="_blank" rel="noopener">&#8997; GitHub</a></div>
@@ -974,14 +983,18 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
 <!-- ══ AI TOOLBAR ══ -->
 <div class="ai-bar">
   <span class="ai-label">AI:</span>
-  <select class="ai-prov-sel" id="aiProvSel">
-    <option value="anthropic">Anthropic</option>
-    <option value="openai">OpenAI</option>
-    <option value="ollama">Ollama (local)</option>
-    <option value="localai">LocalAI</option>
+  <select class="ai-prov-sel" id="aiProvSel" title="Select AI provider">
+    <option value="anthropic">Claude</option>
+    <option value="groq">Groq ✓</option>
+    <option value="gemini">Gemini</option>
+    <option value="openai">GPT</option>
+    <option value="ollama">Ollama</option>
+    <option value="localai">LM Studio</option>
   </select>
   <input class="ai-req-input" id="aiReqInput" placeholder="Instruksi AI: mis. Tambahkan method caching ke UserService, atau Perbaiki memory leak...">
-  <input class="ai-key-input" id="aiKeyInput" type="password" placeholder="API Key (opsional)">
+  <input class="ai-key-input" id="aiKeyInput" type="password" placeholder="API key (sk-ant / gsk_ / AIzaSy…)">
+  <input id="aiModelInput" placeholder="model name (optional)" style="height:22px;width:130px;background:var(--bg1);border:1px solid var(--bd1);color:var(--txt2);padding:0 7px;border-radius:4px;font-size:10.5px;font-family:var(--mono);outline:none;flex-shrink:0" title="Override model name (leave blank for default)">
+  <button class="btn" id="aiTestBtn" title="Test API connection" style="color:var(--green);border:1px solid rgba(46,216,130,.3);background:var(--green-dim);flex-shrink:0">⚡ Test</button>
   <button class="btn ai-run" id="aiRunBtn" title="Jalankan AI Orchestrator (Ctrl+Shift+Enter)">✦ Orchestrate</button>
   <div class="ai-status"><div class="dot" id="aiBarDot" style="width:6px;height:6px;border-radius:50%;background:var(--bd2)"></div><span id="aiBarLabel">idle</span></div>
 </div>
@@ -1026,6 +1039,10 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
 
       <!-- Providers -->
       <div class="ai-section">
+        <div style="font-size:9px;background:var(--green-dim);border:1px solid rgba(46,216,130,.2);color:var(--green);border-radius:4px;padding:4px 7px;margin-bottom:6px;font-family:var(--mono);line-height:1.5" id="aiCorsHint">
+          ✅ Groq &amp; Gemini = browser-safe<br>⚠ OpenAI = use Groq or a proxy
+        </div>
+
         <div class="ai-sec-title">Provider</div>
         <div id="providerList"></div>
       </div>
@@ -1082,7 +1099,8 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
       <!-- Quick actions -->
       <div class="ai-section">
         <div class="ai-sec-title">Quick Actions</div>
-        <button class="ai-run-btn" id="aiOrcBtn">✦ RUN ORCHESTRATOR</button>
+        <button class="ai-run-btn" id="aiTestBtn" style="margin-bottom:4px;border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.07);color:var(--cyan)">🔌 Test Connection</button>
+      <button class="ai-run-btn" id="aiOrcBtn">✦ RUN ORCHESTRATOR</button>
         <button class="ai-run-btn green" id="aiAnalyzeBtn" style="margin-top:4px">◈ ANALYZE STRUCTURE</button>
         <button class="ai-run-btn" id="aiDebugBtn" style="margin-top:4px;border-color:rgba(245,183,49,.4);background:var(--amber-dim);color:var(--amber)">🐛 DEBUG AGENT</button>
         <button class="ai-run-btn" id="aiReviewBtn" style="margin-top:4px;border-color:rgba(34,211,238,.3);background:rgba(34,211,238,.07);color:var(--cyan)">👁 REVIEW AGENT</button>
@@ -1863,83 +1881,382 @@ class ConflictResolver{
 // MODULE: AI_Integrator
 // ──────────────────────────────────────────────────────────────
 class AI_Integrator{
-  constructor(){this._p=new Map();this._active='anthropic';this._calls=0;this._registerDefaults();}
-  _registerDefaults(){
-    this.register('anthropic',{endpoint:'https://api.anthropic.com/v1/messages',model:'claude-sonnet-4-20250514',
-      buildReq:(msgs,o)=>({model:o.model||'claude-sonnet-4-20250514',max_tokens:o.maxTokens||2048,system:o.system||'You are an expert software engineer. Produce minimal, production-ready code. Return raw code only unless asked for explanation.',messages:msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:m.content}))}),
-      parseRes:r=>r.content?.[0]?.text||'',
-      buildHdrs:(k)=>({'Content-Type':'application/json'}),
+  constructor(){
+    this._p=new Map();
+    this._active='anthropic';
+    this._calls=0;
+    this._errors=0;
+    this._build();
+  }
+
+  _build(){
+    // ── ANTHROPIC / CLAUDE ──────────────────────────────────────────────────
+    // Direct browser access is supported via the special CORS header.
+    // API key format: sk-ant-api03-...
+    // Docs: https://docs.anthropic.com/en/api/getting-started
+    this.register('anthropic',{
+      label:'Claude (Anthropic)',
+      endpoint:'https://api.anthropic.com/v1/messages',
+      defaultModel:'claude-sonnet-4-20250514',
+      models:['claude-opus-4-5','claude-sonnet-4-20250514','claude-haiku-4-5-20251001',
+              'claude-3-5-sonnet-20241022','claude-3-5-haiku-20241022','claude-3-opus-20240229'],
+      needsKey:true,
+      keyHint:'sk-ant-api03-...',
+      corsOk:true,
+      buildReq(msgs,o){
+        return{
+          model:o.model||this.defaultModel,
+          max_tokens:o.maxTokens||4096,
+          system:o.system||'You are an expert software engineer. Return raw code only when generating code snippets — no markdown fences, no preamble.',
+          messages:msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
+        };
+      },
+      buildHdrs(k){
+        if(!k) throw new Error('Claude requires an API key (sk-ant-...). Enter it in the key field or Settings → AI Config.');
+        return{
+          'Content-Type':'application/json',
+          'x-api-key':k,
+          'anthropic-version':'2023-06-01',
+          'anthropic-dangerous-direct-browser-access':'true'
+        };
+      },
+      buildUrl(k,o){ return null; }, // use default endpoint
+      parseRes(r){
+        if(r.type==='error'||r.error) throw new Error((r.error?.message||r.error)||JSON.stringify(r));
+        const txt=r.content?.[0]?.text;
+        if(txt==null) throw new Error('Empty content from Claude. Check your quota at console.anthropic.com');
+        return txt;
+      }
     });
-    this.register('openai',{endpoint:'https://api.openai.com/v1/chat/completions',model:'gpt-4o',
-      buildReq:(msgs,o)=>({model:o.model||'gpt-4o',max_tokens:o.maxTokens||2048,messages:[{role:'system',content:o.system||'You are an expert software engineer.'},...msgs]}),
-      parseRes:r=>r.choices?.[0]?.message?.content||'',
-      buildHdrs:(k)=>({'Content-Type':'application/json','Authorization':`Bearer ${k}`}),
+
+    // ── OPENAI / GPT ────────────────────────────────────────────────────────
+    // ⚠ OpenAI BLOCKS browser CORS by default (no Access-Control-Allow-Origin).
+    //   If you get "CORS error" or "Network error", use one of:
+    //   1. Groq (free, OpenAI-compat, CORS-friendly) ← recommended
+    //   2. A local proxy: npx cors-anywhere  or  ngrok
+    //   3. Enter proxy URL in Settings → Endpoint Override
+    //   4. Use LM Studio locally
+    // API key format: sk-proj-... or sk-...
+    this.register('openai',{
+      label:'GPT (OpenAI)',
+      endpoint:'https://api.openai.com/v1/chat/completions',
+      defaultModel:'gpt-4o',
+      models:['gpt-4o','gpt-4o-mini','gpt-4-turbo','gpt-3.5-turbo','o1-mini'],
+      needsKey:true,
+      keyHint:'sk-proj-...',
+      corsOk:false, // browser CORS blocked by OpenAI servers
+      corsNote:'OpenAI blocks browser CORS. Use Groq (free) or a local proxy.',
+      buildReq(msgs,o){
+        return{
+          model:o.model||this.defaultModel,
+          max_tokens:o.maxTokens||4096,
+          temperature:0.3,
+          messages:[
+            {role:'system',content:o.system||'You are an expert software engineer.'},
+            ...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
+          ]
+        };
+      },
+      buildHdrs(k){
+        if(!k) throw new Error('OpenAI requires an API key (sk-...). Enter it in the key field.');
+        return{'Content-Type':'application/json','Authorization':'Bearer '+k};
+      },
+      buildUrl(k,o){ return null; },
+      parseRes(r){
+        if(r.error) throw new Error(r.error.message||JSON.stringify(r.error));
+        const txt=r.choices?.[0]?.message?.content;
+        if(txt==null) throw new Error('Empty response from OpenAI');
+        return txt;
+      }
     });
-    this.register('ollama',{endpoint:'http://localhost:11434/api/chat',model:'codellama',
-      buildReq:(msgs,o)=>({model:o.model||'codellama',stream:false,messages:msgs}),
-      parseRes:r=>r.message?.content||'',buildHdrs:()=>({'Content-Type':'application/json'}),
+
+    // ── GROQ — RECOMMENDED for browser use ─────────────────────────────────
+    // Free tier: https://console.groq.com  ← get a key in 30 seconds
+    // Runs Llama 3.3, Mixtral, Gemma — very fast.
+    // CORS: ✅ fully supported
+    // API key format: gsk_...
+    this.register('groq',{
+      label:'Groq (Llama / Mixtral)',
+      endpoint:'https://api.groq.com/openai/v1/chat/completions',
+      defaultModel:'llama-3.3-70b-versatile',
+      models:['llama-3.3-70b-versatile','llama-3.1-8b-instant','mixtral-8x7b-32768','gemma2-9b-it','llama3-70b-8192'],
+      needsKey:true,
+      keyHint:'gsk_...',
+      corsOk:true,
+      buildReq(msgs,o){
+        return{
+          model:o.model||this.defaultModel,
+          max_tokens:o.maxTokens||4096,
+          temperature:0.3,
+          messages:[
+            {role:'system',content:o.system||'You are an expert software engineer.'},
+            ...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
+          ]
+        };
+      },
+      buildHdrs(k){
+        if(!k) throw new Error('Groq requires an API key (gsk_...) from console.groq.com — free!');
+        return{'Content-Type':'application/json','Authorization':'Bearer '+k};
+      },
+      buildUrl(k,o){ return null; },
+      parseRes(r){
+        if(r.error) throw new Error(r.error.message||JSON.stringify(r.error));
+        const txt=r.choices?.[0]?.message?.content;
+        if(txt==null) throw new Error('Empty response from Groq');
+        return txt;
+      }
     });
-    this.register('localai',{endpoint:'http://localhost:8080/v1/chat/completions',model:'gpt4all',
-      buildReq:(msgs,o)=>({model:o.model||'gpt4all',max_tokens:2048,messages:msgs}),
-      parseRes:r=>r.choices?.[0]?.message?.content||'',
-      buildHdrs:(k)=>({'Content-Type':'application/json',...(k?{'Authorization':`Bearer ${k}`}:{})}),
+
+    // ── GOOGLE GEMINI ────────────────────────────────────────────────────────
+    // Get key: https://aistudio.google.com  (free tier)
+    // CORS: ✅ key goes in URL, not header — no CORS issue
+    // API key format: AIzaSy...
+    this.register('gemini',{
+      label:'Gemini (Google)',
+      endpoint:'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent',
+      defaultModel:'gemini-2.0-flash-exp',
+      models:['gemini-2.0-flash-exp','gemini-1.5-pro','gemini-1.5-flash','gemini-1.5-flash-8b'],
+      needsKey:true,
+      keyHint:'AIzaSy...',
+      corsOk:true,
+      buildReq(msgs,o){
+        const sys=o.system||'You are an expert software engineer.';
+        const contents=msgs.filter(m=>m.role!=='system').map(m=>({
+          role:m.role==='assistant'?'model':'user',
+          parts:[{text:String(m.content)}]
+        }));
+        // Gemini requires at least one user turn
+        if(!contents.length) contents.push({role:'user',parts:[{text:'Hello'}]});
+        return{
+          systemInstruction:{parts:[{text:sys}]},
+          contents,
+          generationConfig:{maxOutputTokens:o.maxTokens||4096,temperature:0.3}
+        };
+      },
+      buildHdrs(k){ return{'Content-Type':'application/json'}; },
+      buildUrl(k,o){
+        const model=o.model||this.defaultModel;
+        if(!k) throw new Error('Gemini requires an API key (AIzaSy...) from aistudio.google.com — free!');
+        return 'https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent?key='+k;
+      },
+      parseRes(r){
+        if(r.error) throw new Error(r.error.message||JSON.stringify(r.error));
+        const txt=r.candidates?.[0]?.content?.parts?.[0]?.text;
+        if(txt==null){
+          const reason=r.candidates?.[0]?.finishReason;
+          throw new Error('Empty Gemini response'+(reason?' (finishReason: '+reason+')':''));
+        }
+        return txt;
+      }
+    });
+
+    // ── OLLAMA (Local) ───────────────────────────────────────────────────────
+    // Install: https://ollama.com  then: ollama serve
+    // Pull model first: ollama pull codellama   or   ollama pull llama3.2
+    // CORS: ✅ Ollama sets CORS headers automatically
+    // No API key needed.
+    this.register('ollama',{
+      label:'Ollama (local)',
+      endpoint:'http://localhost:11434/api/chat',
+      defaultModel:'codellama',
+      models:['codellama','llama3.2','llama3.1','mistral','gemma2','phi3','qwen2.5-coder','deepseek-coder-v2','llava'],
+      needsKey:false,
+      keyHint:'(no key needed)',
+      corsOk:true,
+      buildReq(msgs,o){
+        return{
+          model:o.model||this.defaultModel,
+          stream:false,
+          options:{temperature:0.3,num_predict:o.maxTokens||4096},
+          messages:[
+            {role:'system',content:o.system||'You are an expert software engineer.'},
+            ...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
+          ]
+        };
+      },
+      buildHdrs(k){ return{'Content-Type':'application/json'}; },
+      buildUrl(k,o){ return null; },
+      parseRes(r){
+        if(r.error) throw new Error(String(r.error));
+        const txt=r.message?.content||r.response;
+        if(txt==null) throw new Error('Empty Ollama response. Is the model loaded? Run: ollama run '+this.defaultModel);
+        return txt;
+      }
+    });
+
+    // ── LOCAL AI (LM Studio, Jan, Kobold, etc.) ──────────────────────────────
+    // LM Studio: download from lmstudio.ai, start local server
+    // Default port: 1234   (Jan uses 1337, Kobold uses 5001)
+    // CORS: ✅ all local servers support it
+    // No API key needed for most.
+    this.register('localai',{
+      label:'LM Studio / Jan (local)',
+      endpoint:'http://localhost:1234/v1/chat/completions',
+      defaultModel:'local-model',
+      models:['local-model','lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF','bartowski/Qwen2.5-Coder-7B-Instruct-GGUF'],
+      needsKey:false,
+      keyHint:'(no key needed)',
+      corsOk:true,
+      buildReq(msgs,o){
+        return{
+          model:o.model||this.defaultModel,
+          max_tokens:o.maxTokens||4096,
+          temperature:0.3,
+          stream:false,
+          messages:[
+            {role:'system',content:o.system||'You are an expert software engineer.'},
+            ...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
+          ]
+        };
+      },
+      buildHdrs(k){
+        const h={'Content-Type':'application/json'};
+        if(k) h['Authorization']='Bearer '+k;
+        return h;
+      },
+      buildUrl(k,o){ return null; },
+      parseRes(r){
+        if(r.error) throw new Error(r.error.message||JSON.stringify(r.error));
+        const txt=r.choices?.[0]?.message?.content||r.message?.content;
+        if(txt==null) throw new Error('Empty response from local server. Is LM Studio/Jan running?');
+        return txt;
+      }
     });
   }
-  register(name,cfg){this._p.set(name,{...cfg,name,calls:0,errors:0});return this;}
-  setActive(n){if(!this._p.has(n))throw new Error(`Provider '${n}' not registered`);this._active=n;return this;}
-  async query(prompt,opts={}){
-    const pn=opts.provider||this._active;const p=this._p.get(pn);
-    if(!p)throw new Error(`Provider '${pn}' not registered`);
+
+  register(name,cfg){
+    this._p.set(name,Object.assign({name,calls:0,errors:0,lastError:null},cfg));
+    return this;
+  }
+
+  setActive(n){
+    if(!this._p.has(n)) throw new Error("Provider '"+n+"' not registered");
+    this._active=n; return this;
+  }
+
+  async query(prompt,opts){
+    opts=opts||{};
+    const pn=opts.provider||this._active;
+    const p=this._p.get(pn);
+    if(!p) throw new Error("Provider '"+pn+"' not registered");
+
+    // Gather API key: opts → key field → settings field → localStorage
+    const apiKey=(opts.apiKey||'').trim()
+      || (document.getElementById('aiKeyInput')||{}).value||''
+      || (document.getElementById('spApiKey')||{}).value||''
+      || localStorage.getItem('df_api_key')||'';
+
     const msgs=typeof prompt==='string'?[{role:'user',content:prompt}]:prompt;
-    const body=p.buildReq(msgs,opts);const hdrs=p.buildHdrs(opts.apiKey||'');
-    const url=opts.endpoint||p.endpoint;
-    p.calls++;this._calls++;
+
+    // Check CORS warning for OpenAI
+    if(p.corsOk===false && !opts.endpoint){
+      addLog('['+pn+'] WARNING: '+p.corsNote,'warn','ai');
+    }
+
+    let body,hdrs,url;
     try{
-      const res=await fetch(url,{method:'POST',headers:hdrs,body:JSON.stringify(body)});
-      if(!res.ok){p.errors++;const err=await res.text();throw new Error(`HTTP ${res.status}: ${err.slice(0,200)}`);}
-      const data=await res.json();
-      return{provider:pn,model:opts.model||p.model,content:p.parseRes(data),raw:data,totalCalls:this._calls};
-    }catch(e){p.errors++;throw new Error(`[${pn}] ${e.message}`);}
+      // buildUrl may throw if key missing (e.g. Gemini)
+      url=opts.endpoint||(p.buildUrl?p.buildUrl(apiKey,opts):null)||p.endpoint;
+      hdrs=p.buildHdrs(apiKey,opts);
+      body=p.buildReq(msgs,opts);
+    }catch(cfgErr){
+      p.errors++; p.lastError=cfgErr.message;
+      throw new Error('['+pn+'] '+cfgErr.message);
+    }
+
+    p.calls++; this._calls++;
+    addLog('→ '+pn+' / '+(opts.model||p.defaultModel)+' ('+JSON.stringify(body).length+' B body)','ai-log','ai');
+
+    try{
+      const controller=new AbortController();
+      const timer=setTimeout(()=>controller.abort(),120000);
+
+      let res;
+      try{
+        res=await fetch(url,{
+          method:'POST',
+          headers:hdrs,
+          body:JSON.stringify(body),
+          signal:controller.signal
+        });
+      }catch(fetchErr){
+        clearTimeout(timer);
+        const msg=fetchErr.message||String(fetchErr);
+        if(msg.includes('aborted')||msg.includes('AbortError')) throw new Error('Request timed out after 120s');
+        // CORS or network error
+        let hint='';
+        if(pn==='openai') hint=' ← OpenAI blocks browser CORS. Use Groq (free) instead, or add a proxy URL in Settings.';
+        else if(pn==='anthropic') hint=' ← Check your internet connection or try again.';
+        else if(pn==='ollama'||pn==='localai') hint=' ← Is the local server running? Check the port.';
+        throw new Error('Network/CORS error'+hint+' ('+msg+')');
+      }
+      clearTimeout(timer);
+
+      const raw=await res.text();
+
+      if(!res.ok){
+        p.errors++; p.lastError='HTTP '+res.status;
+        let errMsg=raw.slice(0,400);
+        try{ const j=JSON.parse(raw); errMsg=j.error?.message||j.error||errMsg; }catch(e){}
+        let hint='';
+        if(res.status===401) hint=' ← Invalid API key. Check your key and try again.';
+        else if(res.status===403) hint=' ← API key lacks permission for this model/endpoint.';
+        else if(res.status===429) hint=' ← Rate limited. Wait a moment then retry.';
+        else if(res.status===400) hint=' ← Bad request. Wrong model name or malformed body.';
+        else if(res.status===404) hint=' ← Endpoint or model not found. Check the model name.';
+        else if(res.status===413) hint=' ← Request too large. Shorten your code/prompt.';
+        else if(res.status===500) hint=' ← Server error. Try again shortly.';
+        throw new Error('HTTP '+res.status+hint+': '+errMsg);
+      }
+
+      let data;
+      try{ data=JSON.parse(raw); }
+      catch(e){ throw new Error('Invalid JSON from '+pn+'. Raw: '+raw.slice(0,200)); }
+
+      let content;
+      try{ content=p.parseRes(data); }
+      catch(e){ throw new Error('Parse error: '+e.message); }
+
+      p.lastError=null;
+      addLog('✅ '+pn+' responded — '+(content.length)+' chars','success','ai');
+      return{provider:pn,model:opts.model||p.defaultModel,content,raw:data,totalCalls:this._calls};
+
+    }catch(e){
+      p.errors++; this._errors++; p.lastError=e.message;
+      if(!e.message.startsWith('HTTP')&&!e.message.startsWith('Network')&&!e.message.startsWith('Parse')&&!e.message.startsWith('Request')){
+        throw new Error('['+pn+'] '+e.message);
+      }
+      throw e;
+    }
   }
-  providers(){return[...this._p.values()].map(p=>({name:p.name,model:p.model,endpoint:p.endpoint,calls:p.calls,errors:p.errors}));}
+
+  // Test connection — send a minimal ping message
+  async test(provider,apiKey){
+    const pn=provider||this._active;
+    const p=this._p.get(pn);
+    if(!p) return{ok:false,msg:"Provider '"+pn+"' not registered"};
+    try{
+      const r=await this.query([{role:'user',content:'Reply with exactly: OK'}],{
+        provider:pn,apiKey,maxTokens:16,
+        system:'Reply with exactly: OK'
+      });
+      return{ok:true,msg:'✅ Connected! Response: '+r.content.slice(0,60)};
+    }catch(e){
+      return{ok:false,msg:'❌ '+e.message};
+    }
+  }
+
+  providers(){
+    return[...this._p.values()].map(p=>({
+      name:p.name,label:p.label,defaultModel:p.defaultModel,
+      models:p.models||[],endpoint:p.endpoint,
+      needsKey:p.needsKey,keyHint:p.keyHint,corsOk:p.corsOk!==false,
+      corsNote:p.corsNote||null,
+      calls:p.calls,errors:p.errors,lastError:p.lastError||null
+    }));
+  }
 }
 
-// ──────────────────────────────────────────────────────────────
-// MODULE: Agents
-// ──────────────────────────────────────────────────────────────
-class BaseAgent{
-  constructor(ai,pred,res){this.ai=ai;this.predictor=pred;this.resolver=res;}
-  async execute(ctx){throw new Error(`${this.constructor.name}.execute() not implemented`);}
-  _code(text){const m=text.match(/```(?:\w+)?\n([\s\S]+?)```/);return m?m[1].trim():text.trim();}
-}
-
-class FeatureAgent extends BaseAgent{
-  async execute({code,request,file,apiKey,provider}){
-    const pred=this.predictor.predict(code,request);const S=pred.structure;
-    const msgs=[{role:'user',content:`Inject new code into existing file. Output ONLY the new snippet — no existing code, no markdown.\n\nFILE: ${file||'unknown'}\nCLASSES: ${S.classes.map(c=>c.name).join(', ')||'none'}\nFUNCTIONS: ${S.functions.map(f=>f.name).join(', ')||'none'}\nROUTES: ${S.routes.map(r=>r.method+' '+r.path).join(', ')||'none'}\nIMPORTS: ${S.imports.map(i=>i.source).join(', ')||'none'}\n\nINJECTION POINT: Line ${pred.best?.line} — ${pred.best?.desc}\nCONFIDENCE: ${(pred.confidence*100).toFixed(0)}%\n\nREQUEST: ${request}\n\nOutput raw code only.`}];
-    const res=await this.ai.query(msgs,{apiKey,provider,maxTokens:2000});
-    const generated=this._code(res.content);const conflict=this.resolver.check(code,generated,pred.best);
-    return{generated,prediction:pred,conflict,agent:'FeatureAgent',aiRes:res};
-  }
-}
-
-class DebugAgent extends BaseAgent{
-  async execute({code,request,apiKey,provider}){
-    const S=this.predictor.analyze(code);
-    const msgs=[{role:'user',content:`Debug this code. Be concise and precise.\n\nCODE:\n\`\`\`\n${code.slice(0,3000)}\n\`\`\`\n\nISSUE: ${request}\nSTRUCTURE: ${S.functions.length} fns, ${S.classes.length} classes\n\nRespond:\nROOT_CAUSE: <one sentence>\nFIX:\n\`\`\`\n<corrected code>\n\`\`\`\nPREVENTION: <one sentence>`}];
-    const res=await this.ai.query(msgs,{apiKey,provider,maxTokens:1200});
-    return{diagnosis:res.content,agent:'DebugAgent',aiRes:res};
-  }
-}
-
-class ReviewAgent extends BaseAgent{
-  async execute({code,apiKey,provider}){
-    const S=this.predictor.analyze(code);
-    const msgs=[{role:'user',content:`Senior code review. Format: [CRITICAL|HIGH|MEDIUM|LOW] CATEGORY: issue (line N). Max 8 items.\n\nCODE (${S.lineCount} lines):\n\`\`\`\n${code.slice(0,3000)}\n\`\`\``}];
-    const res=await this.ai.query(msgs,{apiKey,provider,maxTokens:800});
-    return{review:res.content,structure:S,agent:'ReviewAgent',aiRes:res};
-  }
-}
 
 class AgentManager{
   constructor(ai,pred,res){this._a=new Map();this.ai=ai;this.pred=pred;this.res=res;
@@ -2146,13 +2463,32 @@ function vfsNewFile(){
 // ──────────────────────────────────────────────────────────────
 // AI SIDEBAR — PROVIDERS + AGENTS
 // ──────────────────────────────────────────────────────────────
+function _updateModelSel(prov){
+  S.aiModel=null;
+  const ms=$('aiModelSel');if(!ms)return;
+  const mods=prov.models||[prov.defaultModel];
+  ms.innerHTML=mods.map(m=>`<option value="${m}">${m}</option>`).join('');
+  ms.value=prov.defaultModel;
+}
 function renderAISidebar(){
   // Providers
   const pl=$('providerList');pl.innerHTML='';
   AI.providers().forEach(p=>{
-    const el=document.createElement('div');el.className='provider-row'+(p.name===S.activeProvider?' active':'');
-    el.innerHTML=`<span class="prov-name">${p.name}</span><span class="prov-model">${p.model}</span><div class="prov-dot ${p.calls>0&&p.errors===0?'live':''}"></div>`;
-    el.addEventListener('click',()=>{S.activeProvider=p.name;$('aiProvSel').value=p.name;AI.setActive(p.name);renderAISidebar();});
+    const el=document.createElement('div');
+    const hasErr=p.errors>0&&p.lastError;
+    el.className='provider-row'+(p.name===S.activeProvider?' active':'');
+    const corsWarn=p.corsOk===false?'⚠ CORS':'✅';
+    el.title=(hasErr?'Last error: '+p.lastError:'')+(p.calls?' | '+p.calls+' calls':'');
+    const corsIcon=p.corsOk===false?'⚠':'✅';
+    const errSnip=hasErr?'<div style="font-size:8px;color:var(--red);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px">'+esc(p.lastError.slice(0,50))+'</div>':'';
+    el.innerHTML='<div style="flex:1;min-width:0">'+`<span class="prov-name">${p.label||p.name}</span>`+'<br><span style="font-size:8px;color:var(--txt3);">'+`${p.defaultModel} ${corsIcon}</span>`+errSnip+'</div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">'+`<div class="prov-dot ${p.calls>0&&p.errors===0?'live':hasErr?'err':''}"></div>`+`<span style="font-size:8px;color:var(--txt3)">${p.calls}✦</span>`+'</div>';
+    el.addEventListener('click',()=>{
+      S.activeProvider=p.name;
+      const sel=$('aiProvSel');if(sel)sel.value=p.name;
+      AI.setActive(p.name);
+      _updateModelSel(p);
+      renderAISidebar();
+    });
     pl.appendChild(el);
   });
   // Agents
@@ -2418,12 +2754,12 @@ async function runOrchestrator(){
   try{
     if(agents.length===1){
       const agent=agents[0];addLog(`Dispatching to ${agent}...`,'ai-log','orch');
-      const ctx={code,request,file,apiKey,provider};
+      const ctx={code,request,file,apiKey,provider,model:S.aiModel||undefined};
       const result=await AMGR.run(agent,ctx);S.aiCalls++;
       handleAIResult(result,code,file,conflictPolicy);
     }else{
       addLog(`Pipeline: ${agents.join(' → ')}`, 'ai-log','orch');
-      const result=await AMGR.pipeline(agents,{code,request,file,apiKey,provider});S.aiCalls++;
+      const result=await AMGR.pipeline(agents,{code,request,file,apiKey,provider,model:S.aiModel||undefined});S.aiCalls++;
       handlePipelineResult(result,code,file);
     }
   }catch(e){addLog(`AI Error: ${e.message}`,'error','orch');toast('AI Error: '+e.message.slice(0,80));renderAIOutput({conflict:{conflicts:[{type:'ERROR',severity:'ERROR',message:e.message,resolution:'Periksa API key, endpoint, dan koneksi internet.'}],warnings:[]}});}
@@ -3319,7 +3655,31 @@ $('pkgIn').addEventListener('keydown',e=>{if(e.key==='Enter')installPkg();});
 $('autoImportBtn').addEventListener('click',autoLoadImports);
 $('pkgListBtn').addEventListener('click',()=>{renderPkgList();switchOut('packages');});
 // AI toolbar
-$('aiProvSel').addEventListener('change',e=>{S.activeProvider=e.target.value;AI.setActive(e.target.value);renderAISidebar();});
+$('aiProvSel').addEventListener('change',e=>{S.activeProvider=e.target.value;
+
+if($('aiTestBtn'))$('aiTestBtn').addEventListener('click',async function(){
+  const btn=$('aiTestBtn');btn.disabled=true;btn.textContent='⏳ Testing…';
+  const apiKey=($('aiKeyInput').value.trim()||$('spApiKey')?.value||localStorage.getItem('df_api_key')||'');
+  const model=$('aiModelInput')?.value.trim()||undefined;
+  addLog('Testing connection to '+S.activeProvider+'…','ai-log','test');
+  const result=await AI.test(S.activeProvider,apiKey,model);
+  addLog(result.msg,result.ok?'success':'error','test');
+  toast(result.msg.slice(0,80));
+  btn.disabled=false;btn.textContent='⚡ Test';
+  switchOut('console');
+});
+if($('aiModelInput'))$('aiModelInput').addEventListener('change',e=>{S.aiModel=e.target.value.trim()||undefined;});
+if($('spApiKey'))$('spApiKey').addEventListener('input',function(e){
+  localStorage.setItem('df_api_key',e.target.value);
+  var ki=$('aiKeyInput');if(ki&&!ki.value)ki.value=e.target.value;
+});
+if($('aiKeyInput'))$('aiKeyInput').addEventListener('input',function(e){
+  localStorage.setItem('df_api_key',e.target.value);
+  var sp=$('spApiKey');if(sp)sp.value=e.target.value;
+});
+// Restore saved api key
+(function(){var k=localStorage.getItem('df_api_key');if(k){var ki=$('aiKeyInput');if(ki)ki.value=k;var sp=$('spApiKey');if(sp)sp.value=k;}})();
+AI.setActive(e.target.value);const np=AI.providers().find(p=>p.name===e.target.value);if(np)_updateModelSel(np);renderAISidebar();});
 $('aiRunBtn').addEventListener('click',runOrchestrator);
 $('aiOrcBtn').addEventListener('click',runOrchestrator);
 $('aiAnalyzeBtn').addEventListener('click',analyzeCode);
