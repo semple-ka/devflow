@@ -2,35 +2,9 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234f91ff%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%239060f0%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Cpath%20d%3D%22M18.5%204%20L10%2018%20h6.5%20L13.5%2028%20L22%2014%20h-6.5%20Z%22%20fill%3D%22white%22%20opacity%3D%220.95%22/%3E%0A%3C/svg%3E">
-<link rel="shortcut icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%0A%20%20%3Cdefs%3E%0A%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234f91ff%22/%3E%0A%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%239060f0%22/%3E%0A%20%20%20%20%3C/linearGradient%3E%0A%20%20%3C/defs%3E%0A%20%20%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22url%28%23g%29%22/%3E%0A%20%20%3Cpath%20d%3D%22M18.5%204%20L10%2018%20h6.5%20L13.5%2028%20L22%2014%20h-6.5%20Z%22%20fill%3D%22white%22%20opacity%3D%220.95%22/%3E%0A%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%234f91ff%22/%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%239060f0%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22url%28%23g%29%22/%3E%3Cpath%20d%3D%22M18.5%204%20L10%2018%20h6.5%20L13.5%2028%20L22%2014%20h-6.5%20Z%22%20fill%3D%22white%22%20opacity%3D%220.95%22/%3E%3C/svg%3E">
 <meta name="theme-color" content="#4f91ff">
-<meta name="application-name" content="DevFlow">
-<script>
-(function(){
-  // Generate high-quality PNG favicon via canvas
-  try{
-    var c=document.createElement('canvas');c.width=c.height=64;
-    var x=c.getContext('2d');
-    var g=x.createLinearGradient(0,0,64,64);
-    g.addColorStop(0,'#4f91ff');g.addColorStop(1,'#9060f0');
-    // Rounded rect
-    x.beginPath();
-    var r=14;x.moveTo(r,0);x.lineTo(64-r,0);x.quadraticCurveTo(64,0,64,r);
-    x.lineTo(64,64-r);x.quadraticCurveTo(64,64,64-r,64);
-    x.lineTo(r,64);x.quadraticCurveTo(0,64,0,64-r);
-    x.lineTo(0,r);x.quadraticCurveTo(0,0,r,0);x.closePath();
-    x.fillStyle=g;x.fill();
-    // Lightning bolt
-    x.fillStyle='rgba(255,255,255,0.95)';
-    x.beginPath();
-    x.moveTo(37,8);x.lineTo(20,36);x.lineTo(29,36);x.lineTo(27,56);x.lineTo(44,28);x.lineTo(35,28);x.closePath();
-    x.fill();
-    var lnk=document.querySelector('link[rel="icon"]');
-    if(lnk){lnk.type='image/png';lnk.href=c.toDataURL('image/png');}
-  }catch(e){}
-})();
-</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DevFlow — AI-Powered Code Runner</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -323,7 +297,6 @@ html,body{height:100%;overflow:hidden;font-family:var(--ui);background:var(--bg0
 .prov-model{font-size:9.5px;color:var(--txt3)}
 .prov-dot{width:6px;height:6px;border-radius:50%;background:var(--bd2);flex-shrink:0}
 .prov-dot.live{background:var(--green)}
-.prov-dot.err{background:var(--red)}
 
 .ai-pred-box{
   padding:7px;border-radius:4px;border:1px solid var(--bd1);background:var(--bg0);
@@ -681,110 +654,122 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
 .race-close-btn:hover{color:var(--red);border-color:var(--red)}
 .race-vs{font-size:11px;color:var(--txt3);font-family:var(--mono)}
 
-/* ─── WELCOME SCREEN ─────── */
+/* ═══ WELCOME SCREEN ═══════════════════════════════════════════════ */
 #welcome{position:fixed;inset:0;z-index:9999;background:var(--bg0);display:flex;align-items:center;justify-content:center;overflow-y:auto;padding:20px}
 #welcome.hidden{display:none}
-.wl-card{background:var(--bg1);border:1px solid var(--bd1);border-radius:18px;max-width:560px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,.7);overflow:hidden}
-.wl-hero{background:linear-gradient(135deg,#07090f,#141720 50%,#180a30);padding:30px 30px 22px;text-align:center;border-bottom:1px solid var(--bd0)}
-.wl-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px}
-.wl-logo-mark{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#4f91ff,#9060f0);display:flex;align-items:center;justify-content:center;font-size:21px;box-shadow:0 0 22px rgba(79,145,255,.4)}
-.wl-logo-text{font-size:25px;font-weight:600;letter-spacing:-.5px;color:var(--txt1)}
-.wl-tagline{font-size:12px;color:var(--txt2);line-height:1.6;max-width:330px;margin:0 auto}
-.wl-body{padding:18px 22px}
-.wl-creator{background:var(--bg2);border:1px solid var(--bd0);border-radius:10px;padding:11px 13px;margin-bottom:13px;display:flex;align-items:center;gap:11px}
-.wl-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#ff0050,#ff3e6c);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-.wl-cname{font-size:13px;font-weight:600;color:var(--txt1)}
-.wl-crole{font-size:10.5px;color:var(--txt2);margin-top:1px}
-.wl-social{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
-.wl-chip{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:500;cursor:pointer;text-decoration:none;transition:.15s;border:1px solid rgba(255,255,255,.1)}
+.wl-card{background:var(--bg1);border:1px solid var(--bd1);border-radius:16px;max-width:540px;width:100%;box-shadow:0 28px 70px rgba(0,0,0,.75);overflow:hidden}
+.wl-hero{background:linear-gradient(135deg,#07090f,#141720 50%,#1a0d38);padding:28px 28px 20px;text-align:center;border-bottom:1px solid var(--bd0)}
+.wl-logo{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:10px}
+.wl-logo-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#4f91ff,#9060f0);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 20px rgba(79,145,255,.4)}
+.wl-logo-text{font-size:24px;font-weight:600;letter-spacing:-.4px;color:var(--txt1)}
+.wl-tagline{font-size:11.5px;color:var(--txt2);line-height:1.6;max-width:320px;margin:0 auto}
+.wl-body{padding:16px 20px}
+.wl-creator{background:var(--bg2);border:1px solid var(--bd0);border-radius:9px;padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.wl-ava{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#ff0050,#ff3e6c);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.wl-cname{font-size:12.5px;font-weight:600;color:var(--txt1)}
+.wl-crole{font-size:10px;color:var(--txt2);margin-top:1px}
+.wl-social{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+.wl-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:500;cursor:pointer;text-decoration:none;transition:.15s;border:1px solid rgba(255,255,255,.1)}
 .wl-chip.tt{background:rgba(0,0,0,.5);color:#fff}.wl-chip.tt:hover{background:#ff0050}
 .wl-chip.gh{background:var(--bg3);color:var(--txt1);border-color:var(--bd1)}.wl-chip.gh:hover{border-color:var(--accent)}
-.wl-feats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:13px}
-.wl-feat{background:var(--bg2);border:1px solid var(--bd0);border-radius:7px;padding:8px 10px;display:flex;align-items:flex-start;gap:7px}
-.wl-fi{font-size:14px;flex-shrink:0;margin-top:1px}
-.wl-ft{font-size:10.5px;font-weight:600;color:var(--txt1);margin-bottom:1px}
-.wl-fd{font-size:9px;color:var(--txt2);line-height:1.4}
-.wl-sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:13px;background:var(--bg2);border:1px solid var(--bd0);border-radius:7px;padding:8px 10px}
-.wl-sc-row{display:flex;align-items:center;justify-content:space-between;padding:2px 0;font-size:9.5px}
-.wl-sc-d{color:var(--txt2)}
-.wl-sc-k{display:flex;gap:2px}
-.wl-kbd{background:var(--bg3);border:1px solid var(--bd2);border-radius:3px;padding:0 4px;font-family:var(--mono);font-size:8px;color:var(--txt1)}
-.wl-lang-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.wl-lang-lbl{font-size:11px;color:var(--txt2);flex:1}
-.wl-lang-sel{height:25px;background:var(--bg2);border:1px solid var(--bd1);color:var(--txt1);padding:0 20px 0 7px;border-radius:4px;font-size:11px;font-family:var(--ui);cursor:pointer;outline:none;appearance:none}
-.wl-enter{width:100%;height:40px;border-radius:9px;border:none;background:linear-gradient(135deg,#4f91ff,#9060f0);color:#fff;font-family:var(--ui);font-size:13.5px;font-weight:600;cursor:pointer;letter-spacing:.02em;transition:.2s;box-shadow:0 6px 18px rgba(79,145,255,.3)}
-.wl-enter:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(79,145,255,.4)}
+.wl-feats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.wl-feat{background:var(--bg2);border:1px solid var(--bd0);border-radius:6px;padding:7px 9px;display:flex;align-items:flex-start;gap:6px}
+.wl-fi{font-size:13px;flex-shrink:0;margin-top:1px}.wl-ft{font-size:10px;font-weight:600;color:var(--txt1);margin-bottom:1px}.wl-fd{font-size:8.5px;color:var(--txt2);line-height:1.4}
+.wl-sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:12px;background:var(--bg2);border:1px solid var(--bd0);border-radius:6px;padding:7px 9px}
+.wl-sc-row{display:flex;align-items:center;justify-content:space-between;padding:1px 0;font-size:9px}
+.wl-sc-d{color:var(--txt2)}.wl-sc-k{display:flex;gap:2px}
+.wl-kbd{background:var(--bg3);border:1px solid var(--bd2);border-radius:2px;padding:0 4px;font-family:var(--mono);font-size:7.5px;color:var(--txt1)}
+.wl-lang-row{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.wl-lang-lbl{font-size:10.5px;color:var(--txt2);flex:1}
+.wl-lang-sel{height:24px;background:var(--bg2);border:1px solid var(--bd1);color:var(--txt1);padding:0 18px 0 6px;border-radius:4px;font-size:10.5px;font-family:var(--ui);cursor:pointer;outline:none;appearance:none}
+.wl-enter{width:100%;height:38px;border-radius:8px;border:none;background:linear-gradient(135deg,#4f91ff,#9060f0);color:#fff;font-family:var(--ui);font-size:13px;font-weight:600;cursor:pointer;letter-spacing:.02em;transition:.2s;box-shadow:0 5px 16px rgba(79,145,255,.3)}
+.wl-enter:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(79,145,255,.4)}
 .wl-enter:active{transform:scale(.98)}
-.wl-footer{font-size:9px;color:var(--txt3);text-align:center;margin-top:9px}
-/* ─── SETTINGS PANEL ─────── */
+.wl-footer-txt{font-size:8.5px;color:var(--txt3);text-align:center;margin-top:8px}
+
+/* ═══ SETTINGS PANEL ════════════════════════════════════════════════ */
 #spOverlay{position:fixed;inset:0;z-index:799;background:rgba(0,0,0,.45);backdrop-filter:blur(3px);display:none}
 #spOverlay.on{display:block}
-#spPanel{position:fixed;top:0;right:0;bottom:0;width:295px;z-index:800;background:var(--bg1);border-left:1px solid var(--bd0);display:flex;flex-direction:column;overflow:hidden;transform:translateX(100%);transition:transform .25s cubic-bezier(.4,0,.2,1);box-shadow:-10px 0 36px rgba(0,0,0,.5)}
+#spPanel{position:fixed;top:0;right:0;bottom:0;width:290px;z-index:800;background:var(--bg1);border-left:1px solid var(--bd0);display:flex;flex-direction:column;overflow:hidden;transform:translateX(100%);transition:transform .24s cubic-bezier(.4,0,.2,1);box-shadow:-10px 0 34px rgba(0,0,0,.55)}
 #spPanel.open{transform:translateX(0)}
-.sp-hdr{height:44px;flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--bd0);display:flex;align-items:center;padding:0 13px;gap:8px}
-.sp-title{font-size:13px;font-weight:600;color:var(--txt1);flex:1}
+.sp-hdr{height:42px;flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--bd0);display:flex;align-items:center;padding:0 12px;gap:8px}
+.sp-title{font-size:12.5px;font-weight:600;color:var(--txt1);flex:1}
 .sp-xbtn{width:24px;height:24px;border-radius:4px;border:none;background:none;color:var(--txt2);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.12s}
 .sp-xbtn:hover{background:var(--bg3);color:var(--txt1)}
-.sp-body{flex:1;overflow-y:auto;padding:9px}
-.sp-sec{margin-bottom:13px}
-.sp-sec-hdr{font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);font-family:var(--mono);padding:4px 0;border-bottom:1px solid var(--bd0);margin-bottom:6px}
-.sp-row{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:11.5px}
+.sp-body{flex:1;overflow-y:auto;padding:8px}
+.sp-sec{margin-bottom:12px}
+.sp-sec-hdr{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);font-family:var(--mono);padding:4px 0;border-bottom:1px solid var(--bd0);margin-bottom:6px}
+.sp-row{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:11px}
 .sp-lbl{color:var(--txt2);flex:1}
-.sp-sel{height:23px;background:var(--bg2);border:1px solid var(--bd1);color:var(--txt1);padding:0 18px 0 6px;border-radius:4px;font-size:11px;font-family:var(--ui);cursor:pointer;outline:none;appearance:none}
+.sp-sel{height:22px;background:var(--bg2);border:1px solid var(--bd1);color:var(--txt1);padding:0 16px 0 5px;border-radius:3px;font-size:10.5px;font-family:var(--ui);cursor:pointer;outline:none;appearance:none}
 .sp-sel option{background:var(--bg2)}
-.sp-inp{width:100%;height:24px;background:var(--bg2);border:1px solid var(--bd1);color:var(--txt1);padding:0 7px;border-radius:4px;font-size:11px;font-family:var(--mono);outline:none}
+.sp-inp{width:100%;height:23px;background:var(--bg2);border:1px solid var(--bd1);color:var(--txt1);padding:0 6px;border-radius:3px;font-size:10.5px;font-family:var(--mono);outline:none}
 .sp-inp:focus{border-color:var(--accent)}
-.sp-tog{width:32px;height:17px;border-radius:9px;background:var(--bd2);position:relative;cursor:pointer;transition:.2s;flex-shrink:0;border:none}
+.sp-tog{width:32px;height:17px;border-radius:9px;background:var(--bd2);position:relative;cursor:pointer;transition:.18s;flex-shrink:0;border:none}
 .sp-tog.on{background:var(--green)}
-.sp-tog::after{content:'';position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff;transition:.2s}
+.sp-tog::after{content:'';position:absolute;top:2px;left:2px;width:13px;height:13px;border-radius:50%;background:#fff;transition:.18s}
 .sp-tog.on::after{transform:translateX(15px)}
-.sp-btn{width:100%;height:26px;padding:0 9px;border-radius:4px;border:1px solid var(--bd1);background:var(--bg2);color:var(--txt1);font-family:var(--ui);font-size:11px;cursor:pointer;transition:.12s;text-align:left;margin-bottom:3px}
+.sp-btn{width:100%;height:25px;padding:0 8px;border-radius:3px;border:1px solid var(--bd1);background:var(--bg2);color:var(--txt1);font-family:var(--ui);font-size:10.5px;cursor:pointer;transition:.12s;text-align:left;margin-bottom:3px}
 .sp-btn:hover{background:var(--bg3);border-color:var(--bd2)}
 .sp-btn.sp-accent{border-color:rgba(79,145,255,.4);color:var(--accent);background:var(--aglow)}
-.sp-sc-mini{display:flex;flex-direction:column;gap:0}
-.sp-sc-mini-row{display:flex;align-items:center;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--bd0);font-size:10.5px}
+.sp-sc-mini{display:flex;flex-direction:column}
+.sp-sc-mini-row{display:flex;align-items:center;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--bd0);font-size:10px}
 .sp-sc-mini-row:last-child{border-bottom:none}
-.sp-sc-d{color:var(--txt2)}
-.sp-sc-k{display:flex;gap:2px}
+.sp-sc-d{color:var(--txt2)}.sp-sc-k{display:flex;gap:2px}
 .sp-slinks{display:flex;gap:5px;flex-wrap:wrap;padding:4px 0}
-.sp-slink{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:10.5px;cursor:pointer;text-decoration:none;transition:.12s}
+.sp-slink{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:10px;cursor:pointer;text-decoration:none;transition:.12s}
 .sp-slink.tt{background:rgba(0,0,0,.5);color:#fff;border:1px solid rgba(255,255,255,.15)}.sp-slink.tt:hover{background:#ff0050}
 .sp-slink.gh{background:var(--bg2);color:var(--txt1);border:1px solid var(--bd1)}.sp-slink.gh:hover{border-color:var(--accent)}
-/* ─── AI THINKING ─────────── */
-.ai-think-panel{display:none;flex-direction:column;background:var(--bg0);border:1px solid rgba(176,125,245,.18);border-radius:4px;margin-top:4px;overflow:hidden;max-height:150px}
+
+/* ═══ AI THINKING LOG ════════════════════════════════════════════════ */
+.ai-think-panel{display:none;flex-direction:column;background:var(--bg0);border:1px solid rgba(176,125,245,.18);border-radius:4px;margin-top:4px;overflow:hidden;max-height:140px}
 .ai-think-panel.on{display:flex}
-.ai-think-hdr{padding:3px 7px;background:rgba(176,125,245,.05);border-bottom:1px solid rgba(176,125,245,.1);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);font-family:var(--mono);display:flex;align-items:center;justify-content:space-between}
-.ai-think-body{flex:1;overflow-y:auto;padding:4px 7px;font-family:var(--mono);font-size:9.5px;color:var(--txt2);line-height:1.6}
+.ai-think-hdr{padding:3px 7px;background:rgba(176,125,245,.05);border-bottom:1px solid rgba(176,125,245,.1);font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);font-family:var(--mono);display:flex;align-items:center;justify-content:space-between}
+.ai-think-body{flex:1;overflow-y:auto;padding:4px 7px;font-family:var(--mono);font-size:9.5px;color:var(--txt2);line-height:1.55}
 .ai-think-step{padding:1px 0;display:flex;align-items:flex-start;gap:4px;border-bottom:1px solid rgba(255,255,255,.02)}
 .ai-think-step.done span:last-child{color:var(--green)}
 .ai-think-step.err span:last-child{color:var(--red)}
-.ai-think-badge{font-size:9px;padding:1px 6px;border-radius:10px;background:var(--purple-dim);border:1px solid rgba(176,125,245,.2);color:var(--purple);font-family:var(--mono);display:none;align-items:center;gap:3px}
+.ai-think-badge{font-size:8.5px;padding:1px 5px;border-radius:10px;background:var(--purple-dim);border:1px solid rgba(176,125,245,.2);color:var(--purple);font-family:var(--mono);display:none;align-items:center;gap:3px}
 .ai-think-badge.on{display:inline-flex;animation:thinkpulse 1.5s ease-in-out infinite}
 @keyframes thinkpulse{0%,100%{opacity:1}50%{opacity:.4}}
-/* ─── AI TARGET TAG ──────── */
+
+/* ═══ AI TARGET FILE TAG ═════════════════════════════════════════════ */
 .ai-req-wrap{flex:1;min-width:0;position:relative}
-.ai-file-tag{position:absolute;left:4px;top:50%;transform:translateY(-50%);display:none;align-items:center;gap:3px;background:rgba(79,145,255,.15);border:1px solid rgba(79,145,255,.3);border-radius:3px;padding:0 5px;font-size:9px;color:var(--accent);font-family:var(--mono);cursor:pointer;z-index:5;pointer-events:auto}
+.ai-file-tag{position:absolute;left:4px;top:50%;transform:translateY(-50%);display:none;align-items:center;gap:3px;background:rgba(79,145,255,.15);border:1px solid rgba(79,145,255,.3);border-radius:3px;padding:0 5px;font-size:8.5px;color:var(--accent);font-family:var(--mono);cursor:pointer;z-index:5}
 .ai-file-tag.on{display:inline-flex}
 .ai-file-tag:hover{background:rgba(79,145,255,.25)}
-/* ─── VFS UPLOAD ──────────── */
-.vfs-upload-zone{border:1px dashed var(--bd2);border-radius:4px;margin:4px 7px;padding:7px;text-align:center;font-size:9px;color:var(--txt3);cursor:pointer;transition:.15s;font-family:var(--ui)}
+
+/* ═══ VFS UPLOAD / DRAG ══════════════════════════════════════════════ */
+.vfs-upload-zone{border:1px dashed var(--bd2);border-radius:4px;margin:4px 7px 2px;padding:6px;text-align:center;font-size:9px;color:var(--txt3);cursor:pointer;transition:.15s}
 .vfs-upload-zone:hover,.vfs-upload-zone.drag-on{border-color:var(--accent);color:var(--accent);background:var(--aglow)}
-.ed-drop-overlay{position:absolute;inset:0;background:rgba(79,145,255,.07);border:2px dashed var(--accent);border-radius:7px;z-index:50;display:none;align-items:center;justify-content:center;flex-direction:column;gap:9px;pointer-events:none}
+.ed-drop-overlay{position:absolute;inset:0;background:rgba(79,145,255,.07);border:2px dashed var(--accent);border-radius:7px;z-index:50;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;pointer-events:none}
 .ed-drop-overlay.on{display:flex}
-.ed-drop-text{font-size:14px;color:var(--accent);font-weight:600}
-/* ─── MOBILE / RESPONSIVE ─── */
-.mb-sb-btn{display:none;width:26px;height:26px;border-radius:4px;border:1px solid var(--bd1);background:none;color:var(--txt2);cursor:pointer;align-items:center;justify-content:center;font-size:12px;transition:.12s;flex-shrink:0}
-.mb-sb-btn:hover{background:var(--bg3);color:var(--txt1)}
+.ed-drop-text{font-size:13px;color:var(--accent);font-weight:600}
+
+/* ═══ HAMBURGER / MOBILE ═════════════════════════════════════════════ */
 .tb-hamburger{width:26px;height:26px;border-radius:4px;border:1px solid var(--bd1);background:none;cursor:pointer;color:var(--txt2);display:flex;align-items:center;justify-content:center;transition:.12s;flex-direction:column;gap:3px;padding:0}
 .tb-hamburger:hover{background:var(--bg3);color:var(--txt1);border-color:var(--bd2)}
 .tb-hamburger span{display:block;width:12px;height:1.5px;background:currentColor;border-radius:1px}
+.mb-sb-btn{display:none;width:26px;height:26px;border-radius:4px;border:1px solid var(--bd1);background:none;color:var(--txt2);cursor:pointer;align-items:center;justify-content:center;font-size:12px;transition:.12s}
+.mb-sb-btn:hover{background:var(--bg3);color:var(--txt1)}
 .vfs-nm-inp{background:var(--bg3);border:1px solid var(--accent);border-radius:2px;color:var(--txt1);font-family:var(--mono);font-size:10.5px;outline:none;width:100%;padding:1px 4px;min-width:50px}
+.ai-target-val{font-size:9.5px;font-family:var(--mono);color:var(--txt2);padding:2px 0;word-break:break-all;line-height:1.4}
 .drag-on-ai{border-color:var(--accent)!important;background:var(--aglow)!important}
-.ai-target-val{font-size:10px;font-family:var(--mono);color:var(--txt2);padding:2px 0;word-break:break-all;line-height:1.4}
+.ai-cors-hint{font-size:8.5px;background:var(--green-dim);border:1px solid rgba(46,216,130,.2);color:var(--green);border-radius:3px;padding:3px 6px;margin-bottom:5px;font-family:var(--mono);line-height:1.5}
+/* Clear editor btn */
+.btn.clear-e{color:var(--red)}.btn.clear-e:hover{background:var(--red-dim)}
+/* AI model input in toolbar */
+.ai-model-inp{height:22px;width:120px;background:var(--bg1);border:1px solid var(--bd1);color:var(--txt2);padding:0 6px;border-radius:4px;font-size:10px;font-family:var(--mono);outline:none;flex-shrink:0}
+.ai-model-inp:focus{border-color:rgba(176,125,245,.4);color:var(--txt1)}
+.ai-model-inp::placeholder{color:var(--txt3)}
+.btn.test-btn{color:var(--green);border:1px solid rgba(46,216,130,.3);background:var(--green-dim)}
+.btn.test-btn:hover{background:rgba(46,216,130,.18)}
+
+/* ═══ RESPONSIVE ═════════════════════════════════════════════════════ */
 @media(max-width:900px){
-  .vfs-sidebar{position:fixed!important;left:0;top:0;bottom:0;z-index:600;transform:translateX(-100%);transition:transform .25s}
+  .vfs-sidebar{position:fixed!important;left:0;top:0;bottom:0;z-index:600;transform:translateX(-100%);transition:transform .22s cubic-bezier(.4,0,.2,1)}
   .vfs-sidebar.sp-open{transform:translateX(0)!important}
-  .ai-sidebar{position:fixed!important;right:0;top:0;bottom:0;z-index:600;transform:translateX(100%);transition:transform .25s}
+  .ai-sidebar{position:fixed!important;right:0;top:0;bottom:0;z-index:600;transform:translateX(100%);transition:transform .22s cubic-bezier(.4,0,.2,1)}
   .ai-sidebar.sp-open{transform:translateX(0)!important}
   .mb-sb-btn{display:flex}
   .toolbar .btn:not(.run):not(.ai-run):not(.stop){display:none}
@@ -793,6 +778,7 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
 @media(max-width:600px){
   .ai-bar .ai-key-input{display:none}
   .ai-bar .ai-label{display:none}
+  .ai-model-inp{display:none}
   .wl-feats{grid-template-columns:1fr}
   .wl-sc-grid{grid-template-columns:1fr}
 }
@@ -800,35 +786,36 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
 </style>
 </head>
 <body>
-<!-- WELCOME SCREEN -->
+
+<!-- ═══ WELCOME SCREEN ═══════════════════════════════════════════════ -->
 <div id="welcome" class="hidden">
   <div class="wl-card">
     <div class="wl-hero">
-      <div class="wl-logo"><div class="wl-logo-mark">⚡</div><div class="wl-logo-text">DevFlow</div></div>
-      <div class="wl-tagline" id="wlTagline">AI-powered browser IDE — run, orchestrate, and evolve code with real AI agents.</div>
+      <div class="wl-logo"><div class="wl-logo-mark">&#9889;</div><div class="wl-logo-text">DevFlow</div></div>
+      <div class="wl-tagline" id="wlTagline">AI-powered browser IDE &mdash; run, orchestrate, and evolve code with real AI agents.</div>
     </div>
     <div class="wl-body">
       <div class="wl-creator">
-        <div class="wl-avatar">🎬</div>
+        <div class="wl-ava">&#127917;</div>
         <div>
           <div class="wl-cname">alcacal</div>
           <div class="wl-crole" id="wlRole">Creator &amp; Developer</div>
           <div class="wl-social">
-            <a class="wl-chip tt" href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">♪ @alcacal</a>
-            <a class="wl-chip gh" href="#" target="_blank" rel="noopener">⌥ GitHub</a>
+            <a class="wl-chip tt" href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">&#9836; @alcacal</a>
+            <a class="wl-chip gh" href="#" target="_blank" rel="noopener">&#8997; GitHub</a>
           </div>
         </div>
       </div>
       <div class="wl-feats">
-        <div class="wl-feat"><div class="wl-fi">🧠</div><div><div class="wl-ft">AI Orchestrator</div><div class="wl-fd">Anthropic, OpenAI, Ollama</div></div></div>
-        <div class="wl-feat"><div class="wl-fi">🐍</div><div><div class="wl-ft">Python 3.13</div><div class="wl-fd">Pyodide WASM, matplotlib</div></div></div>
-        <div class="wl-feat"><div class="wl-fi">📁</div><div><div class="wl-ft">Virtual FS</div><div class="wl-fd">Multi-file, drag to AI, upload</div></div></div>
-        <div class="wl-feat"><div class="wl-fi">🔧</div><div><div class="wl-ft">Dev Tools</div><div class="wl-fd">Heatmap, Cinema, Race…</div></div></div>
+        <div class="wl-feat"><div class="wl-fi">&#129504;</div><div><div class="wl-ft">AI Orchestrator</div><div class="wl-fd">Claude, Groq, Gemini, Ollama</div></div></div>
+        <div class="wl-feat"><div class="wl-fi">&#128013;</div><div><div class="wl-ft">Python 3.13</div><div class="wl-fd">Pyodide WASM + matplotlib</div></div></div>
+        <div class="wl-feat"><div class="wl-fi">&#128193;</div><div><div class="wl-ft">Virtual FS</div><div class="wl-fd">Multi-file, drag to AI, upload</div></div></div>
+        <div class="wl-feat"><div class="wl-fi">&#128296;</div><div><div class="wl-ft">Dev Tools</div><div class="wl-fd">Heatmap, Cinema, Race...</div></div></div>
       </div>
       <div class="wl-sc-grid">
         <div class="wl-sc-row"><span class="wl-sc-d">Run code</span><div class="wl-sc-k"><span class="wl-kbd">Ctrl</span><span class="wl-kbd">Enter</span></div></div>
-        <div class="wl-sc-row"><span class="wl-sc-d">AI Orchestrate</span><div class="wl-sc-k"><span class="wl-kbd">Ctrl</span><span class="wl-kbd">⇧↵</span></div></div>
-        <div class="wl-sc-row"><span class="wl-sc-d">Format</span><div class="wl-sc-k"><span class="wl-kbd">⇧Alt F</span></div></div>
+        <div class="wl-sc-row"><span class="wl-sc-d">AI Orchestrate</span><div class="wl-sc-k"><span class="wl-kbd">Ctrl&#8679;&#8629;</span></div></div>
+        <div class="wl-sc-row"><span class="wl-sc-d">Format</span><div class="wl-sc-k"><span class="wl-kbd">&#8679;Alt F</span></div></div>
         <div class="wl-sc-row"><span class="wl-sc-d">Analyze AST</span><div class="wl-sc-k"><span class="wl-kbd">Alt A</span></div></div>
         <div class="wl-sc-row"><span class="wl-sc-d">New tab</span><div class="wl-sc-k"><span class="wl-kbd">Alt T</span></div></div>
         <div class="wl-sc-row"><span class="wl-sc-d">Toggle theme</span><div class="wl-sc-k"><span class="wl-kbd">Alt D</span></div></div>
@@ -838,11 +825,12 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
         <select class="wl-lang-sel" id="wlLangSel"><option value="en">&#127468;&#127463; English</option><option value="id">&#127470;&#127465; Bahasa Indonesia</option></select>
       </div>
       <button class="wl-enter" id="wlEnterBtn">Enter DevFlow</button>
-      <div class="wl-footer" id="wlFooter">This screen can be shown again from Settings</div>
+      <div class="wl-footer-txt" id="wlFooter">This screen can be shown again from Settings &#9881;</div>
     </div>
   </div>
 </div>
-<!-- SETTINGS OVERLAY + PANEL -->
+
+<!-- ═══ SETTINGS OVERLAY + PANEL ═══════════════════════════════════ -->
 <div id="spOverlay"></div>
 <div id="spPanel">
   <div class="sp-hdr"><div class="sp-title" id="spTitle">Settings</div><button class="sp-xbtn" id="spXBtn">&#x2715;</button></div>
@@ -856,7 +844,7 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
     </div>
     <div class="sp-sec">
       <div class="sp-sec-hdr" id="spAiHdr">AI Config</div>
-      <div class="sp-row" style="flex-direction:column;align-items:flex-start;gap:3px"><span class="sp-lbl" id="spApiLbl">API Key (local)</span><input class="sp-inp" type="password" id="spApiKey" placeholder="sk-ant-... or gsk_... or AIza..."></div>
+      <div class="sp-row" style="flex-direction:column;align-items:flex-start;gap:3px"><span class="sp-lbl" id="spApiLbl">API Key (stored locally)</span><input class="sp-inp" type="password" id="spApiKey" placeholder="sk-ant-... / gsk_... / AIzaSy..."></div>
       <div class="sp-row"><span class="sp-lbl" id="spThinkLbl">Show AI thinking</span><button class="sp-tog on" id="spThinkTog"></button></div>
     </div>
     <div class="sp-sec">
@@ -870,26 +858,20 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
       <div class="sp-sc-mini" id="spScList"></div>
     </div>
     <div class="sp-sec">
-      <div class="sp-sec">
-      <div class="sp-sec-hdr" id="spEndpointHdr">Custom Endpoint (optional)</div>
-      <div class="sp-row" style="flex-direction:column;align-items:flex-start;gap:3px">
-        <span class="sp-lbl">Override API endpoint URL</span>
-        <input class="sp-inp" type="text" id="spEndpoint" placeholder="http://localhost:1234/v1/chat/completions">
-      </div>
-      <div style="font-size:9px;color:var(--txt3);padding:2px 0">Leave empty to use provider default. Useful for proxies, LM Studio, Jan, Kobold.</div>
-    </div>
-    <div class="sp-sec-hdr" id="spAboutHdr">About</div>
-      <div class="sp-row"><span class="sp-lbl">DevFlow</span><span style="font-size:9.5px;font-family:var(--mono);color:var(--txt3);background:var(--bg3);padding:1px 5px;border-radius:3px">build 2025</span></div>
-      <div class="sp-row"><span class="sp-lbl" id="spCrLbl">Creator</span><span style="font-size:11.5px;color:var(--txt1)">@alcacal</span></div>
+      <div class="sp-sec-hdr" id="spAboutHdr">About</div>
+      <div class="sp-row"><span class="sp-lbl">DevFlow</span><span style="font-size:9px;font-family:var(--mono);color:var(--txt3);background:var(--bg3);padding:1px 5px;border-radius:3px">build 2025</span></div>
+      <div class="sp-row"><span class="sp-lbl" id="spCrLbl">Creator</span><span style="font-size:11px;color:var(--txt1)">@alcacal</span></div>
       <div class="sp-slinks"><a class="sp-slink tt" href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">&#9836; TikTok</a><a class="sp-slink gh" href="#" target="_blank" rel="noopener">&#8997; GitHub</a></div>
-      <div style="margin-top:7px;display:flex;flex-direction:column;gap:3px">
+      <div style="margin-top:6px;display:flex;flex-direction:column;gap:3px">
         <button class="sp-btn sp-accent" id="spShowWelBtn">Show welcome screen again</button>
         <button class="sp-btn" id="spExpBtn">Export orchestrator.js</button>
-        <button class="sp-btn" id="spResetBtn" style="color:var(--red)">Reset all state</button>
+        <button class="sp-btn" id="spResetBtn" style="color:var(--red)">Reset all state &amp; storage</button>
       </div>
     </div>
   </div>
 </div>
+<input type="file" id="vfsFileInput" multiple style="display:none">
+
 
 
 <div id="app">
@@ -949,7 +931,7 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
   <button class="btn" id="copyBtn">⎘ Salin</button>
   <button class="btn" id="dlBtn">⬇ Unduh</button>
   <button class="btn" id="shareBtn">🔗 Bagikan</button>
-  <button class="btn" id="clearEditorBtn" title="Clear editor (Alt+K)" style="color:var(--red);font-size:10.5px">⌫ Clear</button>
+  <button class="btn clear-e" id="clearEditorBtn" title="Clear editor (Alt+K)">&#x232B; Clear</button>
   <div class="tsep"></div>
   <button class="btn" id="hmapBtn" title="Complexity Heatmap — overlay warna per baris berdasarkan kompleksitas">🌡 Heatmap</button>
   <button class="btn" id="fossilBtn" title="Ghost Code — lacak teks yang dihapus selama 30 detik">👻 Fossil</button>
@@ -983,18 +965,21 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
 <!-- ══ AI TOOLBAR ══ -->
 <div class="ai-bar">
   <span class="ai-label">AI:</span>
-  <select class="ai-prov-sel" id="aiProvSel" title="Select AI provider">
+  <select class="ai-prov-sel" id="aiProvSel" title="AI Provider">
+    <option value="groq">Groq (free ✓)</option>
     <option value="anthropic">Claude</option>
-    <option value="groq">Groq ✓</option>
     <option value="gemini">Gemini</option>
-    <option value="openai">GPT</option>
+    <option value="openai">GPT (CORS ⚠)</option>
     <option value="ollama">Ollama</option>
     <option value="localai">LM Studio</option>
   </select>
-  <input class="ai-req-input" id="aiReqInput" placeholder="Instruksi AI: mis. Tambahkan method caching ke UserService, atau Perbaiki memory leak...">
-  <input class="ai-key-input" id="aiKeyInput" type="password" placeholder="API key (sk-ant / gsk_ / AIzaSy…)">
-  <input id="aiModelInput" placeholder="model name (optional)" style="height:22px;width:130px;background:var(--bg1);border:1px solid var(--bd1);color:var(--txt2);padding:0 7px;border-radius:4px;font-size:10.5px;font-family:var(--mono);outline:none;flex-shrink:0" title="Override model name (leave blank for default)">
-  <button class="btn" id="aiTestBtn" title="Test API connection" style="color:var(--green);border:1px solid rgba(46,216,130,.3);background:var(--green-dim);flex-shrink:0">⚡ Test</button>
+  <div class="ai-req-wrap">
+    <span class="ai-file-tag" id="aiFileTag">&#128196; <span id="aiFileTagName"></span></span>
+    <input class="ai-req-input" id="aiReqInput" placeholder="Instruksi AI: mis. Tambahkan method caching ke UserService, atau Perbaiki memory leak...">
+  </div>
+  <input class="ai-key-input" id="aiKeyInput" type="password" placeholder="API Key (opsional)">
+  <input class="ai-model-inp" id="aiModelInput" placeholder="model (optional)" title="Override model name">
+  <button class="btn test-btn" id="aiTestBtn" title="Test API connection">&#9889; Test</button>
   <button class="btn ai-run" id="aiRunBtn" title="Jalankan AI Orchestrator (Ctrl+Shift+Enter)">✦ Orchestrate</button>
   <div class="ai-status"><div class="dot" id="aiBarDot" style="width:6px;height:6px;border-radius:50%;background:var(--bd2)"></div><span id="aiBarLabel">idle</span></div>
 </div>
@@ -1006,11 +991,10 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
   <div class="vfs-sidebar">
     <div class="sidebar-hdr">
       <span class="sidebar-title">virtual fs</span>
-      <button class="sidebar-btn" id="vfsUploadBtn" title="Upload">&#8593;</button>
-      <button class="sidebar-btn" onclick="vfsNewFile()" title="New file">+</button>
+      <button class="sidebar-btn" id="vfsUploadBtn" title="Upload file">&#8593;</button>
+      <button class="sidebar-btn" onclick="vfsNewFile()" title="File baru">+</button>
     </div>
-    <input type="file" id="vfsFileInput" multiple style="display:none">
-    <div class="vfs-upload-zone" id="vfsDropZone">Drop files here or click &#8593;</div>
+    <div class="vfs-upload-zone" id="vfsDropZone">Drop files or click &#8593;</div>
     <div class="vfs-list" id="vfsList"></div>
   </div>
 
@@ -1039,10 +1023,6 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
 
       <!-- Providers -->
       <div class="ai-section">
-        <div style="font-size:9px;background:var(--green-dim);border:1px solid rgba(46,216,130,.2);color:var(--green);border-radius:4px;padding:4px 7px;margin-bottom:6px;font-family:var(--mono);line-height:1.5" id="aiCorsHint">
-          ✅ Groq &amp; Gemini = browser-safe<br>⚠ OpenAI = use Groq or a proxy
-        </div>
-
         <div class="ai-sec-title">Provider</div>
         <div id="providerList"></div>
       </div>
@@ -1075,15 +1055,17 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
         <div class="ai-sec-title">Target File</div>
         <div class="ai-target-val" id="aiTargetDisplay">—</div>
       </div>
-      <!-- AI Thinking Panel -->
+      <!-- AI Thinking -->
       <div class="ai-section">
         <div class="ai-sec-title">AI Thinking</div>
         <div class="ai-think-badge" id="aiThinkBadge">&#129300; thinking</div>
         <div class="ai-think-panel" id="aiThinkPanel">
-          <div class="ai-think-hdr"><span>Reasoning</span></div>
+          <div class="ai-think-hdr"><span>Reasoning</span><button onclick="document.getElementById(&quot;aiThinkPanel&quot;).classList.remove(&quot;on&quot;)" style="background:none;border:none;color:var(--txt3);cursor:pointer;font-size:10px">x</button></div>
           <div class="ai-think-body" id="aiThinkBody"></div>
         </div>
       </div>
+      <!-- CORS Info -->
+      <div class="ai-cors-hint" id="aiCorsHint">&#9989; Groq &amp; Gemini: browser-safe<br>&#9888; OpenAI: blocked by CORS &rarr; use Groq</div>
       <!-- Prediction preview -->
       <div class="ai-section" id="aiPredSection" style="display:none">
         <div class="ai-sec-title">Prediction</div>
@@ -1099,8 +1081,7 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
       <!-- Quick actions -->
       <div class="ai-section">
         <div class="ai-sec-title">Quick Actions</div>
-        <button class="ai-run-btn" id="aiTestBtn" style="margin-bottom:4px;border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.07);color:var(--cyan)">🔌 Test Connection</button>
-      <button class="ai-run-btn" id="aiOrcBtn">✦ RUN ORCHESTRATOR</button>
+        <button class="ai-run-btn" id="aiOrcBtn">✦ RUN ORCHESTRATOR</button>
         <button class="ai-run-btn green" id="aiAnalyzeBtn" style="margin-top:4px">◈ ANALYZE STRUCTURE</button>
         <button class="ai-run-btn" id="aiDebugBtn" style="margin-top:4px;border-color:rgba(245,183,49,.4);background:var(--amber-dim);color:var(--amber)">🐛 DEBUG AGENT</button>
         <button class="ai-run-btn" id="aiReviewBtn" style="margin-top:4px;border-color:rgba(34,211,238,.3);background:rgba(34,211,238,.07);color:var(--cyan)">👁 REVIEW AGENT</button>
@@ -1304,310 +1285,8 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
 <script src="https://cdn.jsdelivr.net/pyodide/v0.29.3/full/pyodide.js"></script>
 
 <script>
+
 'use strict';
-
-// ════════════════════════════════════════════════
-// NEW FEATURE ADDITIONS
-// ════════════════════════════════════════════════
-
-// ── i18n ─────────────────────────────────────────
-var _LANG = (localStorage.getItem('df_lang') || navigator.language || 'en').slice(0,2).toLowerCase();
-if(_LANG !== 'en' && _LANG !== 'id') _LANG = 'en';
-var I18N = {
-  en: {
-    sc_run:'Run code', sc_ai:'AI Orchestrate', sc_fmt:'Format code',
-    sc_find:'Find & Replace', sc_analyze:'Analyze AST', sc_copy:'Copy all',
-    sc_tab:'New tab', sc_close:'Close tab', sc_wrap:'Word wrap',
-    sc_theme:'Toggle theme', sc_clear:'Clear editor', sc_full:'Fullscreen',
-    wl_tagline:'AI-powered browser IDE — run, orchestrate, and evolve code with real AI agents.',
-    wl_role:'Creator & Developer', wl_lang:'Interface language:', wl_enter:'Enter DevFlow',
-    wl_footer:'This screen can be shown again from Settings',
-    sp_title:'Settings', sp_gen:'General', sp_lang:'Language', sp_theme:'Theme',
-    sp_font:'Font Size', sp_auto:'Auto-run', sp_ai:'AI Config', sp_api:'API Key (local)',
-    sp_think:'Show AI thinking', sp_sec:'Security', sp_src:'Source code protection',
-    sp_bp:'Bypass password', sp_sec_hint:'Bypass: Ctrl+Alt+Shift+D',
-    sp_sc:'Keyboard Shortcuts', sp_about:'About', sp_cr:'Creator',
-    sp_wel:'Show welcome screen again', sp_exp:'Export orchestrator.js', sp_rst:'Reset all state',
-    no_target:'— drag a file from sidebar —', think_hdr:'AI Thinking'
-  },
-  id: {
-    sc_run:'Jalankan kode', sc_ai:'AI Orkestrasi', sc_fmt:'Format kode',
-    sc_find:'Cari & Ganti', sc_analyze:'Analisis AST', sc_copy:'Salin semua',
-    sc_tab:'Tab baru', sc_close:'Tutup tab', sc_wrap:'Word wrap',
-    sc_theme:'Ganti tema', sc_clear:'Bersihkan editor', sc_full:'Layar penuh',
-    wl_tagline:'IDE browser bertenaga AI — jalankan, orkestrasi, dan kembangkan kode.',
-    wl_role:'Pembuat & Pengembang', wl_lang:'Bahasa antarmuka:', wl_enter:'Masuk DevFlow',
-    wl_footer:'Layar ini bisa ditampilkan lagi dari Pengaturan',
-    sp_title:'Pengaturan', sp_gen:'Umum', sp_lang:'Bahasa', sp_theme:'Tema',
-    sp_font:'Ukuran Font', sp_auto:'Auto-run', sp_ai:'Konfigurasi AI', sp_api:'API Key (lokal)',
-    sp_think:'Tampilkan pemikiran AI', sp_sec:'Keamanan', sp_src:'Proteksi kode sumber',
-    sp_bp:'Kata sandi bypass', sp_sec_hint:'Bypass: Ctrl+Alt+Shift+D',
-    sp_sc:'Pintasan Keyboard', sp_about:'Tentang', sp_cr:'Pembuat',
-    sp_wel:'Tampilkan layar selamat datang', sp_exp:'Ekspor orchestrator.js', sp_rst:'Reset semua',
-    no_target:'— tarik file dari sidebar —', think_hdr:'Pemikiran AI'
-  }
-};
-function _t(k){ return (I18N[_LANG]||I18N.en)[k] || I18N.en[k] || k; }
-function _applyI18n(){
-  document.documentElement.lang = _LANG;
-  var wlTg = document.getElementById('wlTagline');
-  if(wlTg) wlTg.textContent = _t('wl_tagline');
-  var wlRl = document.getElementById('wlRole');
-  if(wlRl) wlRl.textContent = _t('wl_role');
-  var wlLl = document.getElementById('wlLangLbl');
-  if(wlLl) wlLl.textContent = _t('wl_lang');
-  var wlEn = document.getElementById('wlEnterBtn');
-  if(wlEn) wlEn.textContent = _t('wl_enter');
-  var wlFt = document.getElementById('wlFooter');
-  if(wlFt) wlFt.textContent = _t('wl_footer');
-  var spTi = document.getElementById('spTitle');
-  if(spTi) spTi.textContent = _t('sp_title');
-  var spGn = document.getElementById('spGenHdr');
-  if(spGn) spGn.textContent = _t('sp_gen');
-  var spLn = document.getElementById('spLangLbl');
-  if(spLn) spLn.textContent = _t('sp_lang');
-  var spTh = document.getElementById('spThemeLbl');
-  if(spTh) spTh.textContent = _t('sp_theme');
-  var spFn = document.getElementById('spFontLbl');
-  if(spFn) spFn.textContent = _t('sp_font');
-  var spAt = document.getElementById('spAutoLbl');
-  if(spAt) spAt.textContent = _t('sp_auto');
-  var spAi = document.getElementById('spAiHdr');
-  if(spAi) spAi.textContent = _t('sp_ai');
-  var spAp = document.getElementById('spApiLbl');
-  if(spAp) spAp.textContent = _t('sp_api');
-  var spTk = document.getElementById('spThinkLbl');
-  if(spTk) spTk.textContent = _t('sp_think');
-  var spSc = document.getElementById('spSecHdr');
-  if(spSc) spSc.textContent = _t('sp_sec');
-  var spSL = document.getElementById('spSecLbl');
-  if(spSL) spSL.textContent = _t('sp_src');
-  var spBp = document.getElementById('spBpLbl');
-  if(spBp) spBp.textContent = _t('sp_bp');
-  var spSh = document.getElementById('spSecHint');
-  if(spSh) spSh.textContent = _t('sp_sec_hint');
-  var spKb = document.getElementById('spScHdr');
-  if(spKb) spKb.textContent = _t('sp_sc');
-  var spAb = document.getElementById('spAboutHdr');
-  if(spAb) spAb.textContent = _t('sp_about');
-  var spCr = document.getElementById('spCrLbl');
-  if(spCr) spCr.textContent = _t('sp_cr');
-  var spWl = document.getElementById('spShowWelBtn');
-  if(spWl) spWl.textContent = _t('sp_wel');
-  var spEx = document.getElementById('spExpBtn');
-  if(spEx) spEx.textContent = _t('sp_exp');
-  var spRe = document.getElementById('spResetBtn');
-  if(spRe) spRe.textContent = _t('sp_rst');
-  var atDsp = document.getElementById('aiTargetDisplay');
-  if(atDsp && !_aiTargetFile) atDsp.textContent = _t('no_target');
-  var thHdr = document.querySelector('.ai-think-hdr span');
-  if(thHdr) thHdr.textContent = _t('think_hdr');
-}
-
-// ── SECURITY ─────────────────────────────────────
-var _SEC_ENABLED = localStorage.getItem('df_sec_enabled') !== 'false';
-var _SEC_PW = localStorage.getItem('df_sec_pw') || 'devflow';
-var _SEC_UNLOCKED = false;
-function _secInit(){
-  document.addEventListener('keydown', function(e){
-    var ctrl = e.ctrlKey || e.metaKey;
-    if(!_SEC_ENABLED || _SEC_UNLOCKED) return;
-    if(ctrl && e.key.toLowerCase() === 'u'){ e.preventDefault(); e.stopPropagation(); return; }
-    if(e.key === 'F12'){ e.preventDefault(); e.stopPropagation(); return; }
-    if(ctrl && e.shiftKey && ['i','j','c','k','s'].indexOf(e.key.toLowerCase()) >= 0){
-      e.preventDefault(); e.stopPropagation(); return;
-    }
-    if(ctrl && e.altKey && e.shiftKey && e.key === 'D'){
-      var pw = prompt('Security bypass password:');
-      if(pw === _SEC_PW){
-        _SEC_UNLOCKED = true;
-        setTimeout(function(){ _SEC_UNLOCKED = false; }, 60000);
-        toast('Unlocked for 60s');
-      } else if(pw !== null){ toast('Wrong password'); }
-    }
-  }, true);
-  document.addEventListener('contextmenu', function(e){
-    if(_SEC_ENABLED && !_SEC_UNLOCKED) e.preventDefault();
-  }, true);
-}
-
-// ── AI TARGET FILE ─────────────────────────────────
-var _aiTargetFile = null;
-function _setAITarget(path){
-  _aiTargetFile = path;
-  var dsp = document.getElementById('aiTargetDisplay');
-  if(dsp) dsp.textContent = path || _t('no_target');
-  var tag = document.getElementById('aiFileTag');
-  var tagName = document.getElementById('aiFileTagName');
-  if(tag && tagName){
-    if(path){ tagName.textContent = path.split('/').pop(); tag.classList.add('on'); }
-    else { tag.classList.remove('on'); }
-  }
-  var inp = document.getElementById('aiReqInput');
-  if(inp) inp.style.paddingLeft = path ? '80px' : '';
-  if(path) toast('AI target: ' + path.split('/').pop());
-}
-
-// ── AI THINKING LOG ─────────────────────────────────
-var _showThinking = localStorage.getItem('df_show_think') !== 'false';
-var AIThink = {
-  show: function(){
-    if(!_showThinking) return;
-    var p = document.getElementById('aiThinkPanel');
-    var b = document.getElementById('aiThinkBadge');
-    if(p) p.classList.add('on');
-    if(b) b.classList.add('on');
-  },
-  clear: function(){
-    var b = document.getElementById('aiThinkBody');
-    if(b) b.innerHTML = '';
-  },
-  step: function(text, icon, done, err){
-    if(!_showThinking) return null;
-    this.show();
-    var el = document.createElement('div');
-    el.className = 'ai-think-step' + (done ? ' done' : '') + (err ? ' err' : '');
-    el.innerHTML = '<span style="font-size:9px;flex-shrink:0">' + (icon||'·') + '</span>'
-      + '<span class="ai-think-txt">' + (text||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</span>';
-    var b = document.getElementById('aiThinkBody');
-    if(b){ b.appendChild(el); b.scrollTop = b.scrollHeight; }
-    return el;
-  },
-  update: function(el, text, done, err){
-    if(!el) return;
-    el.className = 'ai-think-step' + (done ? ' done' : '') + (err ? ' err' : '');
-    var t = el.querySelector('.ai-think-txt');
-    if(t) t.textContent = text;
-  }
-};
-
-// ── SETTINGS OPEN/CLOSE ─────────────────────────────
-var _SP_SHORTCUTS = [
-  {d:'Run code', k:['Ctrl','Enter']}, {d:'AI Orchestrate', k:['Ctrl','Shift','Enter']},
-  {d:'Format', k:['Shift','Alt','F']}, {d:'Analyze', k:['Alt','A']},
-  {d:'New tab', k:['Alt','T']}, {d:'Close tab', k:['Alt','W']},
-  {d:'Word wrap', k:['Alt','Z']}, {d:'Theme', k:['Alt','D']},
-  {d:'Copy all', k:['Ctrl','Shift','C']}, {d:'Fullscreen', k:['F11']},
-  {d:'Bypass security', k:['Ctrl','Alt','Shift','D']},
-];
-function openSettings(){
-  var p = document.getElementById('spPanel');
-  var o = document.getElementById('spOverlay');
-  if(p) p.classList.add('open');
-  if(o) o.classList.add('on');
-  var sl = document.getElementById('spLangSel'); if(sl) sl.value = _LANG;
-  var st = document.getElementById('spThemeSel'); if(st) st.value = S&&S.theme||'dark';
-  var sf = document.getElementById('spFontSel'); if(sf) sf.value = String(S&&S.fontSize||13);
-  var sa = document.getElementById('spAutoTog'); if(sa) sa.classList.toggle('on', S&&S.autoRun);
-  var sk = document.getElementById('spThinkTog'); if(sk) sk.classList.toggle('on', _showThinking);
-  var ss = document.getElementById('spSecTog'); if(ss) ss.classList.toggle('on', _SEC_ENABLED);
-  var sb = document.getElementById('spBypassPw'); if(sb) sb.value = _SEC_PW;
-  var ak = document.getElementById('spApiKey'); if(ak) ak.value = localStorage.getItem('df_api_key')||'';
-  var scl = document.getElementById('spScList');
-  if(scl) scl.innerHTML = _SP_SHORTCUTS.map(function(s){
-    return '<div class="sp-sc-mini-row"><span class="sp-sc-d">'+s.d+'</span>'
-      +'<div class="sp-sc-k">'+s.k.map(function(k){return '<kbd>'+k+'</kbd>';}).join('')+'</div></div>';
-  }).join('');
-}
-function closeSettings(){
-  var p = document.getElementById('spPanel');
-  var o = document.getElementById('spOverlay');
-  if(p) p.classList.remove('open');
-  if(o) o.classList.remove('on');
-}
-
-// ── WELCOME SCREEN ──────────────────────────────────
-function showWelcome(){
-  var w = document.getElementById('welcome');
-  if(w) w.classList.remove('hidden');
-  _applyI18n();
-}
-function hideWelcome(){
-  var w = document.getElementById('welcome');
-  if(w) w.classList.add('hidden');
-  localStorage.setItem('df_welcome_seen','1');
-}
-function applyTheme(theme){
-  S.theme = theme;
-  document.documentElement.setAttribute('data-theme', theme);
-  document.body.classList.toggle('light', theme==='light');
-  if(S.editor && window.monaco) window.monaco.editor.setTheme(theme==='dark'?'df-dark':'df-light');
-  var btn = document.getElementById('themeBtn');
-  if(btn) btn.textContent = theme==='dark'?'🌙':'☀';
-  var sp = document.getElementById('spThemeSel');
-  if(sp) sp.value = theme;
-  if(typeof saveState==='function') saveState();
-}
-
-// ── FILE UPLOAD ─────────────────────────────────────
-function _handleUpload(files){
-  Array.from(files).forEach(function(file){
-    var ext = file.name.split('.').pop().toLowerCase();
-    var isMedia = ['jpg','jpeg','png','gif','webp','svg','mp4','webm','mov','avi'].indexOf(ext) >= 0;
-    var reader = new FileReader();
-    if(isMedia){
-      reader.onload = function(e){
-        var path = 'media/' + file.name;
-        try{ VFS.create(path, e.target.result); }catch(er){ VFS.write(path, e.target.result); }
-        renderVFS();
-        var frame = document.getElementById('previewFrame');
-        var isVid = ['mp4','webm','mov','avi'].indexOf(ext) >= 0;
-        if(isVid && frame){
-          frame.srcdoc = '<!DOCTYPE html><html><body style="margin:0;background:#07090f;display:flex;align-items:center;justify-content:center;height:100vh">'
-            + '<video controls style="max-width:100%;max-height:100%;border-radius:6px">'
-            + '<source src="' + e.target.result + '" type="video/' + ext + '">Not supported.</video></body></html>';
-        } else if(frame){
-          frame.srcdoc = '<!DOCTYPE html><html><body style="margin:0;background:#07090f;display:flex;align-items:center;justify-content:center;height:100vh">'
-            + '<img src="' + e.target.result + '" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:6px"></body></html>';
-        }
-        if(typeof switchOut === 'function') switchOut('preview');
-        if(typeof toast === 'function') toast('Uploaded: ' + file.name);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      reader.onload = function(e){
-        var path = 'uploads/' + file.name;
-        try{ VFS.create(path, e.target.result); }catch(er){ VFS.write(path, e.target.result); }
-        if(typeof renderVFS === 'function') renderVFS();
-        if(typeof vfsLoad === 'function') vfsLoad(path);
-        if(typeof toast === 'function') toast('Uploaded: ' + file.name);
-      };
-      reader.readAsText(file);
-    }
-  });
-}
-
-// ── VFS INLINE RENAME (robust fix) ─────────────────
-function _startVfsRename(path, nameEl){
-  if(!nameEl) return;
-  var oldName = path.split('/').pop();
-  var inp = document.createElement('input');
-  inp.className = 'vfs-nm-inp';
-  inp.value = oldName;
-  nameEl.replaceWith(inp);
-  setTimeout(function(){ try{ inp.focus(); inp.select(); }catch(e){} }, 10);
-  var _done = false;
-  function done(){
-    if(_done) return; _done = true;
-    var newName = inp.value.trim();
-    if(!newName || newName === oldName){ renderVFS(); return; }
-    var dir = path.lastIndexOf('/') >= 0 ? path.substring(0, path.lastIndexOf('/')+1) : '';
-    var newPath = dir + newName;
-    try{
-      VFS.rename(path, newPath);
-      if(S.activeVfsFile === path) S.activeVfsFile = newPath;
-      if(_aiTargetFile === path) _setAITarget(newPath);
-      S.tabs.forEach(function(tb){ if(tb.vfsPath === path) tb.vfsPath = newPath; });
-      renderVFS(); renderTabs(); toast('Renamed to ' + newName);
-    }catch(e){ toast('Error: ' + e.message); renderVFS(); }
-  }
-  inp.addEventListener('blur', done);
-  inp.addEventListener('keydown', function(e){
-    if(e.key==='Enter'){ e.preventDefault(); done(); }
-    if(e.key==='Escape'){ inp.value=oldName; done(); }
-  });
-}
-
 // ════════════════════════════════════════════════════════════════
 //  DEVFLOW v3.0 — Unified Code Runner + AI Orchestrator
 //  Monaco Editor · Pyodide 0.29.3 (Python 3.13.2) · VirtualFS
@@ -1619,6 +1298,7 @@ function _startVfsRename(path, nameEl){
 // ──────────────────────────────────────────────────────────────
 const LCFG={
   html:      {lbl:'HTML/CSS/JS', dot:'#e44b26', ext:'html', exec:'html'},
+  html_only: {lbl:'HTML only',   dot:'#e44b26', ext:'html', exec:'html'},
   javascript:{lbl:'JavaScript',  dot:'#f5c542', ext:'js',   exec:'js'},
   python:    {lbl:'Python 3.13', dot:'#3572a5', ext:'py',   exec:'python'},
   typescript:{lbl:'TypeScript',  dot:'#3178c6', ext:'ts',   exec:'js'},
@@ -1877,6 +1557,154 @@ class ConflictResolver{
   _bp(cs,ws){const all=[...cs,...ws];return all.map(c=>`[${c.severity}] ${c.type}: ${c.message}\nFix: ${c.resolution}`).join('\n\n');}
 }
 
+// ──────────────────────────────────────────────────────────────
+// MODULE: AI_Integrator
+// ──────────────────────────────────────────────────────────────
+class AI_Integrator{
+  constructor(){
+    this._p=new Map();this._active='groq';this._calls=0;this._errors=0;this._build();
+  }
+  _build(){
+    // ANTHROPIC — requires sk-ant-api03-... key
+    // CORS: OK (uses anthropic-dangerous-direct-browser-access header)
+    this.register('anthropic',{
+      label:'Claude (Anthropic)',endpoint:'https://api.anthropic.com/v1/messages',
+      defaultModel:'claude-sonnet-4-20250514',corsOk:true,needsKey:true,keyHint:'sk-ant-api03-...',
+      models:['claude-opus-4-5','claude-sonnet-4-20250514','claude-haiku-4-5-20251001','claude-3-5-sonnet-20241022','claude-3-5-haiku-20241022'],
+      buildReq(msgs,o){ return{model:o.model||this.defaultModel,max_tokens:o.maxTokens||4096,system:o.system||'You are an expert software engineer. Return raw code only when generating snippets.',messages:msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))}; },
+      buildHdrs(k){ if(!k)throw new Error('Claude needs an API key (sk-ant-...). Get one at console.anthropic.com'); return{'Content-Type':'application/json','x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}; },
+      buildUrl(){ return null; },
+      parseRes(r){ if(r.type==='error'||r.error)throw new Error(r.error?.message||JSON.stringify(r.error)); var t=r.content?.[0]?.text; if(t==null)throw new Error('Empty response from Claude'); return t; }
+    });
+    // GROQ — free, fast, CORS-friendly — RECOMMENDED for browser use
+    // Get key at: console.groq.com (free in 30 seconds)
+    // Runs Llama 3.3 70B, Mixtral, Gemma — very fast
+    this.register('groq',{
+      label:'Groq (Llama / Mixtral)',endpoint:'https://api.groq.com/openai/v1/chat/completions',
+      defaultModel:'llama-3.3-70b-versatile',corsOk:true,needsKey:true,keyHint:'gsk_...',
+      models:['llama-3.3-70b-versatile','llama-3.1-8b-instant','mixtral-8x7b-32768','gemma2-9b-it','llama3-70b-8192'],
+      buildReq(msgs,o){ return{model:o.model||this.defaultModel,max_tokens:o.maxTokens||4096,temperature:0.3,messages:[{role:'system',content:o.system||'You are an expert software engineer.'},...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))]}; },
+      buildHdrs(k){ if(!k)throw new Error('Groq needs an API key (gsk_...). Get one FREE at console.groq.com!'); return{'Content-Type':'application/json','Authorization':'Bearer '+k}; },
+      buildUrl(){ return null; },
+      parseRes(r){ if(r.error)throw new Error(r.error.message||JSON.stringify(r.error)); var t=r.choices?.[0]?.message?.content; if(t==null)throw new Error('Empty response from Groq'); return t; }
+    });
+    // GEMINI — key in URL, no CORS issue, free tier
+    // Get key at: aistudio.google.com
+    this.register('gemini',{
+      label:'Gemini (Google)',endpoint:'https://generativelanguage.googleapis.com/v1beta/models/',
+      defaultModel:'gemini-2.0-flash-exp',corsOk:true,needsKey:true,keyHint:'AIzaSy...',
+      models:['gemini-2.0-flash-exp','gemini-1.5-pro','gemini-1.5-flash','gemini-1.5-flash-8b'],
+      buildReq(msgs,o){ var sys=o.system||'You are an expert software engineer.'; var contents=msgs.filter(m=>m.role!=='system').map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:String(m.content)}]})); if(!contents.length)contents.push({role:'user',parts:[{text:'Hello'}]}); return{systemInstruction:{parts:[{text:sys}]},contents,generationConfig:{maxOutputTokens:o.maxTokens||4096,temperature:0.3}}; },
+      buildHdrs(){ return{'Content-Type':'application/json'}; },
+      buildUrl(k,o){ if(!k)throw new Error('Gemini needs an API key (AIzaSy...). Get one FREE at aistudio.google.com!'); return 'https://generativelanguage.googleapis.com/v1beta/models/'+(o.model||this.defaultModel)+':generateContent?key='+k; },
+      parseRes(r){ if(r.error)throw new Error(r.error.message||JSON.stringify(r.error)); var t=r.candidates?.[0]?.content?.parts?.[0]?.text; if(t==null){var reason=r.candidates?.[0]?.finishReason;throw new Error('Empty Gemini response'+(reason?' ('+reason+')':'')); } return t; }
+    });
+    // OPENAI — WARNING: OpenAI BLOCKS browser CORS requests
+    // To use: run a local proxy or switch to Groq (free, same API style)
+    this.register('openai',{
+      label:'GPT (OpenAI) ⚠CORS',endpoint:'https://api.openai.com/v1/chat/completions',
+      defaultModel:'gpt-4o',corsOk:false,needsKey:true,keyHint:'sk-proj-...',
+      corsNote:'OpenAI blocks browser CORS. Use Groq instead (free), or run a local proxy.',
+      models:['gpt-4o','gpt-4o-mini','gpt-4-turbo','gpt-3.5-turbo'],
+      buildReq(msgs,o){ return{model:o.model||this.defaultModel,max_tokens:o.maxTokens||4096,temperature:0.3,messages:[{role:'system',content:o.system||'You are an expert software engineer.'},...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))]}; },
+      buildHdrs(k){ if(!k)throw new Error('OpenAI needs an API key (sk-...).'); return{'Content-Type':'application/json','Authorization':'Bearer '+k}; },
+      buildUrl(){ return null; },
+      parseRes(r){ if(r.error)throw new Error(r.error.message||JSON.stringify(r.error)); var t=r.choices?.[0]?.message?.content; if(t==null)throw new Error('Empty response from OpenAI'); return t; }
+    });
+    // OLLAMA — local, no key needed
+    // Install: ollama.com  then: ollama serve && ollama pull codellama
+    this.register('ollama',{
+      label:'Ollama (local)',endpoint:'http://localhost:11434/api/chat',
+      defaultModel:'codellama',corsOk:true,needsKey:false,keyHint:'(no key needed)',
+      models:['codellama','llama3.2','llama3.1','mistral','gemma2','phi3','qwen2.5-coder','deepseek-coder-v2'],
+      buildReq(msgs,o){ return{model:o.model||this.defaultModel,stream:false,options:{temperature:0.3,num_predict:o.maxTokens||4096},messages:[{role:'system',content:o.system||'You are an expert software engineer.'},...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))]}; },
+      buildHdrs(){ return{'Content-Type':'application/json'}; },
+      buildUrl(){ return null; },
+      parseRes(r){ if(r.error)throw new Error(String(r.error)); var t=r.message?.content||r.response; if(t==null)throw new Error('Empty Ollama response. Is the model loaded? Run: ollama run '+this.defaultModel); return t; }
+    });
+    // LM STUDIO / JAN — local OpenAI-compatible server, no key needed
+    // LM Studio: lmstudio.ai  Jan: jan.ai
+    this.register('localai',{
+      label:'LM Studio / Jan (local)',endpoint:'http://localhost:1234/v1/chat/completions',
+      defaultModel:'local-model',corsOk:true,needsKey:false,keyHint:'(no key needed)',
+      models:['local-model','lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF'],
+      buildReq(msgs,o){ return{model:o.model||this.defaultModel,max_tokens:o.maxTokens||4096,temperature:0.3,stream:false,messages:[{role:'system',content:o.system||'You are an expert software engineer.'},...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))]}; },
+      buildHdrs(k){ var h={'Content-Type':'application/json'}; if(k) h['Authorization']='Bearer '+k; return h; },
+      buildUrl(){ return null; },
+      parseRes(r){ if(r.error)throw new Error(r.error.message||JSON.stringify(r.error)); var t=r.choices?.[0]?.message?.content; if(t==null)throw new Error('Empty response. Is LM Studio/Jan running?'); return t; }
+    });
+  }
+  register(name,cfg){ this._p.set(name,Object.assign({name,calls:0,errors:0,lastError:null},cfg)); return this; }
+  setActive(n){ if(!this._p.has(n))throw new Error("Provider '"+n+"' not registered"); this._active=n; return this; }
+  async query(prompt,opts){
+    opts=opts||{};
+    var pn=opts.provider||this._active;
+    var p=this._p.get(pn);
+    if(!p)throw new Error("Provider '"+pn+"' not registered");
+    var apiKey=(opts.apiKey||'').trim()||(document.getElementById('aiKeyInput')||{}).value||''||(document.getElementById('spApiKey')||{}).value||localStorage.getItem('df_api_key')||'';
+    var msgs=typeof prompt==='string'?[{role:'user',content:prompt}]:prompt;
+    if(p.corsOk===false&&!opts.endpoint) addLog('['+pn+'] ⚠ '+p.corsNote,'warn','ai');
+    var body,hdrs,url;
+    try{ url=opts.endpoint||(p.buildUrl?p.buildUrl(apiKey,opts):null)||p.endpoint; hdrs=p.buildHdrs(apiKey,opts); body=p.buildReq(msgs,opts); }
+    catch(cfgErr){ p.errors++;p.lastError=cfgErr.message; throw new Error('['+pn+'] Config: '+cfgErr.message); }
+    p.calls++;this._calls++;
+    addLog('→ '+pn+' / '+(opts.model||p.defaultModel),'ai-log','ai');
+    try{
+      var ctrl=new AbortController();
+      var timer=setTimeout(function(){ctrl.abort();},120000);
+      var res;
+      try{
+        res=await fetch(url,{method:'POST',headers:hdrs,body:JSON.stringify(body),signal:ctrl.signal});
+      }catch(fetchErr){
+        clearTimeout(timer);
+        var msg=fetchErr.message||String(fetchErr);
+        if(msg.toLowerCase().includes('abort')) throw new Error('Request timed out (120s)');
+        var hint='';
+        if(pn==='openai') hint=' ← OpenAI blocks browser CORS. Use Groq (free) instead.';
+        else if(pn==='ollama'||pn==='localai') hint=' ← Is the local server running?';
+        throw new Error('Network error'+hint+': '+msg);
+      }
+      clearTimeout(timer);
+      var raw=await res.text();
+      if(!res.ok){
+        p.errors++;p.lastError='HTTP '+res.status;
+        var em=raw.slice(0,400);
+        try{var j=JSON.parse(raw);em=j.error?.message||j.error||em;}catch(e){}
+        var hint='';
+        if(res.status===401)hint=' ← Invalid API key.';
+        else if(res.status===403)hint=' ← Key lacks permission for this model.';
+        else if(res.status===429)hint=' ← Rate limited. Wait and retry.';
+        else if(res.status===400)hint=' ← Bad request. Check model name.';
+        else if(res.status===404)hint=' ← Model not found. Check the name.';
+        throw new Error('HTTP '+res.status+hint+': '+em);
+      }
+      var data;
+      try{data=JSON.parse(raw);}catch(e){throw new Error('Invalid JSON from '+pn);}
+      var content;
+      try{content=p.parseRes(data);}catch(e){throw new Error('Parse error: '+e.message);}
+      p.lastError=null;
+      addLog('✅ '+pn+' OK — '+content.length+' chars','success','ai');
+      return{provider:pn,model:opts.model||p.defaultModel,content,raw:data,totalCalls:this._calls};
+    }catch(e){
+      p.errors++;this._errors++;p.lastError=e.message;
+      throw e;
+    }
+  }
+  async test(provider,apiKey){
+    var pn=provider||this._active;
+    var p=this._p.get(pn);
+    if(!p)return{ok:false,msg:"Provider '"+pn+"' not found"};
+    try{
+      var r=await this.query([{role:'user',content:'Reply with exactly the word: OK'}],{provider:pn,apiKey:apiKey||'',maxTokens:20,system:'Reply with exactly: OK'});
+      return{ok:true,msg:'✅ Connected! Reply: '+r.content.trim().slice(0,40)};
+    }catch(e){ return{ok:false,msg:'❌ '+e.message}; }
+  }
+  providers(){ return[...this._p.values()].map(p=>({name:p.name,label:p.label,defaultModel:p.defaultModel,models:p.models||[],endpoint:p.endpoint,needsKey:p.needsKey,corsOk:p.corsOk!==false,corsNote:p.corsNote||null,calls:p.calls,errors:p.errors,lastError:p.lastError||null})); }
+}
+
+// ──────────────────────────────────────────────────────────────
+// MODULE: Agents
+// ──────────────────────────────────────────────────────────────
 class BaseAgent{
   constructor(ai,pred,res){this.ai=ai;this.predictor=pred;this.resolver=res;}
   async execute(ctx){throw new Error(`${this.constructor.name}.execute() not implemented`);}
@@ -1910,387 +1738,6 @@ class ReviewAgent extends BaseAgent{
     return{review:res.content,structure:S,agent:'ReviewAgent',aiRes:res};
   }
 }
-
-// ──────────────────────────────────────────────────────────────
-// MODULE: AI_Integrator
-// ──────────────────────────────────────────────────────────────
-class AI_Integrator{
-  constructor(){
-    this._p=new Map();
-    this._active='anthropic';
-    this._calls=0;
-    this._errors=0;
-    this._build();
-  }
-
-  _build(){
-    // ── ANTHROPIC / CLAUDE ──────────────────────────────────────────────────
-    // Direct browser access is supported via the special CORS header.
-    // API key format: sk-ant-api03-...
-    // Docs: https://docs.anthropic.com/en/api/getting-started
-    this.register('anthropic',{
-      label:'Claude (Anthropic)',
-      endpoint:'https://api.anthropic.com/v1/messages',
-      defaultModel:'claude-sonnet-4-20250514',
-      models:['claude-opus-4-5','claude-sonnet-4-20250514','claude-haiku-4-5-20251001',
-              'claude-3-5-sonnet-20241022','claude-3-5-haiku-20241022','claude-3-opus-20240229'],
-      needsKey:true,
-      keyHint:'sk-ant-api03-...',
-      corsOk:true,
-      buildReq(msgs,o){
-        return{
-          model:o.model||this.defaultModel,
-          max_tokens:o.maxTokens||4096,
-          system:o.system||'You are an expert software engineer. Return raw code only when generating code snippets — no markdown fences, no preamble.',
-          messages:msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
-        };
-      },
-      buildHdrs(k){
-        if(!k) throw new Error('Claude requires an API key (sk-ant-...). Enter it in the key field or Settings → AI Config.');
-        return{
-          'Content-Type':'application/json',
-          'x-api-key':k,
-          'anthropic-version':'2023-06-01',
-          'anthropic-dangerous-direct-browser-access':'true'
-        };
-      },
-      buildUrl(k,o){ return null; }, // use default endpoint
-      parseRes(r){
-        if(r.type==='error'||r.error) throw new Error((r.error?.message||r.error)||JSON.stringify(r));
-        const txt=r.content?.[0]?.text;
-        if(txt==null) throw new Error('Empty content from Claude. Check your quota at console.anthropic.com');
-        return txt;
-      }
-    });
-
-    // ── OPENAI / GPT ────────────────────────────────────────────────────────
-    // ⚠ OpenAI BLOCKS browser CORS by default (no Access-Control-Allow-Origin).
-    //   If you get "CORS error" or "Network error", use one of:
-    //   1. Groq (free, OpenAI-compat, CORS-friendly) ← recommended
-    //   2. A local proxy: npx cors-anywhere  or  ngrok
-    //   3. Enter proxy URL in Settings → Endpoint Override
-    //   4. Use LM Studio locally
-    // API key format: sk-proj-... or sk-...
-    this.register('openai',{
-      label:'GPT (OpenAI)',
-      endpoint:'https://api.openai.com/v1/chat/completions',
-      defaultModel:'gpt-4o',
-      models:['gpt-4o','gpt-4o-mini','gpt-4-turbo','gpt-3.5-turbo','o1-mini'],
-      needsKey:true,
-      keyHint:'sk-proj-...',
-      corsOk:false, // browser CORS blocked by OpenAI servers
-      corsNote:'OpenAI blocks browser CORS. Use Groq (free) or a local proxy.',
-      buildReq(msgs,o){
-        return{
-          model:o.model||this.defaultModel,
-          max_tokens:o.maxTokens||4096,
-          temperature:0.3,
-          messages:[
-            {role:'system',content:o.system||'You are an expert software engineer.'},
-            ...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
-          ]
-        };
-      },
-      buildHdrs(k){
-        if(!k) throw new Error('OpenAI requires an API key (sk-...). Enter it in the key field.');
-        return{'Content-Type':'application/json','Authorization':'Bearer '+k};
-      },
-      buildUrl(k,o){ return null; },
-      parseRes(r){
-        if(r.error) throw new Error(r.error.message||JSON.stringify(r.error));
-        const txt=r.choices?.[0]?.message?.content;
-        if(txt==null) throw new Error('Empty response from OpenAI');
-        return txt;
-      }
-    });
-
-    // ── GROQ — RECOMMENDED for browser use ─────────────────────────────────
-    // Free tier: https://console.groq.com  ← get a key in 30 seconds
-    // Runs Llama 3.3, Mixtral, Gemma — very fast.
-    // CORS: ✅ fully supported
-    // API key format: gsk_...
-    this.register('groq',{
-      label:'Groq (Llama / Mixtral)',
-      endpoint:'https://api.groq.com/openai/v1/chat/completions',
-      defaultModel:'llama-3.3-70b-versatile',
-      models:['llama-3.3-70b-versatile','llama-3.1-8b-instant','mixtral-8x7b-32768','gemma2-9b-it','llama3-70b-8192'],
-      needsKey:true,
-      keyHint:'gsk_...',
-      corsOk:true,
-      buildReq(msgs,o){
-        return{
-          model:o.model||this.defaultModel,
-          max_tokens:o.maxTokens||4096,
-          temperature:0.3,
-          messages:[
-            {role:'system',content:o.system||'You are an expert software engineer.'},
-            ...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
-          ]
-        };
-      },
-      buildHdrs(k){
-        if(!k) throw new Error('Groq requires an API key (gsk_...) from console.groq.com — free!');
-        return{'Content-Type':'application/json','Authorization':'Bearer '+k};
-      },
-      buildUrl(k,o){ return null; },
-      parseRes(r){
-        if(r.error) throw new Error(r.error.message||JSON.stringify(r.error));
-        const txt=r.choices?.[0]?.message?.content;
-        if(txt==null) throw new Error('Empty response from Groq');
-        return txt;
-      }
-    });
-
-    // ── GOOGLE GEMINI ────────────────────────────────────────────────────────
-    // Get key: https://aistudio.google.com  (free tier)
-    // CORS: ✅ key goes in URL, not header — no CORS issue
-    // API key format: AIzaSy...
-    this.register('gemini',{
-      label:'Gemini (Google)',
-      endpoint:'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent',
-      defaultModel:'gemini-2.0-flash-exp',
-      models:['gemini-2.0-flash-exp','gemini-1.5-pro','gemini-1.5-flash','gemini-1.5-flash-8b'],
-      needsKey:true,
-      keyHint:'AIzaSy...',
-      corsOk:true,
-      buildReq(msgs,o){
-        const sys=o.system||'You are an expert software engineer.';
-        const contents=msgs.filter(m=>m.role!=='system').map(m=>({
-          role:m.role==='assistant'?'model':'user',
-          parts:[{text:String(m.content)}]
-        }));
-        // Gemini requires at least one user turn
-        if(!contents.length) contents.push({role:'user',parts:[{text:'Hello'}]});
-        return{
-          systemInstruction:{parts:[{text:sys}]},
-          contents,
-          generationConfig:{maxOutputTokens:o.maxTokens||4096,temperature:0.3}
-        };
-      },
-      buildHdrs(k){ return{'Content-Type':'application/json'}; },
-      buildUrl(k,o){
-        const model=o.model||this.defaultModel;
-        if(!k) throw new Error('Gemini requires an API key (AIzaSy...) from aistudio.google.com — free!');
-        return 'https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent?key='+k;
-      },
-      parseRes(r){
-        if(r.error) throw new Error(r.error.message||JSON.stringify(r.error));
-        const txt=r.candidates?.[0]?.content?.parts?.[0]?.text;
-        if(txt==null){
-          const reason=r.candidates?.[0]?.finishReason;
-          throw new Error('Empty Gemini response'+(reason?' (finishReason: '+reason+')':''));
-        }
-        return txt;
-      }
-    });
-
-    // ── OLLAMA (Local) ───────────────────────────────────────────────────────
-    // Install: https://ollama.com  then: ollama serve
-    // Pull model first: ollama pull codellama   or   ollama pull llama3.2
-    // CORS: ✅ Ollama sets CORS headers automatically
-    // No API key needed.
-    this.register('ollama',{
-      label:'Ollama (local)',
-      endpoint:'http://localhost:11434/api/chat',
-      defaultModel:'codellama',
-      models:['codellama','llama3.2','llama3.1','mistral','gemma2','phi3','qwen2.5-coder','deepseek-coder-v2','llava'],
-      needsKey:false,
-      keyHint:'(no key needed)',
-      corsOk:true,
-      buildReq(msgs,o){
-        return{
-          model:o.model||this.defaultModel,
-          stream:false,
-          options:{temperature:0.3,num_predict:o.maxTokens||4096},
-          messages:[
-            {role:'system',content:o.system||'You are an expert software engineer.'},
-            ...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
-          ]
-        };
-      },
-      buildHdrs(k){ return{'Content-Type':'application/json'}; },
-      buildUrl(k,o){ return null; },
-      parseRes(r){
-        if(r.error) throw new Error(String(r.error));
-        const txt=r.message?.content||r.response;
-        if(txt==null) throw new Error('Empty Ollama response. Is the model loaded? Run: ollama run '+this.defaultModel);
-        return txt;
-      }
-    });
-
-    // ── LOCAL AI (LM Studio, Jan, Kobold, etc.) ──────────────────────────────
-    // LM Studio: download from lmstudio.ai, start local server
-    // Default port: 1234   (Jan uses 1337, Kobold uses 5001)
-    // CORS: ✅ all local servers support it
-    // No API key needed for most.
-    this.register('localai',{
-      label:'LM Studio / Jan (local)',
-      endpoint:'http://localhost:1234/v1/chat/completions',
-      defaultModel:'local-model',
-      models:['local-model','lmstudio-community/Meta-Llama-3.1-8B-Instruct-GGUF','bartowski/Qwen2.5-Coder-7B-Instruct-GGUF'],
-      needsKey:false,
-      keyHint:'(no key needed)',
-      corsOk:true,
-      buildReq(msgs,o){
-        return{
-          model:o.model||this.defaultModel,
-          max_tokens:o.maxTokens||4096,
-          temperature:0.3,
-          stream:false,
-          messages:[
-            {role:'system',content:o.system||'You are an expert software engineer.'},
-            ...msgs.filter(m=>m.role!=='system').map(m=>({role:m.role,content:String(m.content)}))
-          ]
-        };
-      },
-      buildHdrs(k){
-        const h={'Content-Type':'application/json'};
-        if(k) h['Authorization']='Bearer '+k;
-        return h;
-      },
-      buildUrl(k,o){ return null; },
-      parseRes(r){
-        if(r.error) throw new Error(r.error.message||JSON.stringify(r.error));
-        const txt=r.choices?.[0]?.message?.content||r.message?.content;
-        if(txt==null) throw new Error('Empty response from local server. Is LM Studio/Jan running?');
-        return txt;
-      }
-    });
-  }
-
-  register(name,cfg){
-    this._p.set(name,Object.assign({name,calls:0,errors:0,lastError:null},cfg));
-    return this;
-  }
-
-  setActive(n){
-    if(!this._p.has(n)) throw new Error("Provider '"+n+"' not registered");
-    this._active=n; return this;
-  }
-
-  async query(prompt,opts){
-    opts=opts||{};
-    const pn=opts.provider||this._active;
-    const p=this._p.get(pn);
-    if(!p) throw new Error("Provider '"+pn+"' not registered");
-
-    // Gather API key: opts → key field → settings field → localStorage
-    const apiKey=(opts.apiKey||'').trim()
-      || (document.getElementById('aiKeyInput')||{}).value||''
-      || (document.getElementById('spApiKey')||{}).value||''
-      || localStorage.getItem('df_api_key')||'';
-
-    const msgs=typeof prompt==='string'?[{role:'user',content:prompt}]:prompt;
-
-    // Check CORS warning for OpenAI
-    if(p.corsOk===false && !opts.endpoint){
-      addLog('['+pn+'] WARNING: '+p.corsNote,'warn','ai');
-    }
-
-    let body,hdrs,url;
-    try{
-      // buildUrl may throw if key missing (e.g. Gemini)
-      url=opts.endpoint||(p.buildUrl?p.buildUrl(apiKey,opts):null)||p.endpoint;
-      hdrs=p.buildHdrs(apiKey,opts);
-      body=p.buildReq(msgs,opts);
-    }catch(cfgErr){
-      p.errors++; p.lastError=cfgErr.message;
-      throw new Error('['+pn+'] '+cfgErr.message);
-    }
-
-    p.calls++; this._calls++;
-    addLog('→ '+pn+' / '+(opts.model||p.defaultModel)+' ('+JSON.stringify(body).length+' B body)','ai-log','ai');
-
-    try{
-      const controller=new AbortController();
-      const timer=setTimeout(()=>controller.abort(),120000);
-
-      let res;
-      try{
-        res=await fetch(url,{
-          method:'POST',
-          headers:hdrs,
-          body:JSON.stringify(body),
-          signal:controller.signal
-        });
-      }catch(fetchErr){
-        clearTimeout(timer);
-        const msg=fetchErr.message||String(fetchErr);
-        if(msg.includes('aborted')||msg.includes('AbortError')) throw new Error('Request timed out after 120s');
-        // CORS or network error
-        let hint='';
-        if(pn==='openai') hint=' ← OpenAI blocks browser CORS. Use Groq (free) instead, or add a proxy URL in Settings.';
-        else if(pn==='anthropic') hint=' ← Check your internet connection or try again.';
-        else if(pn==='ollama'||pn==='localai') hint=' ← Is the local server running? Check the port.';
-        throw new Error('Network/CORS error'+hint+' ('+msg+')');
-      }
-      clearTimeout(timer);
-
-      const raw=await res.text();
-
-      if(!res.ok){
-        p.errors++; p.lastError='HTTP '+res.status;
-        let errMsg=raw.slice(0,400);
-        try{ const j=JSON.parse(raw); errMsg=j.error?.message||j.error||errMsg; }catch(e){}
-        let hint='';
-        if(res.status===401) hint=' ← Invalid API key. Check your key and try again.';
-        else if(res.status===403) hint=' ← API key lacks permission for this model/endpoint.';
-        else if(res.status===429) hint=' ← Rate limited. Wait a moment then retry.';
-        else if(res.status===400) hint=' ← Bad request. Wrong model name or malformed body.';
-        else if(res.status===404) hint=' ← Endpoint or model not found. Check the model name.';
-        else if(res.status===413) hint=' ← Request too large. Shorten your code/prompt.';
-        else if(res.status===500) hint=' ← Server error. Try again shortly.';
-        throw new Error('HTTP '+res.status+hint+': '+errMsg);
-      }
-
-      let data;
-      try{ data=JSON.parse(raw); }
-      catch(e){ throw new Error('Invalid JSON from '+pn+'. Raw: '+raw.slice(0,200)); }
-
-      let content;
-      try{ content=p.parseRes(data); }
-      catch(e){ throw new Error('Parse error: '+e.message); }
-
-      p.lastError=null;
-      addLog('✅ '+pn+' responded — '+(content.length)+' chars','success','ai');
-      return{provider:pn,model:opts.model||p.defaultModel,content,raw:data,totalCalls:this._calls};
-
-    }catch(e){
-      p.errors++; this._errors++; p.lastError=e.message;
-      if(!e.message.startsWith('HTTP')&&!e.message.startsWith('Network')&&!e.message.startsWith('Parse')&&!e.message.startsWith('Request')){
-        throw new Error('['+pn+'] '+e.message);
-      }
-      throw e;
-    }
-  }
-
-  // Test connection — send a minimal ping message
-  async test(provider,apiKey){
-    const pn=provider||this._active;
-    const p=this._p.get(pn);
-    if(!p) return{ok:false,msg:"Provider '"+pn+"' not registered"};
-    try{
-      const r=await this.query([{role:'user',content:'Reply with exactly: OK'}],{
-        provider:pn,apiKey,maxTokens:16,
-        system:'Reply with exactly: OK'
-      });
-      return{ok:true,msg:'✅ Connected! Response: '+r.content.slice(0,60)};
-    }catch(e){
-      return{ok:false,msg:'❌ '+e.message};
-    }
-  }
-
-  providers(){
-    return[...this._p.values()].map(p=>({
-      name:p.name,label:p.label,defaultModel:p.defaultModel,
-      models:p.models||[],endpoint:p.endpoint,
-      needsKey:p.needsKey,keyHint:p.keyHint,corsOk:p.corsOk!==false,
-      corsNote:p.corsNote||null,
-      calls:p.calls,errors:p.errors,lastError:p.lastError||null
-    }));
-  }
-}
-
 
 class AgentManager{
   constructor(ai,pred,res){this._a=new Map();this.ai=ai;this.pred=pred;this.res=res;
@@ -2467,10 +1914,12 @@ function renderVFS(){
   const list=$('vfsList');list.innerHTML='';
   VFS.list().forEach(f=>{
     const el=document.createElement('div');el.className='vfs-item'+(f.path===S.activeVfsFile?' active':'');
-    el.draggable=true;el.dataset.path=f.path;el.addEventListener('dragstart',function(e){e.dataTransfer.setData('df-vfs-path',f.path);e.dataTransfer.setData('text/plain',f.path);el.style.opacity='0.4';});el.addEventListener('dragend',function(){el.style.opacity='';});
     const ext=f.path.split('.').pop()||'';
     el.innerHTML=`<span class="vfs-ext">${ext}</span><span class="vfs-name" title="${f.path}">${f.path.split('/').pop()}</span><span class="vfs-sz">${fmtB(f.size)}</span>`;
     el.addEventListener('click',()=>vfsLoad(f.path));
+    el.draggable=true;el.dataset.path=f.path;
+    el.addEventListener('dragstart',function(e){e.dataTransfer.setData('df-vfs-path',f.path);e.dataTransfer.setData('text/plain',f.path);el.style.opacity='0.4';});
+    el.addEventListener('dragend',function(){el.style.opacity='';});
     el.addEventListener('dblclick',function(e){e.preventDefault();e.stopPropagation();_startVfsRename(f.path,el.querySelector('.vfs-name'));});
     el.addEventListener('dblclick',()=>{if(confirm('Delete '+f.path+'?')){VFS.delete(f.path);renderVFS();if(f.path===S.activeVfsFile)S.activeVfsFile=null;}});
     list.appendChild(el);
@@ -2497,32 +1946,13 @@ function vfsNewFile(){
 // ──────────────────────────────────────────────────────────────
 // AI SIDEBAR — PROVIDERS + AGENTS
 // ──────────────────────────────────────────────────────────────
-function _updateModelSel(prov){
-  S.aiModel=null;
-  const ms=$('aiModelSel');if(!ms)return;
-  const mods=prov.models||[prov.defaultModel];
-  ms.innerHTML=mods.map(m=>`<option value="${m}">${m}</option>`).join('');
-  ms.value=prov.defaultModel;
-}
 function renderAISidebar(){
   // Providers
   const pl=$('providerList');pl.innerHTML='';
   AI.providers().forEach(p=>{
-    const el=document.createElement('div');
-    const hasErr=p.errors>0&&p.lastError;
-    el.className='provider-row'+(p.name===S.activeProvider?' active':'');
-    const corsWarn=p.corsOk===false?'⚠ CORS':'✅';
-    el.title=(hasErr?'Last error: '+p.lastError:'')+(p.calls?' | '+p.calls+' calls':'');
-    const corsIcon=p.corsOk===false?'⚠':'✅';
-    const errSnip=hasErr?'<div style="font-size:8px;color:var(--red);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px">'+esc(p.lastError.slice(0,50))+'</div>':'';
-    el.innerHTML='<div style="flex:1;min-width:0">'+`<span class="prov-name">${p.label||p.name}</span>`+'<br><span style="font-size:8px;color:var(--txt3);">'+`${p.defaultModel} ${corsIcon}</span>`+errSnip+'</div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">'+`<div class="prov-dot ${p.calls>0&&p.errors===0?'live':hasErr?'err':''}"></div>`+`<span style="font-size:8px;color:var(--txt3)">${p.calls}✦</span>`+'</div>';
-    el.addEventListener('click',()=>{
-      S.activeProvider=p.name;
-      const sel=$('aiProvSel');if(sel)sel.value=p.name;
-      AI.setActive(p.name);
-      _updateModelSel(p);
-      renderAISidebar();
-    });
+    const el=document.createElement('div');el.className='provider-row'+(p.name===S.activeProvider?' active':'');
+    el.innerHTML=`<span class="prov-name">${p.name}</span><span class="prov-model">${p.model}</span><div class="prov-dot ${p.calls>0&&p.errors===0?'live':''}"></div>`;
+    el.addEventListener('click',()=>{S.activeProvider=p.name;$('aiProvSel').value=p.name;AI.setActive(p.name);renderAISidebar();});
     pl.appendChild(el);
   });
   // Agents
@@ -2612,7 +2042,7 @@ function closeTab(id){
 function addTab(){const lang=$('langSel').value;const t=mkTab(lang);renderTabs();activateTab(t.id);}
 function startRename(id,el){
   const tab=S.tabs.find(t=>t.id===id);if(!tab)return;
-  const inp=document.createElement('input');inp.className='tab-nm-inp';inp.value=tab.name;el.replaceWith(inp);inp.focus();inp.select();
+  const inp=document.createElement('input');inp.className='tab-nm-inp';inp.value=tab.name;el.replaceWith(inp);setTimeout(function(){try{inp.focus();inp.select();}catch(e){}},10);
   const done=()=>{
     const v=inp.value.trim()||tab.name;tab.name=v;const ext=v.split('.').pop().toLowerCase();
     const det=Object.entries(LCFG).find(([k,c])=>c.ext===ext);
@@ -2777,7 +2207,7 @@ window.addEventListener('message',e=>{if(e.data?.type==='console')addLog(e.data.
 async function runOrchestrator(){
   if(S.aiRunning)return;
   const request=$('aiReqInput').value.trim();if(!request){toast('Masukkan instruksi AI terlebih dahulu');return;}
-  const code=getCode();const file=S.activeVfsFile;const apiKey=$('aiKeyInput').value.trim();
+  const code=getCode();const file=(typeof _aiTargetFile!=='undefined'&&_aiTargetFile)||S.activeVfsFile;const apiKey=$('aiKeyInput').value.trim();
   const provider=S.activeProvider;const conflictPolicy=$('conflictPolicySelect').value;
   const agents=[...S.activeAgents];
   autoSaveTab();if(file)try{VFS.write(file,code);}catch(e){}
@@ -2788,12 +2218,12 @@ async function runOrchestrator(){
   try{
     if(agents.length===1){
       const agent=agents[0];addLog(`Dispatching to ${agent}...`,'ai-log','orch');
-      const ctx={code,request,file,apiKey,provider,model:S.aiModel||undefined};
+      const ctx={code,request,file,apiKey,provider};
       const result=await AMGR.run(agent,ctx);S.aiCalls++;
       handleAIResult(result,code,file,conflictPolicy);
     }else{
       addLog(`Pipeline: ${agents.join(' → ')}`, 'ai-log','orch');
-      const result=await AMGR.pipeline(agents,{code,request,file,apiKey,provider,model:S.aiModel||undefined});S.aiCalls++;
+      const result=await AMGR.pipeline(agents,{code,request,file,apiKey,provider});S.aiCalls++;
       handlePipelineResult(result,code,file);
     }
   }catch(e){addLog(`AI Error: ${e.message}`,'error','orch');toast('AI Error: '+e.message.slice(0,80));renderAIOutput({conflict:{conflicts:[{type:'ERROR',severity:'ERROR',message:e.message,resolution:'Periksa API key, endpoint, dan koneksi internet.'}],warnings:[]}});}
@@ -3689,37 +3119,15 @@ $('pkgIn').addEventListener('keydown',e=>{if(e.key==='Enter')installPkg();});
 $('autoImportBtn').addEventListener('click',autoLoadImports);
 $('pkgListBtn').addEventListener('click',()=>{renderPkgList();switchOut('packages');});
 // AI toolbar
-$('aiProvSel').addEventListener('change',e=>{S.activeProvider=e.target.value;
-
-if($('aiTestBtn'))$('aiTestBtn').addEventListener('click',async function(){
-  const btn=$('aiTestBtn');btn.disabled=true;btn.textContent='⏳ Testing…';
-  const apiKey=($('aiKeyInput').value.trim()||$('spApiKey')?.value||localStorage.getItem('df_api_key')||'');
-  const model=$('aiModelInput')?.value.trim()||undefined;
-  addLog('Testing connection to '+S.activeProvider+'…','ai-log','test');
-  const result=await AI.test(S.activeProvider,apiKey,model);
-  addLog(result.msg,result.ok?'success':'error','test');
-  toast(result.msg.slice(0,80));
-  btn.disabled=false;btn.textContent='⚡ Test';
-  switchOut('console');
-});
-if($('aiModelInput'))$('aiModelInput').addEventListener('change',e=>{S.aiModel=e.target.value.trim()||undefined;});
-if($('spApiKey'))$('spApiKey').addEventListener('input',function(e){
-  localStorage.setItem('df_api_key',e.target.value);
-  var ki=$('aiKeyInput');if(ki&&!ki.value)ki.value=e.target.value;
-});
-if($('aiKeyInput'))$('aiKeyInput').addEventListener('input',function(e){
-  localStorage.setItem('df_api_key',e.target.value);
-  var sp=$('spApiKey');if(sp)sp.value=e.target.value;
-});
-// Restore saved api key
-(function(){var k=localStorage.getItem('df_api_key');if(k){var ki=$('aiKeyInput');if(ki)ki.value=k;var sp=$('spApiKey');if(sp)sp.value=k;}})();
-AI.setActive(e.target.value);const np=AI.providers().find(p=>p.name===e.target.value);if(np)_updateModelSel(np);renderAISidebar();});
+$('aiProvSel').addEventListener('change',e=>{S.activeProvider=e.target.value;AI.setActive(e.target.value);renderAISidebar();});
 $('aiRunBtn').addEventListener('click',runOrchestrator);
 $('aiOrcBtn').addEventListener('click',runOrchestrator);
 $('aiAnalyzeBtn').addEventListener('click',analyzeCode);
 $('aiDebugBtn').addEventListener('click',async()=>{const req=$('aiReqInput').value.trim()||'Find bugs and performance issues';S.activeAgents=new Set(['DebugAgent']);renderAISidebar();$('aiReqInput').value=req;await runOrchestrator();});
 $('aiReviewBtn').addEventListener('click',async()=>{S.activeAgents=new Set(['ReviewAgent']);renderAISidebar();$('aiReqInput').value='Review this code';await runOrchestrator();});
 $('exportBtn').addEventListener('click',exportOrchestrator);
+$('clearEditorBtn')&&$('clearEditorBtn').addEventListener('click',function(){ if(S.editor&&confirm('Clear editor content?')){S.editor.setValue('');addLog('Editor cleared','warn','editor');} });
+
 // Lang change → preload Pyodide
 $('langSel').addEventListener('change',e=>{if(e.target.value==='python'&&!S.py&&!S.pyLoading)setTimeout(loadPy,200);});
 
@@ -3871,153 +3279,364 @@ if (typeof module !== 'undefined') {
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([code],{type:'text/javascript'}));a.download='ai_orchestrator.js';a.click();URL.revokeObjectURL(a.href);toast('Exported: ai_orchestrator.js');
 }
 
+window.addEventListener('beforeunload',saveState);
 
-// ════════════════════════════════════════════════
-// EXTRA BINDINGS (new features init)
-// ════════════════════════════════════════════════
-(function _initExtras(){
-  // Security
-  _secInit();
 
-  // Welcome screen
-  if(!localStorage.getItem('df_welcome_seen')) showWelcome();
-  var wlE = document.getElementById('wlEnterBtn');
-  if(wlE) wlE.addEventListener('click', hideWelcome);
-  var wlLs = document.getElementById('wlLangSel');
-  if(wlLs){ wlLs.value = _LANG; wlLs.addEventListener('change', function(e){ _LANG=e.target.value; localStorage.setItem('df_lang',_LANG); _applyI18n(); var sp=document.getElementById('spLangSel'); if(sp) sp.value=_LANG; }); }
-  document.getElementById('welcome')&&document.getElementById('welcome').addEventListener('click', function(e){ if(e.target===this) hideWelcome(); });
+// ════════════════════════════════════════════════════════════════════
+// DEVFLOW EXTENSIONS — Welcome, Settings, Security, AI fixes, Upload
+// ════════════════════════════════════════════════════════════════════
 
-  // Settings panel
-  var spHam = document.getElementById('settingsBtn');
-  if(spHam) spHam.addEventListener('click', openSettings);
-  var spX = document.getElementById('spXBtn');
-  if(spX) spX.addEventListener('click', closeSettings);
-  var spOv = document.getElementById('spOverlay');
-  if(spOv) spOv.addEventListener('click', closeSettings);
-  var spLs = document.getElementById('spLangSel');
-  if(spLs) spLs.addEventListener('change', function(e){ _LANG=e.target.value; localStorage.setItem('df_lang',_LANG); _applyI18n(); var wl=document.getElementById('wlLangSel'); if(wl) wl.value=_LANG; });
-  var spTs = document.getElementById('spThemeSel');
-  if(spTs) spTs.addEventListener('change', function(e){ applyTheme(e.target.value); });
-  var spFs = document.getElementById('spFontSel');
-  if(spFs) spFs.addEventListener('change', function(e){ var sz=parseInt(e.target.value); S.fontSize=sz; if(S.editor) S.editor.updateOptions({fontSize:sz}); saveState(); });
-  var spAt = document.getElementById('spAutoTog');
-  if(spAt) spAt.addEventListener('click', function(){ S.autoRun=!S.autoRun; spAt.classList.toggle('on',S.autoRun); });
-  var spTk = document.getElementById('spThinkTog');
-  if(spTk) spTk.addEventListener('click', function(){ _showThinking=!_showThinking; spTk.classList.toggle('on',_showThinking); localStorage.setItem('df_show_think',_showThinking); });
-  var spSc = document.getElementById('spSecTog');
-  if(spSc) spSc.addEventListener('click', function(){ _SEC_ENABLED=!_SEC_ENABLED; spSc.classList.toggle('on',_SEC_ENABLED); localStorage.setItem('df_sec_enabled',_SEC_ENABLED); });
-  var spBp = document.getElementById('spBypassPw');
-  if(spBp) spBp.addEventListener('input', function(e){ _SEC_PW=e.target.value||'devflow'; localStorage.setItem('df_sec_pw',_SEC_PW); });
-  var spAk = document.getElementById('spApiKey');
-  if(spAk) spAk.addEventListener('input', function(e){ localStorage.setItem('df_api_key',e.target.value); var ai=document.getElementById('aiKeyInput'); if(ai) ai.value=e.target.value; });
-  var spWl = document.getElementById('spShowWelBtn');
-  if(spWl) spWl.addEventListener('click', function(){ closeSettings(); showWelcome(); });
-  var spEx = document.getElementById('spExpBtn');
-  if(spEx) spEx.addEventListener('click', function(){ closeSettings(); exportOrchestrator(); });
-  var spRe = document.getElementById('spResetBtn');
-  if(spRe) spRe.addEventListener('click', function(){ if(confirm('Reset all state and storage? This cannot be undone.')){ localStorage.clear(); location.reload(); } });
+// ── i18n ─────────────────────────────────────────────────────────────
+var _LANG = (localStorage.getItem('df_lang') || navigator.language || 'en').slice(0,2).toLowerCase();
+if(_LANG !== 'en' && _LANG !== 'id') _LANG = 'en';
+var _I18N = {
+  en:{wl_tagline:'AI-powered browser IDE — run, orchestrate, and evolve code with real AI agents.',
+      wl_role:'Creator & Developer',wl_lang:'Interface language:',wl_enter:'Enter DevFlow',
+      wl_footer:'This screen can be shown again from Settings ⚙',
+      sp_title:'Settings',sp_gen:'General',sp_lang:'Language',sp_theme:'Theme',sp_font:'Font Size',
+      sp_auto:'Auto-run',sp_ai:'AI Config',sp_api:'API Key (stored locally)',sp_think:'Show AI thinking',
+      sp_sec:'Security',sp_src:'Source code protection',sp_bp:'Bypass password',
+      sp_sec_hint:'Bypass: Ctrl+Alt+Shift+D',sp_sc:'Keyboard Shortcuts',sp_about:'About',
+      sp_cr:'Creator',sp_wel:'Show welcome screen again',sp_exp:'Export orchestrator.js',
+      sp_rst:'Reset all state & storage',no_target:'— drag a file from sidebar —'},
+  id:{wl_tagline:'IDE browser bertenaga AI — jalankan, orkestrasi, dan kembangkan kode dengan agen AI nyata.',
+      wl_role:'Pembuat & Pengembang',wl_lang:'Bahasa antarmuka:',wl_enter:'Masuk DevFlow',
+      wl_footer:'Layar ini bisa ditampilkan lagi dari Pengaturan ⚙',
+      sp_title:'Pengaturan',sp_gen:'Umum',sp_lang:'Bahasa',sp_theme:'Tema',sp_font:'Ukuran Font',
+      sp_auto:'Auto-run',sp_ai:'Konfigurasi AI',sp_api:'API Key (tersimpan lokal)',sp_think:'Tampilkan pemikiran AI',
+      sp_sec:'Keamanan',sp_src:'Proteksi kode sumber',sp_bp:'Kata sandi bypass',
+      sp_sec_hint:'Bypass: Ctrl+Alt+Shift+D',sp_sc:'Pintasan Keyboard',sp_about:'Tentang',
+      sp_cr:'Pembuat',sp_wel:'Tampilkan layar selamat datang lagi',sp_exp:'Ekspor orchestrator.js',
+      sp_rst:'Reset semua state & penyimpanan',no_target:'— tarik file dari sidebar —'}
+};
+function _t(k){ var d=_I18N[_LANG]||_I18N.en; return d[k]||_I18N.en[k]||k; }
+function _applyI18n(){
+  document.documentElement.lang=_LANG;
+  var map={wlTagline:'wl_tagline',wlRole:'wl_role',wlLangLbl:'wl_lang',wlEnterBtn:'wl_enter',
+           wlFooter:'wl_footer',spTitle:'sp_title',spGenHdr:'sp_gen',spLangLbl:'sp_lang',
+           spThemeLbl:'sp_theme',spFontLbl:'sp_font',spAutoLbl:'sp_auto',spAiHdr:'sp_ai',
+           spApiLbl:'sp_api',spThinkLbl:'sp_think',spSecHdr:'sp_sec',spSecLbl:'sp_src',
+           spBpLbl:'sp_bp',spSecHint:'sp_sec_hint',spScHdr:'sp_sc',spAboutHdr:'sp_about',
+           spCrLbl:'sp_cr',spShowWelBtn:'sp_wel',spExpBtn:'sp_exp',spResetBtn:'sp_rst'};
+  Object.keys(map).forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.textContent=_t(map[id]);
+  });
+  var atd=document.getElementById('aiTargetDisplay');
+  if(atd&&!_aiTargetFile) atd.textContent=_t('no_target');
+  var wlLs=document.getElementById('wlLangSel');
+  if(wlLs) wlLs.value=_LANG;
+  var spLs=document.getElementById('spLangSel');
+  if(spLs) spLs.value=_LANG;
+}
 
-  // AI file tag close
-  var aft = document.getElementById('aiFileTag');
-  if(aft) aft.addEventListener('click', function(){ _setAITarget(null); });
-
-  // Drag VFS file to AI input (drop zone)
-  var aiRW = document.getElementById('aiReqInput');
-  if(aiRW){
-    var wrapEl = aiRW.parentElement;
-    if(wrapEl){
-      wrapEl.addEventListener('dragover', function(e){ if(e.dataTransfer.types.indexOf('text/plain')>=0){ e.preventDefault(); aiRW.classList.add('drag-on-ai'); } });
-      wrapEl.addEventListener('dragleave', function(){ aiRW.classList.remove('drag-on-ai'); });
-      wrapEl.addEventListener('drop', function(e){
-        e.preventDefault(); aiRW.classList.remove('drag-on-ai');
-        var path = e.dataTransfer.getData('df-vfs-path') || e.dataTransfer.getData('text/plain');
-        if(path && VFS && VFS.exists(path)) _setAITarget(path);
-      });
+// ── SECURITY ───────────────────────────────────────────────────────────
+var _SEC = {
+  enabled: localStorage.getItem('df_sec_enabled') !== 'false',
+  pw: localStorage.getItem('df_sec_pw') || 'devflow',
+  unlocked: false
+};
+(function _secInit(){
+  document.addEventListener('keydown', function(e){
+    if(!_SEC.enabled || _SEC.unlocked) return;
+    var ctrl = e.ctrlKey || e.metaKey;
+    if(ctrl && e.key.toLowerCase() === 'u'){ e.preventDefault(); e.stopPropagation(); return; }
+    if(e.key === 'F12'){ e.preventDefault(); e.stopPropagation(); return; }
+    if(ctrl && e.shiftKey && 'ijcks'.indexOf(e.key.toLowerCase()) >= 0){ e.preventDefault(); e.stopPropagation(); return; }
+    if(ctrl && e.altKey && e.shiftKey && e.key === 'D'){
+      var pw = prompt('Security bypass password:');
+      if(pw === _SEC.pw){ _SEC.unlocked=true; setTimeout(function(){ _SEC.unlocked=false; },60000); toast('🔓 Bypass active (60s)'); }
+      else if(pw !== null) toast('❌ Wrong password');
     }
+  }, true);
+  document.addEventListener('contextmenu', function(e){ if(_SEC.enabled && !_SEC.unlocked) e.preventDefault(); }, true);
+})();
+
+// ── AI THINKING LOG ────────────────────────────────────────────────────
+var _showThinking = localStorage.getItem('df_show_think') !== 'false';
+var AIThink = {
+  show: function(){ if(!_showThinking) return; var p=document.getElementById('aiThinkPanel'),b=document.getElementById('aiThinkBadge'); if(p)p.classList.add('on'); if(b)b.classList.add('on'); },
+  clear: function(){ var b=document.getElementById('aiThinkBody'); if(b)b.innerHTML=''; },
+  step: function(text, icon, done, err){
+    if(!_showThinking) return null;
+    this.show();
+    var el=document.createElement('div'); el.className='ai-think-step'+(done?' done':'')+(err?' err':'');
+    el.innerHTML='<span style="font-size:9px;flex-shrink:0">'+(icon||'·')+'</span>'
+      +'<span>'+String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</span>';
+    var b=document.getElementById('aiThinkBody'); if(b){ b.appendChild(el); b.scrollTop=b.scrollHeight; }
+    return el;
+  },
+  update: function(el, text, done, err){
+    if(!el) return;
+    el.className='ai-think-step'+(done?' done':'')+(err?' err':'');
+    var s=el.querySelector('span:last-child'); if(s) s.textContent=text;
+  }
+};
+
+// ── AI TARGET FILE ──────────────────────────────────────────────────────
+var _aiTargetFile = null;
+function _setAITarget(path){
+  _aiTargetFile = path;
+  var disp=document.getElementById('aiTargetDisplay'); if(disp) disp.textContent=path||_t('no_target');
+  var tag=document.getElementById('aiFileTag'), tn=document.getElementById('aiFileTagName');
+  if(tag){ if(path){ tag.classList.add('on'); if(tn) tn.textContent=path.split('/').pop(); } else tag.classList.remove('on'); }
+  var inp=document.getElementById('aiReqInput'); if(inp) inp.style.paddingLeft=path?'76px':'';
+  if(path) toast('✦ AI target: '+path.split('/').pop());
+}
+
+// ── FILE UPLOAD ─────────────────────────────────────────────────────────
+function _handleUpload(files){
+  Array.from(files).forEach(function(file){
+    var ext=file.name.split('.').pop().toLowerCase();
+    var reader=new FileReader();
+    var isVid=['mp4','webm','mov','avi','ogg'].indexOf(ext)>=0;
+    var isImg=['jpg','jpeg','png','gif','webp','bmp','svg'].indexOf(ext)>=0;
+    if(isVid||isImg){
+      reader.onload=function(e){
+        var path='media/'+file.name;
+        try{ VFS.create(path,e.target.result); }catch(er){ VFS.write(path,e.target.result); }
+        renderVFS();
+        var fr=document.getElementById('previewFrame');
+        if(fr){
+          if(isVid) fr.srcdoc='<!DOCTYPE html><html><body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh"><video controls style="max-width:100%;max-height:100vh"><source src="'+e.target.result+'" type="video/'+ext+'">Not supported.</video></body></html>';
+          else fr.srcdoc='<!DOCTYPE html><html><body style="margin:0;background:#07090f;display:flex;align-items:center;justify-content:center;height:100vh"><img src="'+e.target.result+'" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:6px"></body></html>';
+        }
+        if(typeof switchOut==='function') switchOut('preview');
+        toast('Uploaded: '+file.name);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      reader.onload=function(e){
+        var path='uploads/'+file.name;
+        try{ VFS.create(path,e.target.result); }catch(er){ VFS.write(path,e.target.result); }
+        if(typeof renderVFS==='function') renderVFS();
+        if(typeof vfsLoad==='function') vfsLoad(path);
+        toast('Uploaded: '+file.name);
+      };
+      reader.readAsText(file);
+    }
+  });
+}
+
+// ── VFS INLINE RENAME (robust) ──────────────────────────────────────────
+function _startVfsRename(path, nameEl){
+  if(!nameEl) return;
+  var oldName=path.split('/').pop();
+  var inp=document.createElement('input');
+  inp.className='vfs-nm-inp'; inp.value=oldName;
+  nameEl.replaceWith(inp);
+  setTimeout(function(){ try{ inp.focus(); inp.select(); }catch(e){} }, 10);
+  var _done=false;
+  function done(){
+    if(_done) return; _done=true;
+    var newName=inp.value.trim();
+    if(!newName||newName===oldName){ renderVFS(); return; }
+    var dir=path.lastIndexOf('/')>=0?path.substring(0,path.lastIndexOf('/')+1):'';
+    var newPath=dir+newName;
+    try{
+      VFS.rename(path,newPath);
+      if(S.activeVfsFile===path) S.activeVfsFile=newPath;
+      if(_aiTargetFile===path) _setAITarget(newPath);
+      S.tabs.forEach(function(tb){ if(tb.vfsPath===path) tb.vfsPath=newPath; });
+      renderVFS(); renderTabs(); toast('Renamed: '+newName);
+    }catch(e){ toast('Error: '+e.message); renderVFS(); }
+  }
+  inp.addEventListener('blur',done);
+  inp.addEventListener('keydown',function(e){ if(e.key==='Enter'){e.preventDefault();done();} if(e.key==='Escape'){inp.value=oldName;done();} });
+}
+
+// ── WELCOME SCREEN ──────────────────────────────────────────────────────
+function showWelcome(){ var w=document.getElementById('welcome'); if(w) w.classList.remove('hidden'); _applyI18n(); }
+function hideWelcome(){ var w=document.getElementById('welcome'); if(w) w.classList.add('hidden'); localStorage.setItem('df_welcome_seen','1'); }
+
+// ── SETTINGS PANEL ──────────────────────────────────────────────────────
+var _SC_LIST=[
+  {d:'Run code',k:['Ctrl','Enter']},{d:'AI Orchestrate',k:['Ctrl','Shift','Enter']},
+  {d:'Format',k:['Shift','Alt','F']},{d:'Analyze',k:['Alt','A']},
+  {d:'New tab',k:['Alt','T']},{d:'Close tab',k:['Alt','W']},
+  {d:'Word wrap',k:['Alt','Z']},{d:'Theme',k:['Alt','D']},
+  {d:'Copy all',k:['Ctrl','Shift','C']},{d:'Clear editor',k:['Alt','K']},{d:'Fullscreen',k:['F11']},
+  {d:'Src bypass',k:['Ctrl','Alt','Shift','D']}
+];
+function openSettings(){
+  var p=document.getElementById('spPanel'),o=document.getElementById('spOverlay');
+  if(p) p.classList.add('open'); if(o) o.classList.add('on');
+  // Sync controls to current state
+  var sl=document.getElementById('spLangSel'); if(sl) sl.value=_LANG;
+  var st=document.getElementById('spThemeSel'); if(st) st.value=(S&&S.theme)||'dark';
+  var sf=document.getElementById('spFontSel'); if(sf) sf.value=String((S&&S.fontSize)||13);
+  var sa=document.getElementById('spAutoTog'); if(sa) sa.classList.toggle('on',!!(S&&S.autoRun));
+  var sk=document.getElementById('spThinkTog'); if(sk) sk.classList.toggle('on',_showThinking);
+  var ss=document.getElementById('spSecTog'); if(ss) ss.classList.toggle('on',_SEC.enabled);
+  var sb=document.getElementById('spBypassPw'); if(sb) sb.value=_SEC.pw;
+  var ak=document.getElementById('spApiKey'); if(ak) ak.value=localStorage.getItem('df_api_key')||'';
+  var scl=document.getElementById('spScList');
+  if(scl) scl.innerHTML=_SC_LIST.map(function(s){
+    return '<div class="sp-sc-mini-row"><span class="sp-sc-d">'+s.d+'</span>'
+      +'<div class="sp-sc-k">'+s.k.map(function(k){ return '<kbd>'+k+'</kbd>'; }).join('')+'</div></div>';
+  }).join('');
+}
+function closeSettings(){ var p=document.getElementById('spPanel'),o=document.getElementById('spOverlay'); if(p) p.classList.remove('open'); if(o) o.classList.remove('on'); }
+
+// ── THEME ───────────────────────────────────────────────────────────────
+function applyTheme(theme){
+  if(S) S.theme=theme;
+  document.documentElement.setAttribute('data-theme',theme);
+  document.body.classList.toggle('light',theme==='light');
+  if(S&&S.editor&&window.monaco) window.monaco.editor.setTheme(theme==='dark'?'df-dark':'df-light');
+  var btn=document.getElementById('themeBtn'); if(btn) btn.textContent=theme==='dark'?'🌙':'☀';
+  var sp=document.getElementById('spThemeSel'); if(sp) sp.value=theme;
+  if(typeof saveState==='function') saveState();
+}
+
+// ── EXTENSION INIT (runs after DOM + Monaco are ready) ──────────────────
+function _dfExtInit(){
+  // Welcome
+  if(!localStorage.getItem('df_welcome_seen')) showWelcome();
+  var wlE=document.getElementById('wlEnterBtn'); if(wlE) wlE.addEventListener('click',hideWelcome);
+  var wlLs=document.getElementById('wlLangSel');
+  if(wlLs){ wlLs.value=_LANG; wlLs.addEventListener('change',function(e){ _LANG=e.target.value; localStorage.setItem('df_lang',_LANG); _applyI18n(); }); }
+  document.getElementById('welcome')&&document.getElementById('welcome').addEventListener('click',function(e){ if(e.target===this) hideWelcome(); });
+
+  // Settings panel bindings
+  var spHam=document.getElementById('settingsBtn'); if(spHam) spHam.addEventListener('click',openSettings);
+  var spX=document.getElementById('spXBtn'); if(spX) spX.addEventListener('click',closeSettings);
+  var spOv=document.getElementById('spOverlay'); if(spOv) spOv.addEventListener('click',closeSettings);
+  var spLs=document.getElementById('spLangSel');
+  if(spLs) spLs.addEventListener('change',function(e){ _LANG=e.target.value; localStorage.setItem('df_lang',_LANG); _applyI18n(); });
+  var spTs=document.getElementById('spThemeSel');
+  if(spTs) spTs.addEventListener('change',function(e){ applyTheme(e.target.value); });
+  var spFs=document.getElementById('spFontSel');
+  if(spFs) spFs.addEventListener('change',function(e){ var sz=parseInt(e.target.value); if(S) S.fontSize=sz; if(S&&S.editor) S.editor.updateOptions({fontSize:sz}); if(typeof saveState==='function') saveState(); });
+  var spAt=document.getElementById('spAutoTog');
+  if(spAt) spAt.addEventListener('click',function(){ if(S){ S.autoRun=!S.autoRun; spAt.classList.toggle('on',S.autoRun); } });
+  var spTk=document.getElementById('spThinkTog');
+  if(spTk) spTk.addEventListener('click',function(){ _showThinking=!_showThinking; spTk.classList.toggle('on',_showThinking); localStorage.setItem('df_show_think',String(_showThinking)); });
+  var spSc=document.getElementById('spSecTog');
+  if(spSc) spSc.addEventListener('click',function(){ _SEC.enabled=!_SEC.enabled; spSc.classList.toggle('on',_SEC.enabled); localStorage.setItem('df_sec_enabled',_SEC.enabled); });
+  var spBp=document.getElementById('spBypassPw');
+  if(spBp) spBp.addEventListener('input',function(e){ _SEC.pw=e.target.value||'devflow'; localStorage.setItem('df_sec_pw',_SEC.pw); });
+  var spAk=document.getElementById('spApiKey');
+  if(spAk) spAk.addEventListener('input',function(e){ localStorage.setItem('df_api_key',e.target.value); var ki=document.getElementById('aiKeyInput'); if(ki&&!ki.value) ki.value=e.target.value; });
+  var spWl=document.getElementById('spShowWelBtn'); if(spWl) spWl.addEventListener('click',function(){ closeSettings(); showWelcome(); });
+  var spEx=document.getElementById('spExpBtn'); if(spEx) spEx.addEventListener('click',function(){ closeSettings(); if(typeof exportOrchestrator==='function') exportOrchestrator(); });
+  var spRe=document.getElementById('spResetBtn');
+  if(spRe) spRe.addEventListener('click',function(){ if(confirm('Reset all state and storage?')){ localStorage.clear(); location.reload(); } });
+
+  // AI file tag
+  var aft=document.getElementById('aiFileTag'); if(aft) aft.addEventListener('click',function(){ _setAITarget(null); });
+
+  // Drag VFS → AI input
+  var aiInp=document.getElementById('aiReqInput');
+  if(aiInp){
+    var wrap=aiInp.parentElement||aiInp;
+    wrap.addEventListener('dragover',function(e){ if(e.dataTransfer.types.indexOf('text/plain')>=0||e.dataTransfer.types.indexOf('df-vfs-path')>=0){ e.preventDefault(); aiInp.classList.add('drag-on-ai'); } });
+    wrap.addEventListener('dragleave',function(){ aiInp.classList.remove('drag-on-ai'); });
+    wrap.addEventListener('drop',function(e){
+      e.preventDefault(); aiInp.classList.remove('drag-on-ai');
+      var path=e.dataTransfer.getData('df-vfs-path')||e.dataTransfer.getData('text/plain');
+      if(path && typeof VFS!=='undefined' && VFS.exists(path)) _setAITarget(path);
+    });
   }
 
-  // File upload via VFS sidebar
-  var vuu = document.getElementById('vfsUploadBtn');
-  var vfi = document.getElementById('vfsFileInput');
-  if(!vfi){ vfi = document.createElement('input'); vfi.type='file'; vfi.id='vfsFileInput'; vfi.multiple=true; vfi.style.display='none'; document.body.appendChild(vfi); }
-  if(vuu) vuu.addEventListener('click', function(){ vfi.click(); });
-  vfi.addEventListener('change', function(e){ if(e.target.files.length) _handleUpload(e.target.files); e.target.value=''; });
+  // File upload via VFS sidebar button
+  var vuu=document.getElementById('vfsUploadBtn'), vfi=document.getElementById('vfsFileInput');
+  if(vuu&&vfi){ vuu.addEventListener('click',function(){ vfi.click(); }); }
+  if(vfi) vfi.addEventListener('change',function(e){ if(e.target.files.length) _handleUpload(e.target.files); e.target.value=''; });
 
   // VFS drop zone
-  var vdz = document.getElementById('vfsDropZone');
+  var vdz=document.getElementById('vfsDropZone');
   if(vdz){
-    vdz.addEventListener('dragover', function(e){ if(e.dataTransfer.types.indexOf('Files')>=0){ e.preventDefault(); vdz.classList.add('drag-on'); } });
-    vdz.addEventListener('dragleave', function(){ vdz.classList.remove('drag-on'); });
-    vdz.addEventListener('drop', function(e){ e.preventDefault(); vdz.classList.remove('drag-on'); if(e.dataTransfer.files.length) _handleUpload(e.dataTransfer.files); });
-    vdz.addEventListener('click', function(){ vfi.click(); });
+    vdz.addEventListener('dragover',function(e){ if(e.dataTransfer.types.indexOf('Files')>=0||e.dataTransfer.types.indexOf('files')>=0){ e.preventDefault(); vdz.classList.add('drag-on'); } });
+    vdz.addEventListener('dragleave',function(){ vdz.classList.remove('drag-on'); });
+    vdz.addEventListener('drop',function(e){ e.preventDefault(); vdz.classList.remove('drag-on'); if(e.dataTransfer.files.length) _handleUpload(e.dataTransfer.files); });
+    vdz.addEventListener('click',function(){ if(vfi) vfi.click(); });
   }
 
-  // Editor drop zone for file upload
-  var emnt = document.getElementById('monacoMount');
+  // Editor drop zone
+  var emnt=document.getElementById('monacoMount');
   if(emnt){
-    var dov = document.createElement('div'); dov.className='ed-drop-overlay'; dov.id='edDropOv';
-    dov.innerHTML = '<div class="ed-drop-text">Drop file to open</div><div style="font-size:11px;color:var(--txt2)">Images and video will preview</div>';
+    var dov=document.createElement('div'); dov.className='ed-drop-overlay'; dov.id='edDropOv';
+    dov.innerHTML='<div class="ed-drop-text">Drop file to open</div><div style="font-size:10px;color:var(--txt2)">code, images, video</div>';
     emnt.style.position='relative'; emnt.appendChild(dov);
-    emnt.addEventListener('dragover', function(e){ if(e.dataTransfer.types.indexOf('Files')>=0){ e.preventDefault(); dov.classList.add('on'); } });
-    emnt.addEventListener('dragleave', function(){ dov.classList.remove('on'); });
-    emnt.addEventListener('drop', function(e){ e.preventDefault(); dov.classList.remove('on'); if(e.dataTransfer.files.length) _handleUpload(e.dataTransfer.files); });
+    emnt.addEventListener('dragover',function(e){ if(e.dataTransfer.types.indexOf('Files')>=0){ e.preventDefault(); dov.classList.add('on'); } });
+    emnt.addEventListener('dragleave',function(){ dov.classList.remove('on'); });
+    emnt.addEventListener('drop',function(e){ e.preventDefault(); dov.classList.remove('on'); if(e.dataTransfer.files.length) _handleUpload(e.dataTransfer.files); });
   }
 
   // Clear editor button
-  var ceb = document.getElementById('clearEditorBtn');
-  if(ceb) ceb.addEventListener('click', function(){ if(S.editor && confirm('Clear editor content?')){ S.editor.setValue(''); if(typeof addLog==='function') addLog('Editor cleared','warn','editor'); } });
+  var ceb=document.getElementById('clearEditorBtn');
+  if(ceb) ceb.addEventListener('click',function(){ if(S&&S.editor&&confirm('Clear editor content?')){ S.editor.setValue(''); if(typeof addLog==='function') addLog('Editor cleared','warn','editor'); } });
 
   // Mobile sidebar buttons
-  var mvfs = document.getElementById('mbVfsBtn');
-  var mais = document.getElementById('mbAiBtn');
-  if(mvfs) mvfs.addEventListener('click', function(){ var s=document.querySelector('.vfs-sidebar'); if(s) s.classList.toggle('sp-open'); });
-  if(mais) mais.addEventListener('click', function(){ var s=document.querySelector('.ai-sidebar'); if(s) s.classList.toggle('sp-open'); });
-  document.addEventListener('click', function(e){
-    if(window.innerWidth > 900) return;
-    var vfs = document.querySelector('.vfs-sidebar');
-    var ais = document.querySelector('.ai-sidebar');
-    if(vfs && !vfs.contains(e.target) && e.target !== mvfs) vfs.classList.remove('sp-open');
-    if(ais && !ais.contains(e.target) && e.target !== mais) ais.classList.remove('sp-open');
+  var mvfs=document.getElementById('mbVfsBtn'), mais=document.getElementById('mbAiBtn');
+  if(mvfs) mvfs.addEventListener('click',function(){ var s=document.querySelector('.vfs-sidebar'); if(s) s.classList.toggle('sp-open'); });
+  if(mais) mais.addEventListener('click',function(){ var s=document.querySelector('.ai-sidebar'); if(s) s.classList.toggle('sp-open'); });
+  document.addEventListener('click',function(e){
+    if(window.innerWidth>900) return;
+    var vfs=document.querySelector('.vfs-sidebar'), ais=document.querySelector('.ai-sidebar');
+    if(vfs&&!vfs.contains(e.target)&&e.target!==mvfs) vfs.classList.remove('sp-open');
+    if(ais&&!ais.contains(e.target)&&e.target!==mais) ais.classList.remove('sp-open');
   });
 
-  // AI Thinking panel close button
-  var ath = document.querySelector('.ai-think-hdr');
-  if(ath){
-    var athX = document.createElement('button');
-    athX.textContent = 'x'; athX.style.cssText = 'background:none;border:none;color:var(--txt3);cursor:pointer;font-size:10px;padding:0 2px';
-    athX.addEventListener('click', function(){ document.getElementById('aiThinkPanel').classList.remove('on'); document.getElementById('aiThinkBadge').classList.remove('on'); });
-    ath.appendChild(athX);
+  // AI test button
+  var testBtn=document.getElementById('aiTestBtn');
+  if(testBtn) testBtn.addEventListener('click',function(){
+    testBtn.disabled=true; testBtn.textContent='⏳';
+    var apiKey=(document.getElementById('aiKeyInput')||{}).value||localStorage.getItem('df_api_key')||'';
+    var modelInp=document.getElementById('aiModelInput');
+    var model=modelInp?modelInp.value.trim():undefined;
+    if(typeof addLog==='function') addLog('Testing connection to '+S.activeProvider+'…','ai-log','test');
+    AI.test(S.activeProvider,apiKey,model).then(function(result){
+      if(typeof addLog==='function') addLog(result.msg,result.ok?'success':'error','test');
+      toast(result.msg.slice(0,80));
+      testBtn.disabled=false; testBtn.textContent='⚡ Test';
+      if(typeof switchOut==='function') switchOut('console');
+    }).catch(function(e){
+      if(typeof addLog==='function') addLog('Test error: '+e.message,'error','test');
+      testBtn.disabled=false; testBtn.textContent='⚡ Test';
+    });
+  });
+
+  // AI model input sync
+  var miInp=document.getElementById('aiModelInput');
+  if(miInp) miInp.addEventListener('change',function(e){ if(S) S.aiModel=e.target.value.trim()||undefined; });
+
+  // API key sync between key field and settings
+  var ki=document.getElementById('aiKeyInput');
+  if(ki){
+    ki.addEventListener('input',function(e){ localStorage.setItem('df_api_key',e.target.value); var sp=document.getElementById('spApiKey'); if(sp) sp.value=e.target.value; });
+    var savedKey=localStorage.getItem('df_api_key');
+    if(savedKey){ ki.value=savedKey; var sp=document.getElementById('spApiKey'); if(sp) sp.value=savedKey; }
   }
 
-  // Apply i18n on load
-  _applyI18n();
-
-  // Restore saved API key
-  var savedKey = localStorage.getItem('df_api_key');
-  if(savedKey){ var aki = document.getElementById('aiKeyInput'); if(aki) aki.value = savedKey; }
-
-  // Alt+K to clear editor
-  document.addEventListener('keydown', function(e){
-    if(e.altKey && e.key === 'k'){
-      e.preventDefault();
-      if(S.editor && confirm('Clear editor content?')) S.editor.setValue('');
-    }
+  // Alt+K: clear editor
+  document.addEventListener('keydown',function(e){
+    if(e.altKey&&e.key==='k'){ e.preventDefault(); if(S&&S.editor&&confirm('Clear editor?')) S.editor.setValue(''); }
   });
 
-  // Theme restore
+  // Restore theme from saved state
   try{
-    var saved = JSON.parse(localStorage.getItem('df4_state') || localStorage.getItem('df4_state')||localStorage.getItem('df3_state') || '{}');
-    if(saved && saved.theme && saved.theme !== 'dark') applyTheme(saved.theme);
-    if(saved && saved.fontSize) S.fontSize = saved.fontSize;
+    var saved=JSON.parse(localStorage.getItem('df4_state')||localStorage.getItem('df3_state')||'{}');
+    if(saved&&saved.theme&&saved.theme!=='dark') applyTheme(saved.theme);
+    if(saved&&saved.fontSize&&S) S.fontSize=saved.fontSize;
   }catch(e){}
 
-  // Init AI target display
-  var atd = document.getElementById('aiTargetDisplay');
-  if(atd) atd.textContent = _t('no_target');
-
+  // Init AI target display and i18n
+  var atd=document.getElementById('aiTargetDisplay'); if(atd) atd.textContent=_t('no_target');
+  _applyI18n();
+}
+// Run after Monaco/editor is ready (Monaco uses require() which is async)
+// We poll until S.editor exists, then run once
+(function _waitAndInit(){
+  if(typeof S!=='undefined' && S && S.editor){
+    _dfExtInit();
+  } else {
+    setTimeout(_waitAndInit, 200);
+  }
 })();
 
-window.addEventListener('beforeunload',saveState);
+
 </script>
 </body>
 </html>
