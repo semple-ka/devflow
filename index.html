@@ -802,7 +802,7 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
           <div class="wl-crole" id="wlRole">Creator &amp; Developer</div>
           <div class="wl-social">
             <a class="wl-chip tt" href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">&#9836; @alcacal</a>
-            <a class="wl-chip gh" href="#" target="_blank" rel="noopener">&#8997; GitHub</a>
+            <a class="wl-chip gh" href="https://github.com/semple-ka" target="_blank" rel="noopener">&#8997; GitHub</a>
           </div>
         </div>
       </div>
@@ -977,7 +977,7 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
     <span class="ai-file-tag" id="aiFileTag">&#128196; <span id="aiFileTagName"></span></span>
     <input class="ai-req-input" id="aiReqInput" placeholder="Instruksi AI: mis. Tambahkan method caching ke UserService, atau Perbaiki memory leak...">
   </div>
-  <input class="ai-key-input" id="aiKeyInput" type="password" placeholder="API Key (opsional)">
+  <input class="ai-key-input" id="aiKeyInput" type="password" placeholder="API key" autocomplete="off">
   <input class="ai-model-inp" id="aiModelInput" placeholder="model (optional)" title="Override model name">
   <button class="btn test-btn" id="aiTestBtn" title="Test API connection">&#9889; Test</button>
   <button class="btn ai-run" id="aiRunBtn" title="Jalankan AI Orchestrator (Ctrl+Shift+Enter)">✦ Orchestrate</button>
@@ -1065,7 +1065,7 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
         </div>
       </div>
       <!-- CORS Info -->
-      <div class="ai-cors-hint" id="aiCorsHint">&#9989; Groq &amp; Gemini: browser-safe<br>&#9888; OpenAI: blocked by CORS &rarr; use Groq</div>
+      <div class="ai-cors-hint" id="aiCorsHint">&#9989; Groq (gsk_...) &amp; Gemini (AIzaSy...) &amp; Claude (sk-ant-...): work in browser<br>&#9888; OpenAI (sk-...): blocked by CORS &rarr; use Groq free</div>
       <!-- Prediction preview -->
       <div class="ai-section" id="aiPredSection" style="display:none">
         <div class="ai-sec-title">Prediction</div>
@@ -1641,16 +1641,27 @@ class AI_Integrator{
     var pn=opts.provider||this._active;
     var p=this._p.get(pn);
     if(!p)throw new Error("Provider '"+pn+"' not registered");
-    var apiKey=(opts.apiKey||'').trim()||(document.getElementById('aiKeyInput')||{}).value||''||(document.getElementById('spApiKey')||{}).value||localStorage.getItem('df_api_key')||'';
+    // Collect API key — try every possible source in priority order
+    var _keyFromOpts = (opts.apiKey||'').trim();
+    var _keyFromBar  = ((document.getElementById('aiKeyInput')||{}).value||'').trim();
+    var _keyFromSp   = ((document.getElementById('spApiKey')||{}).value||'').trim();
+    var _keyFromLS   = (localStorage.getItem('df_api_key')||'').trim();
+    var apiKey = _keyFromOpts || _keyFromBar || _keyFromSp || _keyFromLS || '';
     var msgs=typeof prompt==='string'?[{role:'user',content:prompt}]:prompt;
     if(p.corsOk===false&&!opts.endpoint) addLog('['+pn+'] ⚠ '+p.corsNote,'warn','ai');
     var body,hdrs,url;
     try{ url=opts.endpoint||(p.buildUrl?p.buildUrl(apiKey,opts):null)||p.endpoint; hdrs=p.buildHdrs(apiKey,opts); body=p.buildReq(msgs,opts); }
     catch(cfgErr){ p.errors++;p.lastError=cfgErr.message; throw new Error('['+pn+'] Config: '+cfgErr.message); }
     p.calls++;this._calls++;
-    addLog('→ '+pn+' / '+(opts.model||p.defaultModel),'ai-log','ai');
+    var _kp=apiKey?apiKey.slice(0,8)+'...('+apiKey.length+'chars)':'(empty!)';
+    addLog('→ '+pn+' / '+(opts.model||p.defaultModel)+' key='+_kp,'ai-log','ai');
     try{
-      var ctrl=new AbortController();
+      // Pre-flight key check
+    if(p.needsKey && !apiKey){
+      p.errors++;p.lastError='No API key';
+      throw new Error('['+pn+'] No API key provided! Enter your '+p.keyHint+' key in the key field or Settings → AI Config.');
+    }
+    var ctrl=new AbortController();
       var timer=setTimeout(function(){ctrl.abort();},120000);
       var res;
       try{
@@ -1765,7 +1776,7 @@ const S={
   editor:null,autoTimer:null,
   outTab:'console',plotCnt:0,errCnt:0,aiCnt:0,
   running:false,aiRunning:false,
-  activeProvider:'anthropic',activeAgents:new Set(['FeatureAgent']),
+  activeProvider:'groq',activeAgents:new Set(['FeatureAgent']),
   lastPred:null,lastConflict:null,lastStruct:null,aiCalls:0,
 };
 
@@ -2212,7 +2223,9 @@ async function runOrchestrator(){
   const agents=[...S.activeAgents];
   autoSaveTab();if(file)try{VFS.write(file,code);}catch(e){}
   S.aiRunning=true;setAIRunning(true);clearAI();
-  addLog(`Orchestrator → agent: ${agents.join('+')} provider: ${provider} file: ${file||'(no file)'}`, 'ai-log','orch');
+  const _k = ((document.getElementById('aiKeyInput')||{}).value||'').trim() || localStorage.getItem('df_api_key')||'';
+  const _keyPreview = _k ? _k.slice(0,8)+'...' : '(no key)';
+  addLog(`Orchestrator: provider=${provider} key=${_keyPreview} agents=${agents.join('+')} file=${file||'none'}`, 'ai-log','orch');
   if(file)addLog(`VFS.read('${file}') — ${code.split('\n').length} lines`,'ai-log','orch');
   const t0=performance.now();
   try{
@@ -3119,7 +3132,48 @@ $('pkgIn').addEventListener('keydown',e=>{if(e.key==='Enter')installPkg();});
 $('autoImportBtn').addEventListener('click',autoLoadImports);
 $('pkgListBtn').addEventListener('click',()=>{renderPkgList();switchOut('packages');});
 // AI toolbar
-$('aiProvSel').addEventListener('change',e=>{S.activeProvider=e.target.value;AI.setActive(e.target.value);renderAISidebar();});
+$('aiProvSel').addEventListener('change',e=>{var _pv=e.target.value;S.activeProvider=_pv;try{AI.setActive(_pv);}catch(e2){}renderAISidebar();addLog('Provider → '+_pv,'info','ai');});
+// Update key input hint when provider changes
+(function _updateKeyHint(){
+  var hints={
+    anthropic:'sk-ant-api03-...',
+    groq:'gsk_...',
+    gemini:'AIzaSy...',
+    openai:'sk-proj-... (⚠ CORS)',
+    ollama:'(no key needed)',
+    localai:'(no key needed)'
+  };
+  function refreshHint(){
+    var sel=document.getElementById('aiProvSel');
+    var ki=document.getElementById('aiKeyInput');
+    if(sel&&ki){
+      var prov=sel.value;
+      ki.placeholder=hints[prov]||'API key';
+      // If no key saved and we switch to local providers, clear visual
+      if(prov==='ollama'||prov==='localai'){
+        ki.style.opacity='0.5';
+      } else {
+        ki.style.opacity='1';
+      }
+    }
+  }
+  var sel=document.getElementById('aiProvSel');
+  if(sel){
+    sel.addEventListener('change',refreshHint);
+    // Run on init
+    setTimeout(refreshHint,100);
+  }
+})();
+// Sync selector, AI._active, and S.activeProvider on load
+(function _syncProvider(){
+  var sel=document.getElementById('aiProvSel');
+  if(sel){
+    // Read from saved state if available
+    try{ var saved=JSON.parse(localStorage.getItem('df4_state')||localStorage.getItem('df3_state')||'{}'); if(saved.activeProvider) S.activeProvider=saved.activeProvider; }catch(e){}
+    sel.value=S.activeProvider;
+    try{ AI.setActive(S.activeProvider); }catch(e){ /* provider not registered yet */ }
+  }
+})();
 $('aiRunBtn').addEventListener('click',runOrchestrator);
 $('aiOrcBtn').addEventListener('click',runOrchestrator);
 $('aiAnalyzeBtn').addEventListener('click',analyzeCode);
@@ -3219,7 +3273,7 @@ let _st;
 function autoSaveTab(){clearTimeout(_st);_st=setTimeout(saveState,900);}
 function saveState(){
   try{if(S.editor&&S.activeId){const c=S.tabs.find(t=>t.id===S.activeId);if(c)c.content=S.editor.getValue();}
-  localStorage.setItem('df4_state',JSON.stringify({tabs:S.tabs.map(t=>({id:t.id,name:t.name,lang:t.lang,content:t.content,vfsPath:t.vfsPath||null})),activeId:S.activeId,nextId:S.nextId,theme:S.theme}));}catch(e){}
+  localStorage.setItem('df4_state',JSON.stringify({tabs:S.tabs.map(t=>({id:t.id,name:t.name,lang:t.lang,content:t.content,vfsPath:t.vfsPath||null})),activeId:S.activeId,nextId:S.nextId,theme:S.theme,activeProvider:S.activeProvider}));}catch(e){}
 }
 function loadState(){
   try{const r=JSON.parse(localStorage.getItem('df4_state')||localStorage.getItem('df3_state'));if(!r)return null;S.nextId=r.nextId||1;const th=localStorage.getItem('df3_theme')||r.theme||'dark';if(th==='light'){S.theme='light';document.body.classList.add('light');$('themeBtn').textContent='☀';}return r;}catch(e){return null;}
@@ -3278,6 +3332,30 @@ if (typeof module !== 'undefined') {
 }`;
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([code],{type:'text/javascript'}));a.download='ai_orchestrator.js';a.click();URL.revokeObjectURL(a.href);toast('Exported: ai_orchestrator.js');
 }
+
+
+// ── Sync provider status display in AI bar ──
+function _updateProvStatus(){
+  var dot=document.getElementById('aiProvStatusDot');
+  var lbl=document.getElementById('aiProvStatusLabel');
+  var ki=document.getElementById('aiKeyInput');
+  if(!dot||!lbl) return;
+  var prov=S&&S.activeProvider||'groq';
+  var hasKey=!!(ki&&ki.value.trim());
+  var noKeyNeeded=(prov==='ollama'||prov==='localai');
+  var ready=noKeyNeeded||hasKey;
+  dot.style.background=ready?'var(--green)':'var(--amber)';
+  dot.title=ready?'Ready':'No API key entered';
+  lbl.textContent=prov.slice(0,7)+(ready?'':'⚠');
+}
+// Run on key input and provider change
+(function(){
+  var ki=document.getElementById('aiKeyInput');
+  if(ki) ki.addEventListener('input',function(){ setTimeout(_updateProvStatus,50); });
+  var sel=document.getElementById('aiProvSel');
+  if(sel) sel.addEventListener('change',function(){ setTimeout(_updateProvStatus,50); });
+  setTimeout(_updateProvStatus, 300);
+})();
 
 window.addEventListener('beforeunload',saveState);
 
@@ -3605,9 +3683,19 @@ function _dfExtInit(){
   // API key sync between key field and settings
   var ki=document.getElementById('aiKeyInput');
   if(ki){
-    ki.addEventListener('input',function(e){ localStorage.setItem('df_api_key',e.target.value); var sp=document.getElementById('spApiKey'); if(sp) sp.value=e.target.value; });
-    var savedKey=localStorage.getItem('df_api_key');
-    if(savedKey){ ki.value=savedKey; var sp=document.getElementById('spApiKey'); if(sp) sp.value=savedKey; }
+    // Save key on every keystroke
+    ki.addEventListener('input',function(e){
+      var k=e.target.value.trim();
+      if(k) localStorage.setItem('df_api_key',k);
+      else localStorage.removeItem('df_api_key');
+      var sp=document.getElementById('spApiKey'); if(sp) sp.value=e.target.value;
+    });
+    // Restore saved key
+    var savedKey=(localStorage.getItem('df_api_key')||'').trim();
+    if(savedKey){
+      ki.value=savedKey;
+      var sp=document.getElementById('spApiKey'); if(sp) sp.value=savedKey;
+    }
   }
 
   // Alt+K: clear editor
