@@ -783,53 +783,227 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
   .wl-sc-grid{grid-template-columns:1fr}
 }
 
+
+/* ══════════════════════════════════════════════════════
+   PROJECT DASHBOARD
+══════════════════════════════════════════════════════ */
+#welcome{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px}
+#welcome.hidden{display:none}
+.dashboard-container{display:flex;width:100%;max-width:960px;height:90vh;max-height:640px;background:var(--bg1);border-radius:16px;overflow:hidden;box-shadow:0 28px 80px rgba(0,0,0,.7);border:1px solid var(--bd1)}
+.dashboard-sidebar{width:220px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--bd0);display:flex;flex-direction:column;padding:20px 10px}
+.ds-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:600;margin-bottom:24px;padding-left:8px}
+.ds-logo-icon{width:30px;height:30px;background:linear-gradient(135deg,#4f91ff,#9060f0);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 0 12px rgba(79,145,255,.35)}
+.ds-version{font-size:9px;background:var(--bg3);padding:1px 5px;border-radius:3px;color:var(--txt2);font-family:var(--mono)}
+.ds-nav{flex:1;display:flex;flex-direction:column;gap:3px}
+.ds-nav-item{padding:9px 11px;border-radius:7px;color:var(--txt2);cursor:pointer;font-size:13px;transition:.14s;display:flex;align-items:center;gap:8px;user-select:none}
+.ds-nav-item:hover{background:var(--bg3);color:var(--txt1)}
+.ds-nav-item.active{background:var(--aglow);color:var(--accent);font-weight:500}
+.ds-footer{margin-top:auto;padding-top:14px;border-top:1px solid var(--bd0)}
+.ds-user{display:flex;align-items:center;gap:9px;padding:7px 8px}
+.ds-avatar{width:34px;height:34px;background:linear-gradient(135deg,#ff0050,#ff3e6c);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ds-username{font-weight:600;color:var(--txt1);font-size:12.5px}
+.ds-userrole{font-size:9.5px;color:var(--txt3)}
+.ds-social{display:flex;gap:5px;margin-top:7px;padding:0 7px}
+.ds-slink{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:10px;cursor:pointer;text-decoration:none;transition:.14s;border:1px solid rgba(255,255,255,.1)}
+.ds-slink.tt{background:rgba(0,0,0,.5);color:#fff}.ds-slink.tt:hover{background:#ff0050}
+.ds-slink.gh{background:var(--bg3);color:var(--txt1);border-color:var(--bd1)}.ds-slink.gh:hover{border-color:var(--accent);color:var(--accent)}
+.dashboard-main{flex:1;padding:22px 28px;overflow-y:auto;display:flex;flex-direction:column}
+.ds-tab{display:none;flex-direction:column;flex:1}
+.ds-tab.active{display:flex}
+.ds-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-shrink:0}
+.ds-header h2{font-size:20px;font-weight:600;color:var(--txt1);margin:0}
+.ds-header-actions{display:flex;gap:7px}
+.ds-btn{padding:7px 13px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--txt2);transition:.14s;display:inline-flex;align-items:center;gap:5px;font-family:var(--ui)}
+.ds-btn-primary{background:var(--accent);color:#fff}.ds-btn-primary:hover{background:var(--accent2)}
+.ds-btn-outline{border:1px solid var(--bd1);color:var(--txt1)}.ds-btn-outline:hover{background:var(--bg2);border-color:var(--bd2)}
+.ds-search{margin-bottom:14px;flex-shrink:0}
+.ds-search-input{width:100%;padding:8px 13px;background:var(--bg2);border:1px solid var(--bd0);border-radius:8px;color:var(--txt1);font-size:13px;outline:none;font-family:var(--ui)}
+.ds-search-input:focus{border-color:var(--accent)}
+.ds-search-input::placeholder{color:var(--txt3)}
+.ds-project-list{display:flex;flex-direction:column;gap:7px;flex:1;overflow-y:auto}
+.ds-project-card{background:var(--bg2);border:1px solid var(--bd0);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:.14s;flex-shrink:0}
+.ds-project-card:hover{border-color:var(--accent);background:var(--bg3)}
+.ds-project-info h4{margin:0 0 4px;font-size:14px;font-weight:600;color:var(--txt1)}
+.ds-project-meta{display:flex;gap:14px;font-size:11px;color:var(--txt2)}
+.ds-lang-badge{font-size:9px;padding:1px 6px;border-radius:3px;background:var(--bg3);color:var(--txt2);font-family:var(--mono);border:1px solid var(--bd1)}
+.ds-project-actions{display:flex;gap:5px;flex-shrink:0}
+.ds-icon-btn{background:none;border:none;color:var(--txt3);font-size:14px;cursor:pointer;padding:5px;border-radius:5px;transition:.12s}
+.ds-icon-btn:hover{background:var(--bg4);color:var(--txt1)}
+.ds-empty-state{text-align:center;padding:48px 20px;color:var(--txt3);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ds-empty-icon{font-size:42px;margin-bottom:14px;opacity:.45}
+.ds-empty-state h3{margin:0 0 6px;color:var(--txt1);font-weight:500;font-size:15px}
+.ds-empty-state p{margin-bottom:18px;font-size:13px}
+.ds-template-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;overflow-y:auto;flex:1}
+.ds-template-card{background:var(--bg2);border:1px solid var(--bd0);border-radius:10px;padding:16px 14px;cursor:pointer;transition:.14s;text-align:center}
+.ds-template-card:hover{border-color:var(--accent);background:var(--bg3)}
+.ds-template-icon{font-size:28px;margin-bottom:9px}
+.ds-template-name{font-weight:600;color:var(--txt1);font-size:12.5px;margin-bottom:3px}
+.ds-template-desc{font-size:10.5px;color:var(--txt2);line-height:1.4}
+.ds-settings-panel{background:var(--bg2);border-radius:10px;overflow:hidden;border:1px solid var(--bd0)}
+.ds-setting-row{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--bd0);font-size:12.5px;color:var(--txt2)}
+.ds-setting-row:last-child{border-bottom:none}
+.ds-select{background:var(--bg1);border:1px solid var(--bd1);color:var(--txt1);padding:5px 22px 5px 8px;border-radius:5px;font-size:12px;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='5'%3E%3Cpath d='M0 0l4.5 5L9 0z' fill='%237880a0'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 6px center}
+.ds-select option{background:var(--bg2)}
+.ds-switch{position:relative;display:inline-block;width:34px;height:18px}
+.ds-switch input{opacity:0;width:0;height:0}
+.ds-slider{position:absolute;cursor:pointer;inset:0;background:var(--bd2);transition:.18s;border-radius:18px}
+.ds-slider:before{position:absolute;content:"";height:12px;width:12px;left:3px;bottom:3px;background:#fff;transition:.18s;border-radius:50%}
+input:checked+.ds-slider{background:var(--green)}
+input:checked+.ds-slider:before{transform:translateX(16px)}
+.ds-about-box{background:var(--bg2);border-radius:10px;padding:14px 16px;border:1px solid var(--bd0);margin-top:12px}
+.ds-about-box p{color:var(--txt2);font-size:12.5px;line-height:1.6;margin:0 0 8px}
+.ds-about-box p:last-child{margin-bottom:0}
+.ds-about-box a{color:var(--accent);text-decoration:none}.ds-about-box a:hover{text-decoration:underline}
+.ds-about-sc{background:var(--bg2);border-radius:10px;border:1px solid var(--bd0);margin-top:12px;overflow:hidden}
+.ds-about-sc-row{display:flex;align-items:center;justify-content:space-between;padding:7px 14px;border-bottom:1px solid var(--bd0);font-size:11px}
+.ds-about-sc-row:last-child{border-bottom:none}
+.ds-about-sc-d{color:var(--txt2)}.ds-about-sc-k{display:flex;gap:3px}
+/* Modal */
+.ds-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:10001}
+.ds-modal.show{display:flex}
+.ds-modal-content{background:var(--bg1);border-radius:14px;width:380px;max-width:92vw;border:1px solid var(--bd1);box-shadow:0 20px 48px rgba(0,0,0,.55)}
+.ds-modal-header{padding:14px 18px;border-bottom:1px solid var(--bd0);display:flex;align-items:center;justify-content:space-between}
+.ds-modal-header h3{margin:0;color:var(--txt1);font-size:16px}
+.ds-modal-close{background:none;border:none;color:var(--txt3);font-size:20px;cursor:pointer;line-height:1;padding:0 2px}
+.ds-modal-close:hover{color:var(--txt1)}
+.ds-modal-body{padding:18px}
+.ds-form-group{margin-bottom:14px}
+.ds-form-group label{display:block;margin-bottom:5px;color:var(--txt2);font-size:12px}
+.ds-input{width:100%;padding:8px 11px;background:var(--bg2);border:1px solid var(--bd1);border-radius:7px;color:var(--txt1);font-size:13px;outline:none;font-family:var(--ui)}
+.ds-input:focus{border-color:var(--accent)}
+.ds-modal-footer{padding:14px 18px;border-top:1px solid var(--bd0);display:flex;justify-content:flex-end;gap:9px}
+/* Responsive */
+@media(max-width:640px){
+  .dashboard-sidebar{width:0;display:none}
+  #welcome{padding:8px}
+  .dashboard-main{padding:14px 16px}
+}
+
 </style>
 </head>
 <body>
 
-<!-- ═══ WELCOME SCREEN ═══════════════════════════════════════════════ -->
+<!-- ═══ PROJECT DASHBOARD ════════════════════════════════════ -->
 <div id="welcome" class="hidden">
-  <div class="wl-card">
-    <div class="wl-hero">
-      <div class="wl-logo"><div class="wl-logo-mark">&#9889;</div><div class="wl-logo-text">DevFlow</div></div>
-      <div class="wl-tagline" id="wlTagline">AI-powered browser IDE &mdash; run, orchestrate, and evolve code with real AI agents.</div>
-    </div>
-    <div class="wl-body">
-      <div class="wl-creator">
-        <div class="wl-ava">&#127917;</div>
-        <div>
-          <div class="wl-cname">alcacal</div>
-          <div class="wl-crole" id="wlRole">Creator &amp; Developer</div>
-          <div class="wl-social">
-            <a class="wl-chip tt" href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">&#9836; @alcacal</a>
-            <a class="wl-chip gh" href="https://github.com/semple-ka" target="_blank" rel="noopener">&#8997; GitHub</a>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="dashboard-sidebar">
+      <div class="ds-logo">
+        <div class="ds-logo-icon">&#9889;</div>
+        <span>DevFlow</span>
+        <span class="ds-version">2025</span>
+      </div>
+      <div class="ds-nav">
+        <div class="ds-nav-item active" data-tab="projects">&#128193; Projects</div>
+        <div class="ds-nav-item" data-tab="templates">&#10024; Templates</div>
+        <div class="ds-nav-item" data-tab="settings">&#9881; Settings</div>
+      </div>
+      <div class="ds-footer">
+        <div class="ds-user">
+          <div class="ds-avatar">&#127917;</div>
+          <div>
+            <div class="ds-username">alcacal</div>
+            <div class="ds-userrole">Creator &amp; Developer</div>
           </div>
         </div>
+        <div class="ds-social">
+          <a class="ds-slink tt" href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">&#9836; TikTok</a>
+          <a class="ds-slink gh" href="https://github.com/semple-ka/devflow" target="_blank" rel="noopener">&#8997; GitHub</a>
+        </div>
       </div>
-      <div class="wl-feats">
-        <div class="wl-feat"><div class="wl-fi">&#129504;</div><div><div class="wl-ft">AI Orchestrator</div><div class="wl-fd">Claude, Groq, Gemini, Ollama</div></div></div>
-        <div class="wl-feat"><div class="wl-fi">&#128013;</div><div><div class="wl-ft">Python 3.13</div><div class="wl-fd">Pyodide WASM + matplotlib</div></div></div>
-        <div class="wl-feat"><div class="wl-fi">&#128193;</div><div><div class="wl-ft">Virtual FS</div><div class="wl-fd">Multi-file, drag to AI, upload</div></div></div>
-        <div class="wl-feat"><div class="wl-fi">&#128296;</div><div><div class="wl-ft">Dev Tools</div><div class="wl-fd">Heatmap, Cinema, Race...</div></div></div>
+    </div>
+    <!-- Main Content -->
+    <div class="dashboard-main">
+      <!-- Tab: Projects -->
+      <div class="ds-tab active" id="dsTabProjects">
+        <div class="ds-header">
+          <h2 id="dsProjTitle">My Projects</h2>
+          <div class="ds-header-actions">
+            <button class="ds-btn ds-btn-primary" id="dsNewProjectBtn">&#10133; New Project</button>
+            <button class="ds-btn ds-btn-outline" id="dsImportProjectBtn">&#128194; Import File</button>
+            <button class="ds-btn ds-btn-outline" id="dsEnterEditorBtn">&#9654; Open Editor</button>
+          </div>
+        </div>
+        <div class="ds-search">
+          <input type="text" id="dsSearchInput" class="ds-search-input" placeholder="Search projects...">
+        </div>
+        <div class="ds-project-list" id="dsProjectList"></div>
+        <div class="ds-empty-state" id="dsEmptyProjects" style="display:none">
+          <div class="ds-empty-icon">&#128193;</div>
+          <h3 id="dsEmptyTitle">No projects yet</h3>
+          <p id="dsEmptyDesc">Create your first project or import a file.</p>
+          <button class="ds-btn ds-btn-primary" id="dsEmptyNewBtn">&#10133; Create Project</button>
+        </div>
       </div>
-      <div class="wl-sc-grid">
-        <div class="wl-sc-row"><span class="wl-sc-d">Run code</span><div class="wl-sc-k"><span class="wl-kbd">Ctrl</span><span class="wl-kbd">Enter</span></div></div>
-        <div class="wl-sc-row"><span class="wl-sc-d">AI Orchestrate</span><div class="wl-sc-k"><span class="wl-kbd">Ctrl&#8679;&#8629;</span></div></div>
-        <div class="wl-sc-row"><span class="wl-sc-d">Format</span><div class="wl-sc-k"><span class="wl-kbd">&#8679;Alt F</span></div></div>
-        <div class="wl-sc-row"><span class="wl-sc-d">Analyze AST</span><div class="wl-sc-k"><span class="wl-kbd">Alt A</span></div></div>
-        <div class="wl-sc-row"><span class="wl-sc-d">New tab</span><div class="wl-sc-k"><span class="wl-kbd">Alt T</span></div></div>
-        <div class="wl-sc-row"><span class="wl-sc-d">Toggle theme</span><div class="wl-sc-k"><span class="wl-kbd">Alt D</span></div></div>
+      <!-- Tab: Templates -->
+      <div class="ds-tab" id="dsTabTemplates">
+        <div class="ds-header"><h2 id="dsTplTitle">Start from a Template</h2></div>
+        <div class="ds-template-grid" id="dsTemplateGrid"></div>
       </div>
-      <div class="wl-lang-row">
-        <span class="wl-lang-lbl" id="wlLangLbl">Interface language:</span>
-        <select class="wl-lang-sel" id="wlLangSel"><option value="en">&#127468;&#127463; English</option><option value="id">&#127470;&#127465; Bahasa Indonesia</option></select>
+      <!-- Tab: Settings -->
+      <div class="ds-tab" id="dsTabSettings">
+        <div class="ds-header"><h2 id="dsSetTitle">Settings</h2></div>
+        <div class="ds-settings-panel">
+          <div class="ds-setting-row"><span id="dsSetLang">Language</span>
+            <select class="ds-select" id="dsLangSelect"><option value="en">&#127468;&#127463; English</option><option value="id">&#127470;&#127465; Bahasa Indonesia</option></select></div>
+          <div class="ds-setting-row"><span id="dsSetTheme">Theme</span>
+            <select class="ds-select" id="dsThemeSelect"><option value="dark">Dark</option><option value="light">Light</option></select></div>
+          <div class="ds-setting-row"><span id="dsSetAuto">Auto-run</span>
+            <label class="ds-switch"><input type="checkbox" id="dsAutoRunCheck"><span class="ds-slider"></span></label></div>
+          <div class="ds-setting-row"><span id="dsSetShowDb">Show dashboard on startup</span>
+            <label class="ds-switch"><input type="checkbox" id="dsShowDashboardCheck" checked><span class="ds-slider"></span></label></div>
+        </div>
+        <div class="ds-header" style="margin-top:20px"><h2 id="dsAboutTitle">About</h2></div>
+        <div class="ds-about-box">
+          <p><strong>DevFlow</strong> &mdash; AI-powered browser IDE with Monaco Editor, Pyodide (Python 3.13), Virtual FS, and multi-provider AI orchestration.</p>
+          <p>Created by <a href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">@alcacal</a> &bull; <a href="https://github.com/semple-ka/devflow" target="_blank" rel="noopener">GitHub</a></p>
+        </div>
+        <div class="ds-header" style="margin-top:20px"><h2>Keyboard Shortcuts</h2></div>
+        <div class="ds-about-sc" id="dsAboutSc"></div>
       </div>
-      <button class="wl-enter" id="wlEnterBtn">Enter DevFlow</button>
-      <div class="wl-footer-txt" id="wlFooter">This screen can be shown again from Settings &#9881;</div>
+    </div>
+  </div>
+  <!-- New Project Modal -->
+  <div class="ds-modal" id="dsNewProjectModal">
+    <div class="ds-modal-content">
+      <div class="ds-modal-header">
+        <h3 id="dsModalTitle">New Project</h3>
+        <button class="ds-modal-close" id="dsModalClose">&times;</button>
+      </div>
+      <div class="ds-modal-body">
+        <div class="ds-form-group">
+          <label id="dsModalNameLbl">Project Name</label>
+          <input type="text" id="dsProjectName" class="ds-input" placeholder="my-project" autocomplete="off">
+        </div>
+        <div class="ds-form-group">
+          <label id="dsModalLangLbl">Language</label>
+          <select class="ds-select" id="dsProjectLang" style="width:100%">
+            <option value="html">HTML/CSS/JS</option>
+            <option value="javascript">JavaScript</option>
+            <option value="python">Python</option>
+            <option value="typescript">TypeScript</option>
+            <option value="css">CSS</option>
+            <option value="json">JSON</option>
+          </select>
+        </div>
+        <div class="ds-form-group">
+          <label id="dsModalTplLbl">Template</label>
+          <select class="ds-select" id="dsProjectTemplate" style="width:100%">
+            <option value="blank">Blank</option>
+            <option value="html-basic">HTML Demo</option>
+            <option value="python-data">Python Data Science</option>
+            <option value="express-api">API / Server style</option>
+            <option value="react-like">Modern JS (class/functional)</option>
+          </select>
+        </div>
+      </div>
+      <div class="ds-modal-footer">
+        <button class="ds-btn ds-btn-outline" id="dsCancelNew" id="dsCancelNewLbl">Cancel</button>
+        <button class="ds-btn ds-btn-primary" id="dsCreateProject">Create Project</button>
+      </div>
     </div>
   </div>
 </div>
-
 <!-- ═══ SETTINGS OVERLAY + PANEL ═══════════════════════════════════ -->
 <div id="spOverlay"></div>
 <div id="spPanel">
@@ -861,9 +1035,9 @@ body.light{--bg0:#f2f4f8;--bg1:#fff;--bg2:#eaecf3;--bg3:#dde0ea;--bg4:#d0d4e0;--
       <div class="sp-sec-hdr" id="spAboutHdr">About</div>
       <div class="sp-row"><span class="sp-lbl">DevFlow</span><span style="font-size:9px;font-family:var(--mono);color:var(--txt3);background:var(--bg3);padding:1px 5px;border-radius:3px">build 2025</span></div>
       <div class="sp-row"><span class="sp-lbl" id="spCrLbl">Creator</span><span style="font-size:11px;color:var(--txt1)">@alcacal</span></div>
-      <div class="sp-slinks"><a class="sp-slink tt" href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">&#9836; TikTok</a><a class="sp-slink gh" href="#" target="_blank" rel="noopener">&#8997; GitHub</a></div>
+      <div class="sp-slinks"><a class="sp-slink tt" href="https://tiktok.com/@alcacal" target="_blank" rel="noopener">&#9836; TikTok</a><a class="sp-slink gh" href="https://github.com/semple-ka/devflow" target="_blank" rel="noopener" target="_blank" rel="noopener"> &#8997; GitHub</a></div>
       <div style="margin-top:6px;display:flex;flex-direction:column;gap:3px">
-        <button class="sp-btn sp-accent" id="spShowWelBtn">Show welcome screen again</button>
+        <button class="sp-btn sp-accent" id="spShowWelBtn">Show project dashboard</button>
         <button class="sp-btn" id="spExpBtn">Export orchestrator.js</button>
         <button class="sp-btn" id="spResetBtn" style="color:var(--red)">Reset all state &amp; storage</button>
       </div>
@@ -3273,7 +3447,7 @@ let _st;
 function autoSaveTab(){clearTimeout(_st);_st=setTimeout(saveState,900);}
 function saveState(){
   try{if(S.editor&&S.activeId){const c=S.tabs.find(t=>t.id===S.activeId);if(c)c.content=S.editor.getValue();}
-  localStorage.setItem('df4_state',JSON.stringify({tabs:S.tabs.map(t=>({id:t.id,name:t.name,lang:t.lang,content:t.content,vfsPath:t.vfsPath||null})),activeId:S.activeId,nextId:S.nextId,theme:S.theme,activeProvider:S.activeProvider}));}catch(e){}
+  localStorage.setItem('df4_state',JSON.stringify({tabs:S.tabs.map(t=>({id:t.id,name:t.name,lang:t.lang,content:t.content,vfsPath:t.vfsPath||null})),activeId:S.activeId,nextId:S.nextId,theme:S.theme,activeProvider:S.activeProvider,currentProjectId:_currentProjectId||null}));}catch(e){}
 }
 function loadState(){
   try{const r=JSON.parse(localStorage.getItem('df4_state')||localStorage.getItem('df3_state'));if(!r)return null;S.nextId=r.nextId||1;const th=localStorage.getItem('df3_theme')||r.theme||'dark';if(th==='light'){S.theme='light';document.body.classList.add('light');$('themeBtn').textContent='☀';}return r;}catch(e){return null;}
@@ -3355,6 +3529,324 @@ function _updateProvStatus(){
   var sel=document.getElementById('aiProvSel');
   if(sel) sel.addEventListener('change',function(){ setTimeout(_updateProvStatus,50); });
   setTimeout(_updateProvStatus, 300);
+})();
+
+
+// ══════════════════════════════════════════════════════════
+// PROJECT DASHBOARD
+// ══════════════════════════════════════════════════════════
+const ProjectManager = {
+  KEY: 'df_projects',
+  get(){ try{ return JSON.parse(localStorage.getItem(this.KEY)||'[]'); }catch(e){ return []; } },
+  save(arr){ localStorage.setItem(this.KEY, JSON.stringify(arr)); },
+  create(name, lang, template){
+    var projects = this.get();
+    var id = 'proj_' + Date.now() + '_' + Math.random().toString(36).substr(2,6);
+    var code = '';
+    if(template==='html-basic'||lang==='html')        code = SMPL.html;
+    else if(template==='python-data'||lang==='python') code = SMPL.python;
+    else if(template==='react-like'||lang==='javascript') code = SMPL.javascript;
+    else if(lang==='typescript') code = SMPL.typescript;
+    else if(lang==='css')  code = SMPL.css;
+    else if(lang==='json') code = SMPL.json;
+    else if(template==='express-api') code = "// Express-style API\nconst express = require('express');\nconst app = express();\napp.use(express.json());\n\napp.get('/', (req, res) => res.json({ status: 'ok' }));\napp.listen(3000, () => console.log('Server on :3000'));";
+    else code = SMPL[lang] || '';
+    var proj = { id, name, lang, created: Date.now(), modified: Date.now(), code };
+    projects.push(proj);
+    this.save(projects);
+    return proj;
+  },
+  update(id, data){
+    var projects = this.get();
+    var i = projects.findIndex(function(p){ return p.id===id; });
+    if(i>=0){ projects[i] = Object.assign({}, projects[i], data, {modified:Date.now()}); this.save(projects); return projects[i]; }
+    return null;
+  },
+  delete(id){ this.save(this.get().filter(function(p){ return p.id!==id; })); },
+  find(id){ return this.get().find(function(p){ return p.id===id; }); }
+};
+
+var _currentProjectId = null;
+
+var DASH_TEMPLATES = [
+  {id:'html-basic',  name:'HTML/CSS/JS', icon:'🌐', desc:'Counter demo with styled card', lang:'html'},
+  {id:'python-data', name:'Python 3.13',  icon:'🐍', desc:'Stack, dataclass, Fibonacci',  lang:'python'},
+  {id:'react-like',  name:'JavaScript',   icon:'⚡', desc:'EventBus, async pipeline',     lang:'javascript'},
+  {id:'blank-css',   name:'CSS',          icon:'🎨', desc:'Animated dots preview',        lang:'css'},
+  {id:'blank-json',  name:'JSON',         icon:'📦', desc:'Structured data file',         lang:'json'},
+  {id:'blank-ts',    name:'TypeScript',   icon:'𝒯', desc:'Shapes with generics',         lang:'typescript'},
+  {id:'express-api', name:'API Style',    icon:'🚀', desc:'Express-style server sketch',  lang:'javascript'},
+  {id:'markdown',    name:'Markdown',     icon:'📝', desc:'Docs & notes',                 lang:'markdown'},
+];
+
+var DASH_SC = [
+  {d:'Run code',      k:['Ctrl','Enter']},  {d:'AI Orchestrate',k:['Ctrl','⇧Enter']},
+  {d:'Format code',   k:['⇧Alt','F']},      {d:'Analyze AST',   k:['Alt','A']},
+  {d:'New tab',       k:['Alt','T']},        {d:'Close tab',     k:['Alt','W']},
+  {d:'Toggle theme',  k:['Alt','D']},        {d:'Word wrap',     k:['Alt','Z']},
+  {d:'Copy all',      k:['Ctrl','⇧C']},      {d:'Clear editor',  k:['Alt','K']},
+  {d:'Fullscreen',    k:['F11']},            {d:'Sec bypass',    k:['Ctrl','Alt','⇧D']},
+];
+
+var _DS_I18N = {
+  en:{ proj:'My Projects', tpl:'Start from a Template', set:'Settings', about:'About',
+       lang:'Language', theme:'Theme', autorun:'Auto-run', showdb:'Show dashboard on startup',
+       new:'New Project', imp:'Import File', editor:'Open Editor', search:'Search projects...',
+       empty_t:'No projects yet', empty_d:'Create your first project or import a file.',
+       create:'Create Project', cancel:'Cancel', proj_name:'Project Name',
+       proj_lang:'Language', proj_tpl:'Template', del_confirm:'Delete this project?' },
+  id:{ proj:'Proyek Saya', tpl:'Mulai dari Template', set:'Pengaturan', about:'Tentang',
+       lang:'Bahasa antarmuka', theme:'Tema', autorun:'Auto-run', showdb:'Tampilkan dashboard saat startup',
+       new:'Proyek Baru', imp:'Impor File', editor:'Buka Editor', search:'Cari proyek...',
+       empty_t:'Belum ada proyek', empty_d:'Buat proyek pertama atau impor file.',
+       create:'Buat Proyek', cancel:'Batal', proj_name:'Nama Proyek',
+       proj_lang:'Bahasa Utama', proj_tpl:'Template Awal', del_confirm:'Hapus proyek ini?' }
+};
+function _dt(k){ var d=_DS_I18N[_LANG]||_DS_I18N.en; return d[k]||_DS_I18N.en[k]||k; }
+
+function _escHtml(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function _fmtDate(ts){
+  var d=new Date(ts);
+  return d.toLocaleDateString(_LANG==='id'?'id-ID':'en-US',{day:'2-digit',month:'short',year:'numeric'});
+}
+
+function _dashApplyI18n(){
+  // Tab labels
+  var navItems = document.querySelectorAll('.ds-nav-item');
+  var labels = [_dt('proj'), _dt('tpl'), _dt('set')];
+  var icons  = ['📁 ','✨ ','⚙ '];
+  navItems.forEach(function(el,i){ el.innerHTML = icons[i] + labels[i]; });
+  // Header titles
+  var map = {dsProjTitle:_dt('proj'), dsTplTitle:_dt('tpl'), dsSetTitle:_dt('set'),
+             dsAboutTitle:_dt('about'), dsEmptyTitle:_dt('empty_t'), dsEmptyDesc:_dt('empty_d'),
+             dsSetLang:_dt('lang'), dsSetTheme:_dt('theme'), dsSetAuto:_dt('autorun'), dsSetShowDb:_dt('showdb'),
+             dsModalTitle:_dt('new'), dsModalNameLbl:_dt('proj_name'),
+             dsModalLangLbl:_dt('proj_lang'), dsModalTplLbl:_dt('proj_tpl')};
+  Object.keys(map).forEach(function(id){ var el=document.getElementById(id); if(el) el.textContent=map[id]; });
+  // Buttons
+  var nb=document.getElementById('dsNewProjectBtn'); if(nb) nb.innerHTML='&#10133; '+_dt('new');
+  var ib=document.getElementById('dsImportProjectBtn'); if(ib) ib.innerHTML='&#128194; '+_dt('imp');
+  var eb=document.getElementById('dsEnterEditorBtn'); if(eb) eb.innerHTML='&#9654; '+_dt('editor');
+  var si=document.getElementById('dsSearchInput'); if(si) si.placeholder=_dt('search');
+  var en=document.getElementById('dsEmptyNewBtn'); if(en) en.innerHTML='&#10133; '+_dt('create');
+  var cr=document.getElementById('dsCreateProject'); if(cr) cr.textContent=_dt('create');
+  var ca=document.getElementById('dsCancelNew'); if(ca) ca.textContent=_dt('cancel');
+  // Shortcuts panel
+  var sc=document.getElementById('dsAboutSc');
+  if(sc) sc.innerHTML=DASH_SC.map(function(s){
+    return '<div class="ds-about-sc-row"><span class="ds-about-sc-d">'+s.d+'</span>'
+      +'<div class="ds-about-sc-k">'+s.k.map(function(k){return '<kbd>'+k+'</kbd>';}).join('')+'</div></div>';
+  }).join('');
+  // Lang select
+  var ls=document.getElementById('dsLangSelect'); if(ls) ls.value=_LANG;
+}
+
+function _renderProjectList(){
+  var projects = ProjectManager.get();
+  var listEl  = document.getElementById('dsProjectList');
+  var emptyEl = document.getElementById('dsEmptyProjects');
+  var si      = document.getElementById('dsSearchInput');
+  if(!listEl) return;
+  var q = si ? si.value.toLowerCase() : '';
+  var filtered = projects.filter(function(p){
+    return p.name.toLowerCase().indexOf(q)>=0 || (p.lang||'').toLowerCase().indexOf(q)>=0;
+  }).sort(function(a,b){ return b.modified-a.modified; });
+  if(!filtered.length){
+    listEl.innerHTML='';
+    if(emptyEl) emptyEl.style.display='flex';
+    return;
+  }
+  if(emptyEl) emptyEl.style.display='none';
+  var langDots = {html:'#e44b26',javascript:'#f5c542',python:'#3572a5',typescript:'#3178c6',css:'#264de4',json:'#8bc34a',markdown:'#083fa1'};
+  listEl.innerHTML = filtered.map(function(p){
+    var dot = langDots[p.lang]||'#7880a0';
+    var lines = p.code ? p.code.split('\n').length : 0;
+    return '<div class="ds-project-card" data-id="'+p.id+'">'
+      +'<div class="ds-project-info">'
+      +'<h4>'+_escHtml(p.name)+'</h4>'
+      +'<div class="ds-project-meta">'
+      +'<span><span class="ds-lang-badge" style="border-color:'+dot+';color:'+dot+'">'+_escHtml(p.lang||'')+'</span></span>'
+      +'<span>'+lines+' lines</span>'
+      +'<span>'+_fmtDate(p.modified)+'</span>'
+      +'</div></div>'
+      +'<div class="ds-project-actions">'
+      +'<button class="ds-icon-btn open-project" title="Open">&#128194;</button>'
+      +'<button class="ds-icon-btn del-project" title="Delete">&#128465;</button>'
+      +'</div></div>';
+  }).join('');
+  listEl.querySelectorAll('.ds-project-card').forEach(function(card){
+    card.addEventListener('click',function(e){
+      if(e.target.closest('.del-project')){
+        e.stopPropagation();
+        if(confirm(_dt('del_confirm'))) { ProjectManager.delete(card.dataset.id); _renderProjectList(); }
+      } else { _openProject(card.dataset.id); }
+    });
+  });
+}
+
+function _renderTemplateGrid(){
+  var grid = document.getElementById('dsTemplateGrid');
+  if(!grid) return;
+  grid.innerHTML = DASH_TEMPLATES.map(function(t){
+    return '<div class="ds-template-card" data-tid="'+t.id+'" data-lang="'+t.lang+'">'
+      +'<div class="ds-template-icon">'+t.icon+'</div>'
+      +'<div class="ds-template-name">'+t.name+'</div>'
+      +'<div class="ds-template-desc">'+t.desc+'</div>'
+      +'</div>';
+  }).join('');
+  grid.querySelectorAll('.ds-template-card').forEach(function(card){
+    card.addEventListener('click',function(){
+      _openNewProjectModal(card.dataset.tid, card.dataset.lang);
+    });
+  });
+}
+
+function _openProject(id){
+  var proj = ProjectManager.find(id);
+  if(!proj) return;
+  _currentProjectId = id;
+  // Create/activate a tab for this project
+  var existing = S.tabs.find(function(t){ return t.vfsPath===('project:'+id); });
+  if(existing){
+    activateTab(existing.id);
+  } else {
+    var tab = mkTab(proj.lang, proj.name, proj.code);
+    tab.vfsPath = 'project:'+id;
+    renderTabs();
+    activateTab(tab.id);
+  }
+  hideWelcome();
+}
+
+function _openNewProjectModal(presetTemplate, presetLang){
+  var modal = document.getElementById('dsNewProjectModal');
+  if(!modal) return;
+  document.getElementById('dsProjectName').value='';
+  if(presetLang){ var ls=document.getElementById('dsProjectLang'); if(ls) ls.value=presetLang; }
+  if(presetTemplate){ var ts=document.getElementById('dsProjectTemplate'); if(ts) ts.value=presetTemplate; }
+  modal.classList.add('show');
+  setTimeout(function(){ var ni=document.getElementById('dsProjectName'); if(ni) ni.focus(); },100);
+}
+
+function _bindDashboardEvents(){
+  // Nav tabs
+  document.querySelectorAll('.ds-nav-item').forEach(function(item){
+    item.addEventListener('click',function(){
+      var tab=item.dataset.tab;
+      document.querySelectorAll('.ds-nav-item').forEach(function(i){ i.classList.remove('active'); });
+      item.classList.add('active');
+      document.querySelectorAll('.ds-tab').forEach(function(t){
+        t.classList.toggle('active', t.id==='dsTab'+tab.charAt(0).toUpperCase()+tab.slice(1));
+      });
+    });
+  });
+
+  // New project
+  var nBtn=document.getElementById('dsNewProjectBtn');    if(nBtn) nBtn.addEventListener('click',function(){ _openNewProjectModal(); });
+  var eBtn=document.getElementById('dsEmptyNewBtn');      if(eBtn) eBtn.addEventListener('click',function(){ _openNewProjectModal(); });
+  var edBtn=document.getElementById('dsEnterEditorBtn');  if(edBtn) edBtn.addEventListener('click',hideWelcome);
+
+  // Modal controls
+  var mc=document.getElementById('dsModalClose'); if(mc) mc.addEventListener('click',function(){ document.getElementById('dsNewProjectModal').classList.remove('show'); });
+  var cc=document.getElementById('dsCancelNew');  if(cc) cc.addEventListener('click',function(){ document.getElementById('dsNewProjectModal').classList.remove('show'); });
+  document.getElementById('dsNewProjectModal').addEventListener('click',function(e){ if(e.target===this) this.classList.remove('show'); });
+
+  // Create project
+  document.getElementById('dsCreateProject').addEventListener('click',function(){
+    var name=(document.getElementById('dsProjectName').value||'').trim();
+    if(!name){ document.getElementById('dsProjectName').focus(); return; }
+    var lang=document.getElementById('dsProjectLang').value;
+    var tpl=document.getElementById('dsProjectTemplate').value;
+    var proj=ProjectManager.create(name,lang,tpl);
+    document.getElementById('dsNewProjectModal').classList.remove('show');
+    _renderProjectList();
+    _openProject(proj.id);
+  });
+  // Enter key in name input
+  document.getElementById('dsProjectName').addEventListener('keydown',function(e){
+    if(e.key==='Enter') document.getElementById('dsCreateProject').click();
+  });
+
+  // Search
+  var si=document.getElementById('dsSearchInput'); if(si) si.addEventListener('input',_renderProjectList);
+
+  // Import file
+  var impBtn=document.getElementById('dsImportProjectBtn');
+  if(impBtn) impBtn.addEventListener('click',function(){
+    var inp=document.createElement('input'); inp.type='file'; inp.multiple=true;
+    inp.accept='.html,.js,.ts,.py,.css,.json,.md,.txt';
+    inp.onchange=function(e){
+      Array.from(e.target.files).forEach(function(file){
+        var reader=new FileReader(); reader.onload=function(ev){
+          var ext=file.name.split('.').pop().toLowerCase();
+          var langMap={js:'javascript',py:'python',ts:'typescript',css:'css',json:'json',md:'markdown',html:'html'};
+          var lang=langMap[ext]||'javascript';
+          var proj=ProjectManager.create(file.name, lang, 'blank');
+          ProjectManager.update(proj.id,{code:ev.target.result});
+          _renderProjectList();
+          _openProject(proj.id);
+        }; reader.readAsText(file);
+      });
+    }; inp.click();
+  });
+
+  // Dashboard settings
+  var dsLs=document.getElementById('dsLangSelect');
+  if(dsLs){ dsLs.value=_LANG; dsLs.addEventListener('change',function(e){ _LANG=e.target.value; localStorage.setItem('df_lang',_LANG); _applyI18n(); _dashApplyI18n(); var spLs=document.getElementById('spLangSel'); if(spLs) spLs.value=_LANG; }); }
+  var dsTh=document.getElementById('dsThemeSelect');
+  if(dsTh){ dsTh.value=(S&&S.theme)||'dark'; dsTh.addEventListener('change',function(e){ applyTheme(e.target.value); dsTh.value=e.target.value; }); }
+  var dsAr=document.getElementById('dsAutoRunCheck');
+  if(dsAr){ dsAr.checked=!!(S&&S.autoRun); dsAr.addEventListener('change',function(e){ if(S) S.autoRun=e.target.checked; var p=document.getElementById('autoPill'); if(p){p.style.background=S.autoRun?'var(--green)':'var(--bd2)';} var d=document.getElementById('autoDot'); if(d) d.style.transform=S.autoRun?'translateX(12px)':''; }); }
+  var dsDb=document.getElementById('dsShowDashboardCheck');
+  if(dsDb){ dsDb.checked=localStorage.getItem('df_show_dashboard')!=='false'; dsDb.addEventListener('change',function(e){ localStorage.setItem('df_show_dashboard',e.target.checked); }); }
+}
+
+function initDashboard(){
+  _renderProjectList();
+  _renderTemplateGrid();
+  _bindDashboardEvents();
+  _dashApplyI18n();
+  // Save current project code when editor changes
+  if(S && S.editor){
+    S.editor.onDidChangeModelContent && S.editor.onDidChangeModelContent(function(){
+      if(_currentProjectId){
+        var code=S.editor.getValue();
+        ProjectManager.update(_currentProjectId,{code:code});
+      }
+    });
+  }
+}
+
+// Override showWelcome / hideWelcome to include dashboard init
+(function _patchWelcome(){
+  var _origShow = typeof showWelcome === 'function' ? showWelcome : null;
+  var _origHide = typeof hideWelcome === 'function' ? hideWelcome : null;
+  showWelcome = function(){
+    var w=document.getElementById('welcome'); if(w) w.classList.remove('hidden');
+    initDashboard(); _dashApplyI18n();
+  };
+  hideWelcome = function(){
+    var w=document.getElementById('welcome'); if(w) w.classList.add('hidden');
+    localStorage.setItem('df_welcome_seen','1');
+  };
+})();
+
+// Init after editor is ready
+(function _waitDashboard(){
+  if(typeof S!=='undefined' && S && S.editor){
+    // Check show-on-startup setting
+    var showOnStartup = localStorage.getItem('df_show_dashboard')!=='false';
+    if(showOnStartup && !localStorage.getItem('df_welcome_seen')){
+      showWelcome();
+    } else if(showOnStartup && localStorage.getItem('df_welcome_seen') && !localStorage.getItem('df_dashboard_init')){
+      // First real run after the welcome was dismissed
+      localStorage.setItem('df_dashboard_init','1');
+    }
+    initDashboard(); // always init in background for settings button
+  } else {
+    setTimeout(_waitDashboard, 200);
+  }
 })();
 
 window.addEventListener('beforeunload',saveState);
@@ -3570,7 +4062,11 @@ function applyTheme(theme){
 // ── EXTENSION INIT (runs after DOM + Monaco are ready) ──────────────────
 function _dfExtInit(){
   // Welcome
-  if(!localStorage.getItem('df_welcome_seen')) showWelcome();
+  // Show dashboard on startup if setting allows
+(function(){
+  var showDb = localStorage.getItem('df_show_dashboard') !== 'false';
+  if(showDb) showWelcome();
+})();
   var wlE=document.getElementById('wlEnterBtn'); if(wlE) wlE.addEventListener('click',hideWelcome);
   var wlLs=document.getElementById('wlLangSel');
   if(wlLs){ wlLs.value=_LANG; wlLs.addEventListener('change',function(e){ _LANG=e.target.value; localStorage.setItem('df_lang',_LANG); _applyI18n(); }); }
@@ -3596,7 +4092,7 @@ function _dfExtInit(){
   if(spBp) spBp.addEventListener('input',function(e){ _SEC.pw=e.target.value||'devflow'; localStorage.setItem('df_sec_pw',_SEC.pw); });
   var spAk=document.getElementById('spApiKey');
   if(spAk) spAk.addEventListener('input',function(e){ localStorage.setItem('df_api_key',e.target.value); var ki=document.getElementById('aiKeyInput'); if(ki&&!ki.value) ki.value=e.target.value; });
-  var spWl=document.getElementById('spShowWelBtn'); if(spWl) spWl.addEventListener('click',function(){ closeSettings(); showWelcome(); });
+  var spWl=document.getElementById('spShowWelBtn'); if(spWl) spWl.addEventListener('click',function(){ closeSettings(); showWelcome(); initDashboard && initDashboard(); });
   var spEx=document.getElementById('spExpBtn'); if(spEx) spEx.addEventListener('click',function(){ closeSettings(); if(typeof exportOrchestrator==='function') exportOrchestrator(); });
   var spRe=document.getElementById('spResetBtn');
   if(spRe) spRe.addEventListener('click',function(){ if(confirm('Reset all state and storage?')){ localStorage.clear(); location.reload(); } });
