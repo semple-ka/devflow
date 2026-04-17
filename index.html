@@ -1039,6 +1039,7 @@ input:checked+.ds-slider:before{transform:translateX(16px)}
       <div style="margin-top:6px;display:flex;flex-direction:column;gap:3px">
         <button class="sp-btn sp-accent" id="spShowWelBtn">Show project dashboard</button>
         <button class="sp-btn" id="spExpBtn">Export orchestrator.js</button>
+        <button class="sp-btn" id="spMemBtn" onclick="_freeMemory&&_freeMemory()" style="color:var(--cyan)">🧹 Free Memory</button>
         <button class="sp-btn" id="spResetBtn" style="color:var(--red)">Reset all state &amp; storage</button>
       </div>
     </div>
@@ -1137,7 +1138,7 @@ input:checked+.ds-slider:before{transform:translateX(16px)}
 </div>
 
 <!-- ══ AI TOOLBAR ══ -->
-<div class="ai-bar">
+<div class="ai-bar" id="aiBar" title="Drag a file from Files sidebar to set AI target">
   <span class="ai-label">AI:</span>
   <select class="ai-prov-sel" id="aiProvSel" title="AI Provider">
     <option value="groq">Groq (free ✓)</option>
@@ -1632,7 +1633,17 @@ class VirtualFS{
     mk('src/main.py',SMPL.python);
     this._persist();
   }
-  _persist(){try{localStorage.setItem('df3_vfs',JSON.stringify([...this._f]));}catch(e){}}
+  _persist(){
+    // Debounce: don't write to localStorage on every keystroke
+    if(this._persistTimer) clearTimeout(this._persistTimer);
+    this._persistTimer = setTimeout(()=>{
+      try{
+        // Only persist files under 500KB total to avoid memory/quota issues
+        const entries=[...this._f].filter(([k,v])=>v.content.length<500000);
+        localStorage.setItem('df3_vfs',JSON.stringify(entries));
+      }catch(e){ console.warn('VFS persist failed:',e.message); }
+    },2000);
+  }
   read(p){const f=this._f.get(p);if(!f)throw new Error(`VFS: '${p}' not found`);return f.content;}
   write(p,c){
     const ex=this._f.get(p);
@@ -2042,7 +2053,17 @@ function renderAIOutput(result){
       html+='</div>';
     }else{html+=`<div class="aio-section"><div class="aio-card pred-best"><div class="aio-head"><span class="aio-tag green">NO CONFLICTS</span></div><div class="aio-desc" style="color:var(--green)">Injection is clean — no duplicates, cycles, or boundary issues.</div></div></div>`;}
   }
-  if(generated){html+=`<div class="aio-section"><div class="aio-title">Generated Code (${generated.split('\n').length} lines)</div><div class="aio-card ai-result"><div class="aio-body-text" style="font-family:var(--mono);font-size:11px">${esc(generated)}</div></div></div>`;}
+  if(generated){
+    var genId='gen_'+Date.now();
+    // Store generated code for the Apply button
+    window._lastGeneratedCode=generated;
+    html+=`<div class="aio-section">`
+      +`<div class="aio-title" style="display:flex;align-items:center;justify-content:space-between">`
+      +`<span>Generated Code (${generated.split('\n').length} lines)</span>`
+      +`<button onclick="window._applyAICode&&window._applyAICode()" style="font-size:9.5px;padding:2px 8px;border-radius:4px;border:1px solid rgba(46,216,130,.4);background:var(--green-dim);color:var(--green);cursor:pointer;font-family:var(--mono)">▶ Apply to Editor</button>`
+      +`</div>`
+      +`<div class="aio-card ai-result"><div class="aio-body-text" style="font-family:var(--mono);font-size:11px;white-space:pre;overflow-x:auto">${esc(generated)}</div></div></div>`;
+  }
   if(diagnosis){html+=`<div class="aio-section"><div class="aio-title">Debug Analysis</div><div class="aio-card ai-result"><div class="aio-body-text">${esc(diagnosis)}</div></div></div>`;}
   if(review){html+=`<div class="aio-section"><div class="aio-title">Code Review</div><div class="aio-card ai-result"><div class="aio-body-text">${esc(review)}</div></div></div>`;}
   if(html){c.insertAdjacentHTML('beforeend',html);c.scrollTop=c.scrollHeight;S.aiCnt++;$('bAiCnt').textContent=S.aiCnt;$('bAiCnt').className='bub on';}
@@ -2194,10 +2215,10 @@ function updateSidebarConflicts(conflict){
 // ──────────────────────────────────────────────────────────────
 function mkTab(lang='html',name=null,content=null){
   const id=S.nextId++;const cfg=LCFG[lang]||LCFG.html;
-  const tname=name||`file-${id}.${cfg.ext}`;const tcont=content!==null?content:(SMPL[lang]||'');
+  const tname=name||`file-${id}.${cfg.ext}`;const tcont=(content!==null?content:(SMPL[lang]||'')).slice(0,1000000); // cap at 1MB
   let model=null;
   if(S.editor&&window.monaco){const uri=window.monaco.Uri.parse(`inmemory://df3/${id}.${cfg.ext}`);model=window.monaco.editor.createModel(tcont,lang,uri);}
-  const tab={id,name:tname,lang,content:tcont,model,vs:null,vfsPath:null};
+  const tab={id,name:tname,lang,content:model?'':tcont,model,vs:null,vfsPath:null}; // content only stored if no Monaco model
   S.tabs.push(tab);return tab;
 }
 function renderTabs(){
@@ -2221,7 +2242,7 @@ function activateTab(id){
 }
 function closeTab(id){
   if(S.tabs.length===1){toast('Tidak bisa tutup tab terakhir');return;}
-  const i=S.tabs.findIndex(t=>t.id===id);const tab=S.tabs[i];if(tab.model)tab.model.dispose();S.tabs.splice(i,1);
+  const i=S.tabs.findIndex(t=>t.id===id);const tab=S.tabs[i];if(tab.model){tab.model.dispose();tab.model=null;}tab.content='';S.tabs.splice(i,1);
   if(S.activeId===id)activateTab(S.tabs[Math.min(i,S.tabs.length-1)].id);else renderTabs();saveState();
 }
 function addTab(){const lang=$('langSel').value;const t=mkTab(lang);renderTabs();activateTab(t.id);}
@@ -2381,7 +2402,9 @@ async function runPy(code){
     if(stderr&&!pyErr)stderr.split('\n').filter(Boolean).forEach(l=>addLog(l,'pywarn','python'));
     if(pyErr){const es=String(pyErr.message||pyErr);if(es.includes('Traceback'))addTraceback(es);else addLog('❌ '+es,'pyerr','python');if(stderr)addLog(stderr.trim(),'pyerr','python');}
     try{const pd=S.py.runPython('_df_cap()');if(pd){const plots=pd.toJs();if(plots?.length){plots.forEach(([n,b64])=>addPlot(b64,n));switchOut('plots');}try{pd.destroy();}catch(e){}}}catch(e){}
-    if(!stdout&&!stderr&&!pyErr)addLog('(tidak ada output)','log','python');
+    if(!stdout&&!stderr&&!pyErr)addLog('(no output)','log','python');
+    // Run Python GC to free memory after execution
+    try{await S.py.runPythonAsync('import gc;gc.collect()');}catch(e){}
   }catch(e){addLog('Engine error: '+(e.message||String(e)),'pyerr','python');}
 }
 window.addEventListener('message',e=>{if(e.data?.type==='console')addLog(e.data.msg,e.data.level||'log','iframe');});
@@ -2432,20 +2455,67 @@ function handleAIResult(result,originalCode,file,conflictPolicy){
   if(generated&&file){
     const best=prediction?.best;const finalCode=PRED.applyInjection(originalCode,best,generated);
     VFS.write(file,finalCode);renderVFS();
-    // Update active editor if this is the active file
-    if(S.activeVfsFile===file&&S.editor){
-      const tab=S.tabs.find(t=>t.vfsPath===file);
-      if(tab){tab.content=finalCode;if(tab.model)tab.model.setValue(finalCode);else S.editor.setValue(finalCode);}
-      else S.editor.setValue(finalCode);
+    // Update ALL tabs pointing to this file, and the active editor
+    S.tabs.forEach(t=>{
+      if(t.vfsPath===file){
+        t.content=finalCode;
+        if(t.model) t.model.setValue(finalCode);
+      }
+    });
+    // Always update active editor to show the result immediately
+    if(S.editor){
+      const activeTab=S.tabs.find(t=>t.id===S.activeId);
+      if(activeTab&&activeTab.vfsPath===file){
+        // Already updated via model
+      } else {
+        // Switch to the file's tab if it exists
+        const fileTab=S.tabs.find(t=>t.vfsPath===file);
+        if(fileTab) activateTab(fileTab.id);
+        else S.editor.setValue(finalCode);
+      }
       updateMeta();
+    }
+    // Update project if applicable
+    if(typeof _currentProjectId!=='undefined'&&_currentProjectId){
+      ProjectManager.update(_currentProjectId,{code:finalCode.slice(0,200000)});
     }
     renderDiff(generated.split('\n'),agent||'AI');
     addLog(`Injected at line ${best?.line||'?'} — strategy: ${best?.strategy||'auto'}`,'success','orch');
     addLog(`VFS.write('${file}') — ${finalCode.split('\n').length} lines`,'success','vfs');
     toast(`✅ Kode di-inject ke ${file}`);
   }else if(generated&&!file){
-    addLog('Kode digenerate — tidak ada file aktif di VFS untuk di-inject. Lihat panel AI Output.','warn','orch');
-    renderDiff(generated.split('\n'),agent||'AI');
+    // No VFS file targeted — inject directly into the active editor
+    if(S.editor){
+      const currentCode = S.editor.getValue();
+      const best = prediction?.best;
+      let finalCode;
+      if(best && best.strategy !== 'eof' && currentCode.trim().length > 0){
+        // Smart injection: use CodePredictor position
+        finalCode = PRED.applyInjection(currentCode, best, generated);
+      } else if(currentCode.trim().length === 0){
+        // Editor is empty — just set the generated code directly
+        finalCode = generated;
+      } else {
+        // Append to end with separator
+        finalCode = currentCode + '\n\n// ── AI Generated ──────────────────\n' + generated;
+      }
+      S.editor.setValue(finalCode);
+      // Save to active tab
+      const activeTab = S.tabs.find(t=>t.id===S.activeId);
+      if(activeTab){activeTab.content=finalCode;}
+      // Save to active project if any
+      if(typeof _currentProjectId!=='undefined' && _currentProjectId){
+        ProjectManager.update(_currentProjectId,{code:finalCode.slice(0,200000)});
+      }
+      updateMeta();
+      renderDiff(generated.split('\n'), agent||'AI');
+      addLog('✅ AI code injected directly into editor ('+generated.split('\n').length+' lines)', 'success','orch');
+      toast('✅ AI code → editor');
+      switchOut('diff');
+    } else {
+      addLog('Generated code ready — see AI Output panel.','warn','orch');
+      renderDiff(generated.split('\n'),agent||'AI');
+    }
   }
   if(diagnosis)addLog('DebugAgent:\n'+diagnosis,'ai-gen','debug');
   if(review)addLog('ReviewAgent:\n'+review,'ai-gen','review');
@@ -3447,7 +3517,7 @@ let _st;
 function autoSaveTab(){clearTimeout(_st);_st=setTimeout(saveState,900);}
 function saveState(){
   try{if(S.editor&&S.activeId){const c=S.tabs.find(t=>t.id===S.activeId);if(c)c.content=S.editor.getValue();}
-  localStorage.setItem('df4_state',JSON.stringify({tabs:S.tabs.map(t=>({id:t.id,name:t.name,lang:t.lang,content:t.content,vfsPath:t.vfsPath||null})),activeId:S.activeId,nextId:S.nextId,theme:S.theme,activeProvider:S.activeProvider,currentProjectId:_currentProjectId||null}));}catch(e){}
+  localStorage.setItem('df4_state',JSON.stringify({tabs:S.tabs.map(t=>({id:t.id,name:t.name,lang:t.lang,content:t.vfsPath?'':((t.model?t.model.getValue():t.content)||'').slice(0,50000),vfsPath:t.vfsPath||null})),activeId:S.activeId,nextId:S.nextId,theme:S.theme,activeProvider:S.activeProvider,currentProjectId:typeof _currentProjectId!=='undefined'?_currentProjectId:null}));}catch(e){}
 }
 function loadState(){
   try{const r=JSON.parse(localStorage.getItem('df4_state')||localStorage.getItem('df3_state'));if(!r)return null;S.nextId=r.nextId||1;const th=localStorage.getItem('df3_theme')||r.theme||'dark';if(th==='light'){S.theme='light';document.body.classList.add('light');$('themeBtn').textContent='☀';}return r;}catch(e){return null;}
@@ -3809,12 +3879,29 @@ function initDashboard(){
   _dashApplyI18n();
   // Save current project code when editor changes
   if(S && S.editor){
-    S.editor.onDidChangeModelContent && S.editor.onDidChangeModelContent(function(){
-      if(_currentProjectId){
-        var code=S.editor.getValue();
-        ProjectManager.update(_currentProjectId,{code:code});
+    // Project auto-save via autoSaveTab (already debounced at 900ms)
+    // Hook: patch autoSaveTab to also save project
+    var _origAutoSave = typeof autoSaveTab === 'function' ? autoSaveTab : null;
+    if(_origAutoSave) {
+      window._projectSaveTimer = null;
+      var _projectSave = function(){
+        if(typeof _currentProjectId !== 'undefined' && _currentProjectId && S && S.editor){
+          var code = S.editor.getValue();
+          // Only save first 200KB of code
+          ProjectManager.update(_currentProjectId, {code: code.slice(0, 200000)});
+        }
+      };
+      // Patch: call project save inside existing timer
+      var _patchAutoSave = function(){
+        clearTimeout(window._projectSaveTimer);
+        window._projectSaveTimer = setTimeout(_projectSave, 2000);
+      };
+      // Override autoSaveTab to include project save
+      if(typeof autoSaveTab !== 'undefined'){
+        var _baseAutoSave = autoSaveTab;
+        autoSaveTab = function(){ _baseAutoSave(); _patchAutoSave(); };
       }
-    });
+    }
   }
 }
 
@@ -3848,6 +3935,85 @@ function initDashboard(){
     setTimeout(_waitDashboard, 200);
   }
 })();
+
+
+// ── MEMORY MANAGEMENT ────────────────────────────────────────────
+function _freeMemory(){
+  var freed = [];
+  // 1. Clear console output DOM (keep last 50 entries)
+  var con=document.getElementById('conOut');
+  if(con){
+    var entries=con.querySelectorAll('.c-e');
+    if(entries.length>50){ for(var i=0;i<entries.length-50;i++) entries[i].remove(); freed.push('console entries'); }
+  }
+  // 2. Trim closed tab content
+  if(S&&S.tabs){
+    S.tabs.forEach(function(t){
+      if(t.id!==S.activeId && !t.model) t.content='';
+    });
+    freed.push('inactive tab content');
+  }
+  // 3. Trim VFS history (keep max 3 versions per file)
+  if(typeof VFS!=='undefined'&&VFS._hist){
+    VFS._hist.forEach(function(h,key){ if(h.length>3) VFS._hist.set(key,h.slice(-3)); });
+    freed.push('VFS history trimmed');
+  }
+  // 4. Force VFS persist now
+  if(typeof VFS!=='undefined') try{ VFS._flushNow&&VFS._flushNow(); }catch(e){}
+  // 5. Clear AI sidebar prediction cards if too many
+  var predCards=document.getElementById('aiPredCards');
+  if(predCards&&predCards.children.length>10){ predCards.innerHTML=''; freed.push('pred cards'); }
+  // 6. Python GC if loaded
+  if(S&&S.py&&S.pyReady){
+    try{ S.py.runPython('import gc;gc.collect()'); freed.push('Python GC'); }catch(e){}
+  }
+  // 7. Clear Cinema frames if too many
+  if(typeof Cinema!=='undefined'&&Cinema.frames&&Cinema.frames.length>200){
+    Cinema.frames=Cinema.frames.slice(-100);
+    freed.push('Cinema frames trimmed');
+  }
+  if(freed.length) toast('🧹 Memory freed: '+freed.join(', '));
+  else toast('Memory is already clean');
+  if(typeof addLog==='function') addLog('Memory cleanup: '+freed.join(', '),'info','memory');
+}
+// Run light cleanup every 5 min automatically
+setInterval(function(){
+  if(!document.hidden) return; // only when tab is hidden (user away)
+  var con=document.getElementById('conOut');
+  if(con){var e=con.querySelectorAll('.c-e');if(e.length>100)for(var i=0;i<e.length-100;i++)e[i].remove();}
+}, 300000);
+
+
+// Apply AI generated code to editor
+window._applyAICode = function(){
+  if(!window._lastGeneratedCode){ toast('No generated code to apply'); return; }
+  var generated=window._lastGeneratedCode;
+  if(S&&S.editor){
+    var cur=S.editor.getValue();
+    var fc;
+    if(cur.trim().length===0){
+      fc=generated;
+    } else {
+      // Use smart injection if we have prediction data
+      var pred=S.lastPred;
+      var best=pred&&pred.best;
+      if(best&&best.strategy!=='eof'){
+        fc=PRED.applyInjection(cur,best,generated);
+      } else {
+        fc=cur+'\n\n// ── AI Generated ──────────────────\n'+generated;
+      }
+    }
+    S.editor.setValue(fc);
+    var at=S.tabs.find(function(t){return t.id===S.activeId;});
+    if(at) at.content=fc;
+    if(S.activeVfsFile) try{VFS.write(S.activeVfsFile,fc);renderVFS();}catch(e){}
+    if(typeof _currentProjectId!=='undefined'&&_currentProjectId) ProjectManager.update(_currentProjectId,{code:fc.slice(0,200000)});
+    updateMeta();
+    toast('✅ Applied to editor');
+    addLog('Applied AI code to editor ('+generated.split('\n').length+' lines)','success','ai');
+    switchOut('console');
+  }
+};
 
 window.addEventListener('beforeunload',saveState);
 
@@ -4104,12 +4270,39 @@ function _dfExtInit(){
   var aiInp=document.getElementById('aiReqInput');
   if(aiInp){
     var wrap=aiInp.parentElement||aiInp;
-    wrap.addEventListener('dragover',function(e){ if(e.dataTransfer.types.indexOf('text/plain')>=0||e.dataTransfer.types.indexOf('df-vfs-path')>=0){ e.preventDefault(); aiInp.classList.add('drag-on-ai'); } });
-    wrap.addEventListener('dragleave',function(){ aiInp.classList.remove('drag-on-ai'); });
-    wrap.addEventListener('drop',function(e){
-      e.preventDefault(); aiInp.classList.remove('drag-on-ai');
-      var path=e.dataTransfer.getData('df-vfs-path')||e.dataTransfer.getData('text/plain');
-      if(path && typeof VFS!=='undefined' && VFS.exists(path)) _setAITarget(path);
+    // Allow both the wrap and the input itself to receive drops
+    [wrap, aiInp].forEach(function(el){
+      el.addEventListener('dragover',function(e){
+        // Accept VFS path drags
+        var types=Array.from(e.dataTransfer.types||[]);
+        if(types.indexOf('text/plain')>=0||types.indexOf('df-vfs-path')>=0){
+          e.preventDefault(); e.stopPropagation();
+          aiInp.classList.add('drag-on-ai');
+          e.dataTransfer.dropEffect='link';
+        }
+      });
+      el.addEventListener('dragleave',function(e){
+        // Only remove if truly leaving the wrap
+        if(!wrap.contains(e.relatedTarget)) aiInp.classList.remove('drag-on-ai');
+      });
+      el.addEventListener('drop',function(e){
+        e.preventDefault(); e.stopPropagation();
+        aiInp.classList.remove('drag-on-ai');
+        var path=e.dataTransfer.getData('df-vfs-path')||e.dataTransfer.getData('text/plain');
+        if(path && typeof VFS!=='undefined' && VFS.exists(path)){
+          _setAITarget(path);
+          // Also optionally add "target: <filename>" hint to instruction
+          if(!aiInp.value.trim()){
+            aiInp.value='Modify '+path.split('/').pop()+' — ';
+            aiInp.focus();
+            aiInp.setSelectionRange(aiInp.value.length,aiInp.value.length);
+          }
+          toast('✦ Target set: '+path.split('/').pop()+' — write your instruction');
+        } else if(path){
+          // Path not in VFS — maybe it's a tab name
+          toast('Drop a file from the Files sidebar to target it');
+        }
+      });
     });
   }
 
